@@ -1,0 +1,153 @@
+/*----------------------------------------------
+CSS Settings For HTML Div ExactCenter
+------------------------------------------------*/
+body {
+background-color: #fff;
+}
+
+#main {
+width:100%;
+margin:auto;
+}
+
+
+.center {
+margin-left:auto;
+margin-right:auto;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #ccffcc inset;
+}
+
+#helpmain {
+border-radius:0.5em;
+border:2px solid #00d200;
+background-color:#ddffdd;
+margin-top:20px;
+min-height:5em;
+}
+
+#helpmain div{
+padding:0.5em;
+width:90%;
+max-width:800px;
+}
+
+.button {
+height: 100px;
+}
+
+.title {
+background-color:#99ff99;
+color:black;
+border-radius:0px;
+}
+
+#helppopup{
+display:none;
+position:absolute;
+top:0;
+left:0;
+height:100%;
+width:100%;
+z-index:1000;
+background-color:white;
+}
+
+#helpcontents{
+width:100%;
+margin:auto;
+}
+
+#inputting {
+max-width: 300px;
+margin:auto;
+}
+
+table.login td {
+background-color: #ddffdd;
+}
+
+table.login td.white {
+background-color: white;
+}
+
+form {
+margin: 0.5em;
+}
+
+body {
+font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size:1em;
+}
+
+img{
+	border:none;
+	outline:none;
+}
+
+a {
+	text-decoration:none;
+}
+
+h1 {
+background-color:#00d200;
+padding:0.5em;
+border-radius:0.5em;
+color:white;
+text-align:center;
+font-size:1.2em;
+}
+
+#logo {
+background-image: url(http://mrdeejay.co.uk/images/mrdeejay.png);
+background-size: 15em;
+background-repeat: no-repeat;
+background-position:center 0.5em;
+min-height:7em;
+}
+
+
+h2 {
+text-align:center;
+margin: 1.2em;
+font-size:1.2em;
+}
+
+
+#login {
+border-radius:0.5em;
+border:2px solid #00d200;
+background-color:#ddffdd;
+margin-top:20px;
+min-height:5em;
+
+}
+
+input[type=submit] {
+width:50%;
+height: 2em;
+background-color:#00d200;
+color:#fff;
+border:2px solid #00d200;
+cursor:pointer;
+border-radius:0.5em;
+margin: 1em;
+font-size:1.2em;
+}
+
+a {
+text-decoration:none;
+color:#6495ed
+}
+
+
+input[type=text] {
+background-color: #9eff9e;
+border:none;
+width:95%;
+height:2em;
+font-size:2em;
+padding:0.2em;
+}
