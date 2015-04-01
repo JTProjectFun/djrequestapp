@@ -8,7 +8,6 @@ $record = "";
 switch($action) {
 	case "load":
 
-// Line below commented out because configuration.php include already does it.  Cached result?
                 $conn = mysqli_connect($host, $username, $password, $db);
 		$query 	= mysqli_query($conn, "SELECT * FROM `settings`");
 		$count  = mysqli_num_rows($query);
@@ -29,6 +28,11 @@ switch($action) {
             <?php } else {
             foreach($record as $records) {
                 ?>
+                <tr>
+                    <td class="setting_title">Site Base URL</td>
+                    <td><div class="grid_content editable"><span><?php echo $records['baseURL']; ?></span>
+                    <input type="text" class="gridder_input" name="<?php echo encrypt("baseURL|".$records['id']); ?>" value="<?php echo $records['baseURL']; ?>" /></div></td>
+                </tr>
                 <tr>
                     <td class="setting_title">Session Timeout (minutes)</td>
                     <td class="date"><div class="grid_content editable"><span><?php echo $records['session_timeout']; ?></span>

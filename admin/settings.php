@@ -54,7 +54,6 @@ $(function(){
 		ThisElement.hide();
 		ThisElement.prev('span').show().html($(this).val()).prop('title', $(this).val());
 		var UrlToPass = 'action=update&value='+ThisElement.val()+'&crypto='+ThisElement.prop('name');
-alert (UrlToPass);
 		$.ajax({
 			url : 'settingsajax.php',
 			type : 'POST',

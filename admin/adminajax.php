@@ -1,7 +1,7 @@
 <?php
 include '../configuration.php';
 include '../functions/functions.php';
-include('../generatekey.php');
+include('generatekey.php');
 
 $action = $_REQUEST['action'];
 $record="";
@@ -33,6 +33,7 @@ switch($action) {
                 <td><div class="grid_heading">Show Requests</div></td>
                 <td><div class="grid_heading">Will Expire</div></td>
                 <td><div class="grid_heading">Manage</div></td>
+                <td><div class="grid_heading">Print</div></td>
                 <td><div class="grid_heading">Delete</div></td>
             </tr>
             <tr id="addnew">
@@ -83,6 +84,11 @@ switch($action) {
                 <td class="manage">
                     <div class="gridder_content">
                         <a href="requests.php?key=<?php echo $records['id'] ;?>">manage</a>
+                    </div>
+                </td>
+                <td class="manage">
+                    <div class="gridder_content">
+                        <a href="print.php?key=<?php echo $records['thekey'] ;?>">print</a>
                     </div>
                 </td>
                 <td class="del">

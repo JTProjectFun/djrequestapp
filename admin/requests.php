@@ -1,6 +1,6 @@
 <?php
 include '../configuration.php';
-
+$key = 0;
 session_start();
 if(!isset($_SESSION['login_user']) || $_SESSION['login_user'] == "") {
      header('Location: index.php');
@@ -12,7 +12,6 @@ else {
 if ($_GET["key"]) {
   $key = $_GET["key"];
 }
-else  $key = 0;
 
 $_SESSION['listkey'] = $key;
 
@@ -193,26 +192,22 @@ $(function(){
 		if($('#name').val() == '') {
 			$('#name').focus();
                              alert('The "Name" field cannot be left blank. Please enter a name.');
-                        });
 		return false;
 		}
 		if($('#artist').val() == '') {
 			$('#artist').focus();
                         alert('The "Artist" field cannot be left blank. Please enter an artist.');
-                       });
 			return false;
 		}
 		if($('#title').val() == '') {
 			$('#title').focus();
                         alert('The "Title" field cannot be left blank. Please enter a title.');
-                       });
 
 			return false;
 		}
 		if($('#message').val().length > 140)	 {
                         $('#message').focus();
                              alert('The "Message" field cannot contain more than 140 characters. Consider using a shorter message.');
-                       });
                         return false;
                 }
 		// Pass the form data to the ajax page
