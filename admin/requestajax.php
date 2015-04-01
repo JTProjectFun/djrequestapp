@@ -61,6 +61,7 @@ switch($action) {
                 <th class="id"><div class="grid_heading">id</div></th>
                 <th class="date"><div class="grid_heading">Date &amp; Time Added</div></th>
                 <th class="key"><div class="grid_heading">Key</div></th>
+                <th class="date"><div class="grid_heading">UserString</div></th>
                 <th class="date"><div class="grid_heading">IP Address</div></th>
                 <th class="date"><div class="grid_heading">Name</div></th>
                 <th class="date"><div class="grid_heading">Artist</div></th>
@@ -96,6 +97,11 @@ switch($action) {
                 <td class="key">
                     <div class="grid_content sno">
                         <span><?php echo $records['thekey']; ?></span>
+                    </div>
+                </td>
+                <td class="date">
+                    <div class="grid_content sno">
+                        <span><a href="user.php?user=<?php echo $records['uniqueid']; ?>"> <?php echo $records['uniqueid']; ?></a></span>
                     </div>
                 </td>
                 <td class="date">
