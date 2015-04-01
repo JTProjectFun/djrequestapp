@@ -44,6 +44,11 @@ switch($action) {
                     <input type="text" class="gridder_input" name="<?php echo encrypt("flood_period|".$records['id']); ?>" value="<?php echo $records['flood_period']; ?>" /></div></td>
                 </tr>
                 <tr>
+                    <td class="setting_title">Max Requests Per User</td>
+                    <td class="date"><div class="grid_content editable"><span><?php echo $records['maxRequests']; ?></span>
+                    <input type="text" class="gridder_input" name="<?php echo encrypt("maxRequests|".$records['id']); ?>" value="<?php echo $records['maxRequests']; ?>" /></div></td>
+                </tr>
+                <tr>
                     <td class="setting_title">Overrun by (hours)</td>
                     <td class="date"><div class="grid_content editable"><span><?php echo $records['over_hours']; ?></span>
                     <input type="text" class="gridder_input" name="<?php echo encrypt("over_hours|".$records['id']); ?>" value="<?php echo $records['over_hours']; ?>" /></div></td>
