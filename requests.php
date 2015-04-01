@@ -1,7 +1,18 @@
 <?php
 session_start();
 include_once 'configuration.php';
+$bypass = 0;
 
+// If user comes in via a URL obtained from somewhere, e.g. the (not yet implemented QR code generator), set their session as 'logged in'
+
+if ($_GET["key"]) {
+  $key = $_GET["key"];
+  $bypass = 1;
+  $_SESSION['key']=$key;
+}
+
+
+// check user is logged in
 if (!(isset($_SESSION['key']) && $_SESSION['key'] != ''))
 {
 //echo "KEY: " . $_SESSION['key'];
