@@ -3,6 +3,14 @@ session_start(); // Starting Session
 $error=''; // Variable To Store Error Message
 include_once 'configuration.php';
 
+// If user comes in via a URL obtained from somewhere, e.g. the (not yet implemented QR code generator), set their session as 'logged in'
+
+if ($_GET["key"]) {
+    $key = $_GET["key"];
+    $_POST['submit'] = true;
+    $_POST['key'] = $key;
+}
+
 if (isset($_POST['submit'])) {
     if (empty($_POST['key'])) {
         $error = "Key Code is not valid";
@@ -34,6 +42,7 @@ if (isset($_POST['submit'])) {
                 } else {
                        $error = "Willexpire: ". $willexpire. " " . $data . " Key Code '" . $key . "' is not valid " .$date . ", sorry. Try again with a valid code.";
                        mysqli_close($conn); // Closing Connection
+                       header("location: index.php");
                    }
         }
         else {
