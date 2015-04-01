@@ -30,7 +30,7 @@ switch($action) {
                 ?>
                 <tr>
                     <td class="setting_title">Site Base URL</td>
-                    <td><div class="grid_content editable"><span><?php echo $records['baseURL']; ?></span>
+                    <td style="width:300px"><div class="grid_content editable"><span><?php echo $records['baseURL']; ?></span>
                     <input type="text" class="gridder_input" name="<?php echo encrypt("baseURL|".$records['id']); ?>" value="<?php echo $records['baseURL']; ?>" /></div></td>
                 </tr>
                 <tr>
