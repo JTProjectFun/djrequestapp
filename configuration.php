@@ -21,7 +21,7 @@ $conn = mysqli_connect($host, $username, $password, $db);
                 }
 
 mysqli_close($conn);
-
+$baseURL = $record['baseURL'];
 $session_timeout = $record['session_timeout'];
 $flood_period = $record['flood_period'];
 $over_hours = $record['over_hours'];
