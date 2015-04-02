@@ -5,16 +5,11 @@ include('../generatekey.php');
 session_start();
 $record="";
 $action = $_REQUEST['action'];
-
+$user = $_GET['user'];
 switch($action) {
 	case "load":
                 $rq = mysqli_connect($host, $username, $password, $db);
-                if ($key == "0") {
-                      $query = mysqli_query($rq, "SELECT * FROM requests ORDER BY id ASC");
-                }
-                else {
-                      $query = mysqli_query($rq, "SELECT requests.* FROM requests LEFT JOIN requestkeys ON requests.thekey=requestkeys.thekey WHERE requestkeys.id='".$key."' ORDER BY id ASC");
-                }
+                      $query = mysqli_query($rq, "SELECT * FROM requests WHERE uniqueid='$user' ORDER BY id ASC");
 		$count  = mysqli_num_rows($query);
 		if($count > 0) {
 			while($fetch = mysqli_fetch_array($query)) {
@@ -22,38 +17,6 @@ switch($action) {
 			}
 		}
 		?>
-
-                <form id="gridder_addform" method="post">
-                    <input type="hidden" name="action" value="addnew" />
-
-                    <table class="addnewrequest" id="addnew">
-                        <tr class="newadd">
-                            <td>Key</td>
-                            <td class="tbname"><input type="text" name="key" id="key" class="gridder_add" value="<?php echo $key; ?>"/></td>
-                        </tr>
-                        <tr class="newadd">
-                            <td>Your Name</td>
-                            <td class="tbname"><input type="text" name="name" id="name" class="gridder_add" /></td>
-                        </tr>
-                        <tr class="newadd">
-                            <td>Song Artist</td>
-                            <td class="tbartist"><input type="text" name="artist" id="artist" class="gridder_add" /></td>
-                        </tr>
-                        <tr class="newadd">
-                            <td>Song Title</td>
-                            <td class="tbtitle"><input type="text" name="title" id="title" class="gridder_add" /></td>
-                        </tr>
-                        <tr class="newadd">
-                            <td>Your message (up to 140 characters)</td>
-                            <td class="message"><textarea name="message" id="message" class="gridder_add"></textarea></td>
-                        </tr>
-                        <tr class="newadd">
-                            <td colspan="2" class="tbadd">&nbsp;
-                                <input type="submit" id="gridder_addrecord" value="Submit" class="gridder_addrecord_button" title="Add" />
-                                <a href="cancel" id="gridder_cancel" class="gridder_cancel">CANCEL</a></td>
-                        </tr>
-                     </table>
-                 </form>
 
         <table class="as_gridder_table">
             <tr>
@@ -69,6 +32,7 @@ switch($action) {
                 <th class="willplay"><div class="grid_heading">WillPlay</div></th>
                 <th class="willplay"><div class="grid_heading">Played</div></th>
                 <th class="del"><div class="grid_heading">Delete</div></th>
+                <th class="del"><div class="grid_heading">BAN</div></th>
             </tr>
 
             <?php
@@ -156,6 +120,11 @@ switch($action) {
                         <img src="../images/delete.png" alt="Delete" title="Delete" />
                     </a>
                 </td>
+                <td>
+                    <a href="<?php echo encrypt($records['uniqueid']); ?>" class="gridder_ban">
+                        <img src="../images/delete.png" alt="Ban this user" title="BAN" />
+                    </a>
+                </td>
             </tr>
             <?php
                 }
@@ -164,53 +133,18 @@ switch($action) {
             </table>
         <?php
 	break;
-	
-	case "addnew":
-                $conn = mysqli_connect($host,$username,$password,$db);
-                $timedate = date("Y-m-d.H:i:s");
-                $ip_addr = $_SERVER['REMOTE_ADDR'];
-                $key = isset($_POST['key']) ? mysqli_real_escape_string($rq, $_POST['key']) : '';
-		$name 		= isset($_POST['name']) ? mysqli_real_escape_string($rq, $_POST['name']) : '';
-		$artist         = isset($_POST['artist']) ? mysqli_real_escape_string($rq, $_POST['artist']) : '';
-		$title 		= isset($_POST['title']) ? mysqli_real_escape_string($rq, $_POST['title']) : '';
-		$message 	= isset($_POST['message']) ? mysqli_real_escape_string($rq, $_POST['message']) : '';
-		mysqli_query($conn, "INSERT INTO `requests` (timedate, thekey, name, artist, title, message, ipaddr) VALUES ('$timedate', '$key', '$name', '$artist', '$title', '$message', '$ip_addr')");
-                mysqli_close($conn);
-	break;
-
-	case "update":
-                $conn = mysqli_connect($host,$username,$password,$db);
-		$value 	= $_POST['value'];
-		$crypto = decrypt($_POST['crypto']);
-		$explode = explode('|', $crypto);
-		$columnName = $explode[0];
-		$rowId = $explode[1];
-		if($columnName == 'posted_date') { // Check the column is 'date', if yes convert it to date format
-			$datevalue = $value;
-			$value 	   = date('Y-m-d', strtotime($datevalue));
-		}
-		$query = mysqli_query($conn, "UPDATE `requests` SET `$columnName` = '$value' WHERE id = '$rowId' ");
-                mysqli_close($conn);
-
-	break;
-
-        case "toggle":
-                $conn = mysqli_connect($host,$username,$password,$db);
-		$value 	= $_POST['value'];
-		$crypto = decrypt($_POST['crypto']);
-		$explode = explode('|', $crypto);
-		$columnName = $explode[0];
-		$rowId = $explode[1];
-                if ($value == "on") { $value = 1; } else { $value = 0; }
-		$query = mysqli_query($conn, "UPDATE `requests` SET `$columnName` = '$value' WHERE id = '$rowId' ");
-                mysqli_close($conn);
-
-        break;
 
 	case "delete":
                 $conn = mysqli_connect($host,$username,$password,$db);
 		$value 	= decrypt($_POST['value']);
 		$query = mysqli_query($conn, "DELETE FROM `requests` WHERE id = '$value' ");
+                mysqli_close($conn);
+	break;
+
+	case "ban":
+                $conn = mysqli_connect($host,$username,$password,$db);
+		$value 	= decrypt($_POST['value']);
+	//	$query = mysqli_query($conn, "DELETE FROM `requests` WHERE id = '$value' ");
                 mysqli_close($conn);
 	break;
 }

@@ -35,7 +35,7 @@ $(function(){
 		var UrlToPass = 'action=load';
 		gridder.html('loading..');
 		$.ajax({
-			url : 'userajax.php',
+			url : 'userajax.php?user=<?php echo $user; ?>',
 			type : 'POST',
 			data : UrlToPass,
 			success: function(responseText) {
@@ -152,7 +152,25 @@ $(function(){
 		});
 		return false;
 	});
-	
+	// Function for banning the user
+	$('body').delegate('.gridder_ban', 'click', function(){
+		var conf = confirm('Are you sure want to ban this user?');
+		if(!conf) {
+			return false;
+		}
+		var ThisElement = $(this);
+		var UrlToPass = 'action=ban&value='+ThisElement.attr('href');
+alert (UrlToPass);
+		$.ajax({
+			url : 'userajax.php',
+			type : 'POST',
+			data : UrlToPass,
+			success: function() {
+				LoadGrid();
+			}
+		});
+		return false;
+	});
 	
 	// Add new record
 	
@@ -228,7 +246,7 @@ $(function(){
 <body>
 <div class="as_wrapper">
 <div id="logo">&nbsp;</div>
-	<h1 class="h1"><a href="">Song Requests</a></h1>
+	<h1 class="h1"><a href="">User Management</a></h1>
 <a class="logout" href="admin.php">Keys Admin</a>
 <a class="logout" href="logout.php">Log out</a>
 
