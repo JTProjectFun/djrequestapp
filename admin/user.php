@@ -134,9 +134,9 @@ $(function(){
 		}
 	});
 	
-	// Function for delete the record
+	// Function for deleting all the user's requests
 	$('body').delegate('.gridder_delete', 'click', function(){
-		var conf = confirm('Are you sure want to delete this record?');
+		var conf = confirm('Are you sure want to delete this user's requests?');
 		if(!conf) {
 			return false;
 		}
@@ -160,7 +160,6 @@ $(function(){
 		}
 		var ThisElement = $(this);
 		var UrlToPass = 'action=ban&value='+ThisElement.attr('href');
-alert (UrlToPass);
 		$.ajax({
 			url : 'userajax.php',
 			type : 'POST',

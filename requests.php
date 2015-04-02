@@ -34,7 +34,7 @@ if (!isset($_COOKIE['user'])) {
     setcookie("key", $key, time() + (60 * 60 * 8), "/"); // 60 * 60 * 8 seconds = 8 hours
     $ip_addr = $_SERVER['REMOTE_ADDR'];
     $conn = mysqli_connect($host, $username, $password, $db);
-    $query = mysqli_query($conn, "INSERT INTO requestusers (uniqueid, ipaddr) VALUES ('$uniqueid', '$ip_addr')");
+    $query = mysqli_query($conn, "INSERT INTO requestusers (uniqueid, ipaddr, thekey, createdTime) VALUES ('$uniqueid', '$ip_addr', '$key', NOW())");
     mysqli_close($conn);
 }
 
