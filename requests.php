@@ -19,16 +19,26 @@ if (isset($_SESSION['timeout'])){
     }
 }
 
-  $_SESSION['uniqueid'] = uniqid();
+//if (!isset($_SESSION['uniqueid'])){
+//  $_SESSION['uniqueid'] = uniqid();
+//}
+
+//$uniqeid = $_SESSION['uniqueid'];
 
 $key = $_SESSION['key'];
-//if (empty($key)) {
-// if(session_destroy()) // Destroying All Sessions
-//        {
-//            header("Location: index.php"); // Redirecting To Home Page
-//        }
-//header("Location: logout.php");
-//}
+$uniqueid = uniqid();
+
+// If cookie hasn't been set, set it and put this user in the requestuser table
+if (!isset($_COOKIE['user'])) {
+    setcookie("user", $uniqueid, time() + (60 * 60 * 8), "/"); // 60 * 60 * 8 seconds = 8 hours
+    setcookie("key", $key, time() + (60 * 60 * 8), "/"); // 60 * 60 * 8 seconds = 8 hours
+    $ip_addr = $_SERVER['REMOTE_ADDR'];
+    $conn = mysqli_connect($host, $username, $password, $db);
+    $query = mysqli_query($conn, "INSERT INTO requestusers (uniqueid, ipaddr) VALUES ('$uniqueid', '$ip_addr')");
+    mysqli_close($conn);
+}
+
+//echo "<p>" . $_COOKIE['user'] . " : " . $_COOKIE['key'] . "</p>";
 
 // Better check key exists. If not, kick back to login page
 $result=""; 
@@ -235,6 +245,10 @@ $(function(){
 			type : 'POST',
 			data : data,
 			success: function(data) {
+                            if (data.status == "banned") {
+                                 setTimeout(function(){ $('#banned').show(); }, 100);
+                                 setTimeout(function(){ $('#banned').fadeOut('fast'); }, 8000);
+                            }
                             if (data.status == "flood") {
                                  setTimeout(function(){ $('#floodalert').show(); }, 100);
                                  setTimeout(function(){ $('#floodalert').fadeOut('fast'); }, 8000);

@@ -9,7 +9,7 @@ $record=""; // Initialise variables which may have been previously used & would 
 
 $action = $_REQUEST['action'];
 $key = $_SESSION['key'];
-$uniqueid = $_SESSION['uniqueid'];
+$uniqueid = $_COOKIE['user'];
 $error = '';
 switch($action) {
 	case "load":
@@ -38,6 +38,12 @@ switch($action) {
                     <div class="content">
                         THANKYOU
                         <span class="error">Your request submission was successful</span>
+                    </div>
+                </div>
+                <div id="banned">
+                    <div class="content">
+                        WHOOPS
+                        <span class="error">You have been BANNED from making requests, you fool!</span>
                     </div>
                 </div>
                 <div id="floodalert">
@@ -105,13 +111,22 @@ switch($action) {
 	break;
 
 	case "addnew":
-                $result="";
+                $row="";
                 $timedate = date("Y-m-d.H:i:s");
                 $ip_addr = $_SERVER['REMOTE_ADDR'];
-                $uniqueid = $_SESSION['uniqueid'];
+                $uniqueid = $_COOKIE['user'];
                 $conn = mysqli_connect($host, $username, $password, $db);
-                $result = mysqli_query($conn, "SELECT timedate FROM requests WHERE uniqueid='".$uniqueid."' ORDER BY timedate DESC LIMIT 1");
+$bannedquery = mysqli_query($conn, "SELECT banned FROM requestusers WHERE uniqueid='$uniqueid'");
+$banned = mysqli_fetch_row($bannedquery);
+if ( $banned[0] == "1" ) {
+                        $response['status'] = 'banned';
+                        header('Content-type: application/json');
+                        echo json_encode($response);
+                        mysqli_close($conn);
+                        break;
+}
 
+                $result = mysqli_query($conn, "SELECT timedate FROM requests WHERE uniqueid='".$uniqueid."' ORDER BY timedate DESC LIMIT 1");
                 $rows = mysqli_num_rows($result);
                 if ($rows == 1) {
                     $row = mysqli_fetch_row($result);
