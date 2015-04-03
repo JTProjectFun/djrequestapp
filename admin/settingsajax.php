@@ -75,6 +75,15 @@ switch($action) {
                         </div>
                     </td>
                 </tr>
+                <tr>
+                    <td class="setting_title">Keep Users For (Days)</td>
+                        <div class="gridder_content">
+                            <span></span>
+                    <td class="date"><div class="grid_content editable"><span><?php echo $records['maxUserAge']; ?></span>
+                    <input type="text" class="gridder_input" name="<?php echo encrypt("maxUserAge|".$records['id']); ?>" value="<?php echo $records['maxUserAge']; ?>" />
+                    </td>
+                    </div>
+                </tr>
                 <?php
                 }
             }

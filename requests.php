@@ -35,6 +35,8 @@ if (!isset($_COOKIE['user'])) {
     $ip_addr = $_SERVER['REMOTE_ADDR'];
     $conn = mysqli_connect($host, $username, $password, $db);
     $query = mysqli_query($conn, "INSERT INTO requestusers (uniqueid, ipaddr, thekey, createdTime) VALUES ('$uniqueid', '$ip_addr', '$key', NOW())");
+    // Delete users older than $maxUserAge days old
+    $query = mysql_query($conn, "DELETE FROM requestusers WHERE createdTime < NOW - INTERVAL '$maxUserAge' DAY");
     mysqli_close($conn);
 }
 
