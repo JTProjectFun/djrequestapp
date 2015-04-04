@@ -5,12 +5,9 @@ include('../generatekey.php');
 session_start();
 $record="";
 $action = $_REQUEST['action'];
-echo "<pre>".$action."</pre>";
 if (isset($_SESSION['listuser'])) {
-echo "<p>Got user!</p>";
     $luser = $_SESSION['listuser'];
 }
-echo "<pre>" .$luser . "</pre>";
 
 switch($action) {
 	case "load":

@@ -9,11 +9,11 @@ else {
      $id = $_SESSION['login_user'];
 }
 
-//if (isset($_GET['user'])) {
-//  $user = $_GET['user'];
-//  $_SESSION['listuser'] = $user;
-//}
-//else header('Location: admin.php');
+if (isset($_GET['user'])) {
+  $user = $_GET['user'];
+  $_SESSION['listuser'] = $user;
+}
+else header('Location: admin.php');
 
 ?>
 <!DOCTYPE html>
