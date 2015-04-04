@@ -1,6 +1,5 @@
 <?php
 include '../configuration.php';
-$key = 0;
 session_start();
 if(!isset($_SESSION['login_user']) || $_SESSION['login_user'] == "") {
      header('Location: index.php');
@@ -9,11 +8,13 @@ else {
      $id = $_SESSION['login_user'];
 }
 
-if ($_GET["key"]) {
-  $key = $_GET["key"];
+$key = 0;
+
+if (isset($_GET['key'])) {
+  $key = $_GET['key'];
 }
 
-$_SESSION['listkey'] = $key;
+$_SESSION['key'] = $key;
 
 ?>
 <!DOCTYPE html>
@@ -30,7 +31,7 @@ $_SESSION['listkey'] = $key;
 <script type="text/javascript">
 $(function(){
 	
-	// Function for load the grid
+	// Function for loading the grid
 	function LoadGrid() {
 		var gridder = $('#as_gridder');
 		var UrlToPass = 'action=load';

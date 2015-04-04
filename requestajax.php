@@ -40,6 +40,12 @@ switch($action) {
                         <span class="error">Your request submission was successful</span>
                     </div>
                 </div>
+                <div id="toomany">
+                    <div class="content">
+                        WHOOPS
+                        <span class="error">You have already made the maximum amount of requests allowed, sorry</span>
+                    </div>
+                </div>
                 <div id="banned">
                     <div class="content">
                         WHOOPS
@@ -116,10 +122,23 @@ switch($action) {
                 $ip_addr = $_SERVER['REMOTE_ADDR'];
                 $uniqueid = $_COOKIE['user'];
                 $conn = mysqli_connect($host, $username, $password, $db);
-$bannedquery = mysqli_query($conn, "SELECT banned FROM requestusers WHERE uniqueid='$uniqueid'");
-$banned = mysqli_fetch_row($bannedquery);
-if ( $banned[0] == "1" ) {
+                $bannedquery = mysqli_query($conn, "SELECT banned FROM requestusers WHERE uniqueid='$uniqueid'");
+                $banned = mysqli_fetch_row($bannedquery);
+                if ( $banned[0] == "1" ) {
                         $response['status'] = 'banned';
+                        header('Content-type: application/json');
+                        echo json_encode($response);
+                        mysqli_close($conn);
+                        break;
+}
+
+                $numquery = mysqli_query($conn, "SELECT numRequests FROM requestusers WHERE uniqueid='$uniqueid'");
+                $maxquery = mysqli_query($conn, "SELECT maxRequests FROM requestkeys WHERE thekey='$key'");
+                $maxRequests = mysqli_fetch_row($maxquery);
+                $maxRequestsSet = $maxRequests[0];
+                $userRequests = mysqli_fetch_row($numquery);
+                if (($userRequests > $maxRequestsSet) && ($maxRequestsSet != 0)) {
+                        $response['status'] = 'toomany';
                         header('Content-type: application/json');
                         echo json_encode($response);
                         mysqli_close($conn);
@@ -152,7 +171,7 @@ if ( $banned[0] == "1" ) {
                 $artist = strip_tags($_POST['artist']);
                 $title = strip_tags($_POST['title']);
                 $message = strip_tags($_POST['message']);
-
+                $result = mysqli_query($conn, "UPDATE requestusers set numRequests=numRequests+1 WHERE uniqueid='$uniqueid'");
                 $result = mysqli_query($conn, "INSERT INTO `requests` (timedate, thekey, name, artist, title, message, ipaddr, uniqueid) VALUES ('".$timedate."', '".$key."', '".$name."', '".$artist."', '".$title."', '".$message."', '".$ip_addr."', '".$uniqueid."')");
                 mysqli_close($conn);
 

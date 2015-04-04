@@ -27,5 +27,5 @@ $flood_period = $record['flood_period'];
 $over_hours = $record['over_hours'];
 $willexpire = $record['willexpire'];
 $show_requests = $record['show_requests'];
-
+//$maxRequests = $record['maxRequests'];
 ?>

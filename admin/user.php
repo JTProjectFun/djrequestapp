@@ -9,10 +9,11 @@ else {
      $id = $_SESSION['login_user'];
 }
 
-if ($_GET["user"]) {
-  $user = $_GET["user"];
-}
-else header('Location: admin.php');
+//if (isset($_GET['user'])) {
+//  $user = $_GET['user'];
+//  $_SESSION['listuser'] = $user;
+//}
+//else header('Location: admin.php');
 
 ?>
 <!DOCTYPE html>
@@ -29,13 +30,13 @@ else header('Location: admin.php');
 <script type="text/javascript">
 $(function(){
 	
-	// Function for load the grid
+	// Function for loading the grid
 	function LoadGrid() {
 		var gridder = $('#as_gridder');
 		var UrlToPass = 'action=load';
 		gridder.html('loading..');
 		$.ajax({
-			url : 'userajax.php?user=<?php echo $user; ?>',
+			url : 'userajax.php',
 			type : 'POST',
 			data : UrlToPass,
 			success: function(responseText) {
@@ -136,7 +137,7 @@ $(function(){
 	
 	// Function for deleting all the user's requests
 	$('body').delegate('.gridder_delete', 'click', function(){
-		var conf = confirm('Are you sure want to delete this user's requests?');
+		var conf = confirm("Are you sure want to delete this user's requests?");
 		if(!conf) {
 			return false;
 		}
@@ -180,7 +181,6 @@ $(function(){
 		return false;
 	});
 	
-	
 	// Add new record when the table in non-empty
 	$('body').delegate('.gridder_addnew', 'click', function(){
 		$('html, body').animate({ scrollTop: $('.as_gridder').offset().top}, 250); // Scroll to top gridder table
@@ -218,7 +218,6 @@ $(function(){
 		if($('#title').val() == '') {
 			$('#title').focus();
                         alert('The "Title" field cannot be left blank. Please enter a title.');
-
 			return false;
 		}
 		if($('#message').val().length > 140)	 {

@@ -32,6 +32,7 @@ switch($action) {
                 <td class="date"><div class="grid_heading">Active Date</div></td>
                 <td><div class="grid_heading">Show Requests</div></td>
                 <td><div class="grid_heading">Will Expire</div></td>
+                <td><div class="grid_heading">Max Requests</div></td>
                 <td><div class="grid_heading">Manage</div></td>
                 <td><div class="grid_heading">Print</div></td>
                 <td><div class="grid_heading">Delete</div></td>
@@ -81,15 +82,19 @@ switch($action) {
                         <?php if ($records['willexpire'] == 1) { echo ' checked '; } ?> />
                     </div>
                 </td>
+                <td class="maxrequests">
+                    <div class="grid_content editable">
+                        <span><?php echo $records['maxRequests']; ?></span>
+                        <input type="text" class="gridder_input" name="<?php echo encrypt("maxRequests|".$records['id']); ?>" value="<?php echo $records['maxRequests']; ?>" />
+                    </div>
+                </td>
                 <td class="manage">
                     <div class="gridder_content">
                         <a href="requests.php?key=<?php echo $records['id'] ;?>">manage</a>
                     </div>
                 </td>
-                <td class="manage">
-                    <div class="gridder_content">
-                        <a href="print.php?key=<?php echo $records['thekey'] ;?>">print</a>
-                    </div>
+                <td class="print">
+                    <a href="print.php?key=<?php echo $records['thekey'] ; ?>">Print</a>
                 </td>
                 <td class="del">
                     <a href="<?php echo encrypt($records['id']); ?>" class="gridder_delete"><img src="../images/delete.png" alt="Delete" title="Delete" /></a>

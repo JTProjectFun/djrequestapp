@@ -1,12 +1,12 @@
 <?php
 include '../configuration.php';
 include '../functions/functions.php';
-include('../generatekey.php');
+include('generatekey.php');
 session_start();
 $record="";
 $action = $_REQUEST['action'];
 
-$key = $_SESSION['listkey'];
+$key = $_SESSION['key'];
 switch($action) {
 	case "load":
                 $rq = mysqli_connect($host, $username, $password, $db);

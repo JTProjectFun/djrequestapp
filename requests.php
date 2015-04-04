@@ -247,6 +247,10 @@ $(function(){
 			type : 'POST',
 			data : data,
 			success: function(data) {
+                            if (data.status == "toomany") {
+                                 setTimeout(function(){ $('#toomany').show(); }, 100);
+                                 setTimeout(function(){ $('#toomany').fadeOut('fast'); }, 8000);
+                            }
                             if (data.status == "banned") {
                                  setTimeout(function(){ $('#banned').show(); }, 100);
                                  setTimeout(function(){ $('#banned').fadeOut('fast'); }, 8000);

@@ -5,11 +5,17 @@ include('../generatekey.php');
 session_start();
 $record="";
 $action = $_REQUEST['action'];
-$user = $_GET['user'];
+echo "<pre>".$action."</pre>";
+if (isset($_SESSION['listuser'])) {
+echo "<p>Got user!</p>";
+    $luser = $_SESSION['listuser'];
+}
+echo "<pre>" .$luser . "</pre>";
+
 switch($action) {
 	case "load":
                 $rq = mysqli_connect($host, $username, $password, $db);
-                      $query = mysqli_query($rq, "SELECT * FROM requestusers WHERE uniqueid='$user' ORDER BY id ASC");
+                $query = mysqli_query($rq, "SELECT * FROM requestusers WHERE uniqueid='$luser' ORDER BY id ASC");
 		$count  = mysqli_num_rows($query);
 		if($count > 0) {
 			while($fetch = mysqli_fetch_array($query)) {
@@ -25,6 +31,7 @@ switch($action) {
                 <th class="date"><div class="grid_heading">UserString</div></th>
                 <th class="date"><div class="grid_heading">Key</div></th>
                 <th class="date"><div class="grid_heading">IP Address</div></th>
+                <th class="date"><div class="grid_heading">Requests Made</div></th>
                 <th class="del"><div class="grid_heading">Delete</div></th>
                 <th class="del"><div class="grid_heading">BAN</div></th>
             </tr>
@@ -64,6 +71,11 @@ switch($action) {
                 <td class="date">
                     <div class="grid_content sno">
                         <span><?php echo $records['ipaddr']; ?></span>
+                    </div>
+                </td>
+                <td class="date">
+                    <div class="grid_content sno">
+                        <span><?php echo $records['numRequests']; ?></span>
                     </div>
                 </td>
                 <td>
