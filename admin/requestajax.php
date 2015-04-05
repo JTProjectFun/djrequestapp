@@ -70,6 +70,8 @@ switch($action) {
                 <th class="willplay"><div class="grid_heading">WillPlay</div></th>
                 <th class="willplay"><div class="grid_heading">Played</div></th>
                 <th class="del"><div class="grid_heading">Delete</div></th>
+                <th class="del"><div class="grid_heading">Ban User</div></th>
+                <th class="del"><div class="grid_heading">Delete User's Requests</div></th>
             </tr>
 
             <?php
@@ -157,6 +159,16 @@ switch($action) {
                         <img src="../images/delete.png" alt="Delete" title="Delete" />
                     </a>
                 </td>
+                <td>
+                    <a href="<?php echo encrypt($records['uniqueid']); ?>" class="gridder_ban">
+                        <img src="../images/delete.png" alt="BAN" title="Ban User" />
+                    </a>
+                </td>
+                <td>
+                    <a href="<?php echo encrypt($records['uniqueid']); ?>" class="gridder_deleteuserreq">
+                        <img src="../images/delete.png" alt="Delete ALL" title="Delete" />
+                    </a>
+                </td>
             </tr>
             <?php
                 }
@@ -212,6 +224,20 @@ switch($action) {
                 $conn = mysqli_connect($host,$username,$password,$db);
 		$value 	= decrypt($_POST['value']);
 		$query = mysqli_query($conn, "DELETE FROM `requests` WHERE id = '$value' ");
+                mysqli_close($conn);
+	break;
+
+	case "ban":
+                $conn = mysqli_connect($host,$username,$password,$db);
+		$value 	= decrypt($_POST['value']);
+		$query = mysqli_query($conn, "UPDATE `requestusers` SET banned=1 WHERE uniqueid = '$value' ");
+                mysqli_close($conn);
+	break;
+
+	case "deleteuserreq":
+                $conn = mysqli_connect($host,$username,$password,$db);
+		$value 	= decrypt($_POST['value']);
+		$query = mysqli_query($conn, "DELETE FROM `requests` WHERE unquieid = '$value' ");
                 mysqli_close($conn);
 	break;
 }

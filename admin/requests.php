@@ -136,6 +136,42 @@ $(function(){
 		}
 	});
 	
+	// Function for deleting all of one user's requests
+	$('body').delegate('.gridder_deleteuserreq', 'click', function(){
+		var conf = confirm("Are you sure want to delete all of this user's requests?");
+		if(!conf) {
+			return false;
+		}
+		var ThisElement = $(this);
+		var UrlToPass = 'action=deleteuserreq&value='+ThisElement.attr('href');
+		$.ajax({
+			url : 'requestajax.php',
+			type : 'POST',
+			data : UrlToPass,
+			success: function() {
+				LoadGrid();
+			}
+		});
+		return false;
+	});
+	// Function for banning the user
+	$('body').delegate('.gridder_ban', 'click', function(){
+		var conf = confirm('Are you sure want to ban this user?');
+		if(!conf) {
+			return false;
+		}
+		var ThisElement = $(this);
+		var UrlToPass = 'action=ban&value='+ThisElement.attr('href');
+		$.ajax({
+			url : 'requestajax.php',
+			type : 'POST',
+			data : UrlToPass,
+			success: function() {
+				LoadGrid();
+			}
+		});
+		return false;
+	});
 	// Function for delete the record
 	$('body').delegate('.gridder_delete', 'click', function(){
 		var conf = confirm('Are you sure want to delete this record?');
