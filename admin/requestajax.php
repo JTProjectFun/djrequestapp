@@ -237,7 +237,7 @@ switch($action) {
 	case "deleteuserreq":
                 $conn = mysqli_connect($host,$username,$password,$db);
 		$value 	= decrypt($_POST['value']);
-		$query = mysqli_query($conn, "DELETE FROM `requests` WHERE unquieid = '$value' ");
+		$query = mysqli_query($conn, "DELETE FROM `requests` WHERE uniqueid = '$value' ");
                 mysqli_close($conn);
 	break;
 }
