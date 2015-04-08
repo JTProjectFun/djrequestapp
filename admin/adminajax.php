@@ -138,6 +138,7 @@ switch($action) {
                      $data = mysqli_fetch_row($query);
                      $thekey = $data[0];
                      $query = mysqli_query($conn, "UPDATE `requests` SET thekey = '$value' WHERE thekey = '$thekey' ");
+                     $query = mysqli_query($conn, "UPDATE `requestusers` SET thekey = '$value' WHERE thekey = '$thekey' ");
                 }
 		$query = mysqli_query($conn, "UPDATE `requestkeys` SET `$columnName` = '$value' WHERE id = '$rowId' ");
                 mysqli_close($conn);
