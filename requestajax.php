@@ -41,25 +41,25 @@ switch($action) {
                     </div>
                 </div>
                 <div id="toomanyuser">
-                    <div class="content">
+                    <div class="errorcontent">
                         WHOOPS
-                        <span class="error">You have already made the maximum amount of requests allowed, sorry</span>
+                        <span>You have already made the maximum amount of requests allowed, sorry</span>
                     </div>
                 </div>
                 <div id="toomany">
-                    <div class="content">
+                    <div class="errorcontent">
                         WHOOPS
-                        <span class="error">The maximum number of requests for this event has been reached, sorry</span>
+                        <span>The maximum number of requests for this event has been reached, sorry</span>
                     </div>
                 </div>
                 <div id="banned">
-                    <div class="content">
+                    <div class="errorcontent">
                         WHOOPS
-                        <span class="error">You have been BANNED from making requests, you fool!</span>
+                        <span>You have been BANNED from making requests, you fool!</span>
                     </div>
                 </div>
                 <div id="floodalert">
-                    <div class="content">
+                    <div class="errorcontent">
                         WHOOPS
                         <span class="error">You may only make one request every <?php if($flood_period > 60) { echo (intval($flood_period / 60) . " minutes.  "); } else { echo $flood_period . " seconds. ";} ?> Please wait and re-submit a new request</span>
                     </div>
