@@ -4,9 +4,8 @@ include_once 'configuration.php';
 $bypass = 0;
 
 // check user is logged in
-if (!(isset($_SESSION['key']) && $_SESSION['key'] != ''))
+if (!(isset($_SESSION['eventkey']) && $_SESSION['eventkey'] != ''))
 {
-//echo "KEY: " . $_SESSION['key'];
   header("Location: index.php");
 }
 
@@ -25,9 +24,8 @@ if (isset($_SESSION['timeout'])){
 
 //$uniqeid = $_SESSION['uniqueid'];
 
-$key = $_SESSION['key'];
+$key = $_SESSION['eventkey'];
 $uniqueid = uniqid();
-
 // If cookie hasn't been set, set it and put this user in the requestuser table
 if (!isset($_COOKIE['user'])) {
     setcookie("user", $uniqueid, time() + (60 * 60 * 8), "/"); // 60 * 60 * 8 seconds = 8 hours
@@ -250,6 +248,10 @@ $(function(){
                             if (data.status == "toomany") {
                                  setTimeout(function(){ $('#toomany').show(); }, 100);
                                  setTimeout(function(){ $('#toomany').fadeOut('fast'); }, 8000);
+                            }
+                            if (data.status == "toomanyuser") {
+                                 setTimeout(function(){ $('#toomanyuser').show(); }, 100);
+                                 setTimeout(function(){ $('#toomanyuser').fadeOut('fast'); }, 8000);
                             }
                             if (data.status == "banned") {
                                  setTimeout(function(){ $('#banned').show(); }, 100);

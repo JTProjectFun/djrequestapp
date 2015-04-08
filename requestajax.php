@@ -8,7 +8,7 @@ $fetch=""; // Initialise variables which may have been previously used & would c
 $record=""; // Initialise variables which may have been previously used & would contain data already
 
 $action = $_REQUEST['action'];
-$key = $_SESSION['key'];
+$key = $_SESSION['eventkey'];
 $uniqueid = $_COOKIE['user'];
 $error = '';
 switch($action) {
@@ -40,10 +40,16 @@ switch($action) {
                         <span class="error">Your request submission was successful</span>
                     </div>
                 </div>
-                <div id="toomany">
+                <div id="toomanyuser">
                     <div class="content">
                         WHOOPS
                         <span class="error">You have already made the maximum amount of requests allowed, sorry</span>
+                    </div>
+                </div>
+                <div id="toomany">
+                    <div class="content">
+                        WHOOPS
+                        <span class="error">The maximum number of requests for this event has been reached, sorry</span>
                     </div>
                 </div>
                 <div id="banned">
@@ -130,20 +136,35 @@ switch($action) {
                         echo json_encode($response);
                         mysqli_close($conn);
                         break;
-}
+                }
 
                 $numquery = mysqli_query($conn, "SELECT numRequests FROM requestusers WHERE uniqueid='$uniqueid'");
-                $maxquery = mysqli_query($conn, "SELECT maxRequests FROM requestkeys WHERE thekey='$key'");
+                $maxquery = mysqli_query($conn, "SELECT maxUserRequests, maxRequests FROM requestkeys WHERE thekey='$key'");
+                $totalquery = mysqli_query($conn, "SELECT COUNT(*) FROM requests WHERE thekey='$key'");
                 $maxRequests = mysqli_fetch_row($maxquery);
-                $maxRequestsSet = $maxRequests[0];
-                $userRequests = mysqli_fetch_row($numquery);
-                if (($userRequests > $maxRequestsSet) && ($maxRequestsSet != 0)) {
+                $totalRequest = mysqli_fetch_row($totalquery);
+                $totalRequests = $totalRequest[0];
+                $maxUserRequests = $maxRequests[0];
+                $maxRequests = $maxRequests[1];
+                $userRequest = mysqli_fetch_row($numquery);
+                $userRequests = $userRequest[0];
+
+                if (($userRequests > $maxUserRequests) && ($maxUserRequests != 0)) {
+                        $response['status'] = 'toomanyuser';
+                        header('Content-type: application/json');
+                        echo json_encode($response);
+                        mysqli_close($conn);
+                        break;
+                }
+
+                if (($totalRequests > $maxRequests) && ($maxRequests != 0)) {
                         $response['status'] = 'toomany';
                         header('Content-type: application/json');
                         echo json_encode($response);
                         mysqli_close($conn);
                         break;
-}
+                }
+
 
                 $result = mysqli_query($conn, "SELECT timedate FROM requests WHERE uniqueid='".$uniqueid."' ORDER BY timedate DESC LIMIT 1");
                 $rows = mysqli_num_rows($result);
@@ -162,7 +183,7 @@ switch($action) {
                 mysqli_close($conn);
                 $result="";
                 $conn = mysqli_connect($host, $username, $password, $db);
-                $key = $_SESSION['key'];
+                $key = $_SESSION['eventkey'];
 		$name 		= isset($_POST['name']) ? mysqli_real_escape_string($conn, strip_tags($_POST['name'])) : '';
 		$artist         = isset($_POST['artist']) ? mysqli_real_escape_string($conn, strip_tags($_POST['artist'])) : '';
 		$title 		= isset($_POST['title']) ? mysqli_real_escape_string($conn, strip_tags($_POST['title'])) : '';
@@ -171,8 +192,8 @@ switch($action) {
                 $artist = strip_tags($_POST['artist']);
                 $title = strip_tags($_POST['title']);
                 $message = strip_tags($_POST['message']);
-                $result = mysqli_query($conn, "UPDATE requestusers set numRequests=numRequests+1 WHERE uniqueid='$uniqueid'");
                 $result = mysqli_query($conn, "INSERT INTO `requests` (timedate, thekey, name, artist, title, message, ipaddr, uniqueid) VALUES ('".$timedate."', '".$key."', '".$name."', '".$artist."', '".$title."', '".$message."', '".$ip_addr."', '".$uniqueid."')");
+                $result = mysqli_query($conn, "UPDATE requestusers set numRequests=numRequests+1 WHERE uniqueid='$uniqueid'");
                 mysqli_close($conn);
 
                 $response['status'] = 'success';

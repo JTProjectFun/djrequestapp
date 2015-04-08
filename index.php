@@ -45,7 +45,7 @@ header("location: requests.php");
             <h2>Enter the event key code</h2>
             <form action="" method="post">
                 <div id="inputting">
-                    <input name="key" type="text" class="inputbox" style="background-color:#9eff9e;"/>
+                    <input name="eventKey" type="text" class="inputbox" style="background-color:#9eff9e;"/>
                  </div>
                 <center>
                     <input name="submit" type="submit" value=" Login ">
@@ -55,30 +55,30 @@ header("location: requests.php");
         </div>
         <h1 id="helpbutton">How to use this service</h1>
         <div id="helppopup">
-<div id="helpcontents">
-            <div id="logo">&nbsp;</div>
-                <h1>Mr Deejay Request System Help</h1>
-                <div id="helpmain">
-                    <h1 class="title">Logging in</h1>
-                    <div>To log in, enter the key code provided at the venue. Requests cannot be made without logging in.</div>
-                    <div>If the key code entered incorrectly it will not be possible to log in.</div>
-                    <h1 class="title">Using the system</h1>
-                    <div>Once logged in, click the 'Add New Request' button.</div>
-                    <div>A form will be shown where your name, the song artist, title and an optional message can be added.</div>
-                    <div>If there are problems with the information used on the form, error popups will be shown</div>
-                    <div>Upon a request being submitted successfully, a popup will be displayed to say so.</div>
-                    <div>In some circumstances a list of all requests for this event will be displayed.</div>
-                    <h1 class="title">Logging out</h1>
-                    <div>To log out, click the 'log out' button at the bottom of the requests page. Requests cannot be made once logged out. To make further requests, log in with the correct key code again.</div>
-                    <h1 class="title">Time out</h1>
-                    <div>All logged in users are automatically logged out after 2 hours. To make requests again, simply log in again with the correct key code<p></p></div>
-                </div>
-                <div id="helpclose">
-                    <h1>CLOSE & RETURN TO THE LOGIN PAGE</h1>
+            <div id="helpcontents">
+                <div id="logo">&nbsp;</div>
+                    <h1>Mr Deejay Request System Help</h1>
+                    <div id="helpmain">
+                        <h1 class="title">Logging in</h1>
+                        <div>To log in, enter the key code provided at the venue. Requests cannot be made without logging in.</div>
+                        <div>If the key code entered incorrectly it will not be possible to log in.</div>
+                        <h1 class="title">Using the system</h1>
+                        <div>Once logged in, click the 'Add New Request' button.</div>
+                        <div>A form will be shown where your name, the song artist, title and an optional message can be added.</div>
+                        <div>If there are problems with the information used on the form, error popups will be shown</div>
+                        <div>Upon a request being submitted successfully, a popup will be displayed to say so.</div>
+                        <div>In some circumstances a list of all requests for this event will be displayed.</div>
+                        <h1 class="title">Logging out</h1>
+                        <div>To log out, click the 'log out' button at the bottom of the requests page. Requests cannot be made once logged out. To make further requests, log in with the correct key code again.</div>
+                        <h1 class="title">Time out</h1>
+                        <div>All logged in users are automatically logged out after 2 hours. To make requests again, simply log in again with the correct key code<p></p></div>
+                    </div>
+                    <div id="helpclose">
+                        <h1>CLOSE & RETURN TO THE LOGIN PAGE</h1>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </body>
 </html>

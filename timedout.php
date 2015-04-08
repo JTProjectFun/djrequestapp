@@ -22,7 +22,7 @@ header("location: requests.php");
             <h2>Log in again</h2>
             <form action="" method="post">
             <div id="inputting"><label>Key Code</label>
-                <input name="key" type="text" class="inputbox" style="background-color:#9eff9e;"/>
+                <input name="eventkey" type="text" class="inputbox" style="background-color:#9eff9e;"/>
             </div>
                             <center>
                                 <input name="submit" type="submit" value=" Login ">

@@ -32,6 +32,7 @@ switch($action) {
                 <td class="date"><div class="grid_heading">Active Date</div></td>
                 <td><div class="grid_heading">Show Requests</div></td>
                 <td><div class="grid_heading">Will Expire</div></td>
+                <td><div class="grid_heading">Max Requests per user</div></td>
                 <td><div class="grid_heading">Max Requests</div></td>
                 <td><div class="grid_heading">Manage</div></td>
                 <td><div class="grid_heading">Print</div></td>
@@ -80,6 +81,12 @@ switch($action) {
                         <input type="checkbox" class="toggle" name="
                         <?php echo encrypt("willexpire|".$records['id']); ?>"
                         <?php if ($records['willexpire'] == 1) { echo ' checked '; } ?> />
+                    </div>
+                </td>
+                <td class="maxrequests">
+                    <div class="grid_content editable">
+                        <span><?php echo $records['maxUserRequests']; ?></span>
+                        <input type="text" class="gridder_input" name="<?php echo encrypt("maxUserRequests|".$records['id']); ?>" value="<?php echo $records['maxUserRequests']; ?>" />
                     </div>
                 </td>
                 <td class="maxrequests">
