@@ -189,31 +189,16 @@ $(function(){
 	
 	// Pass the values to ajax page to add the values
 	$('body').delegate('#gridder_addrecord', 'click', function(){
-alert($('#gridder_addform').serialize());
 		// Do insert validation here
 		if($('#name').val() == '') {
 			$('#name').focus();
                              alert('The "Name" field cannot be left blank. Please enter a name.');
 		return false;
 		}
-		if($('#artist').val() == '') {
-			$('#artist').focus();
-                        alert('The "Artist" field cannot be left blank. Please enter an artist.');
-			return false;
-		}
-		if($('#title').val() == '') {
-			$('#title').focus();
-                        alert('The "Title" field cannot be left blank. Please enter a title.');
 
-			return false;
-		}
-		if($('#message').val().length > 140)	 {
-                        $('#message').focus();
-                             alert('The "Message" field cannot contain more than 140 characters. Consider using a shorter message.');
-                        return false;
-                }
 		// Pass the form data to the ajax page
 		var data = $('#gridder_addform').serialize();
+
 		$.ajax({
 			url : 'useradminajax.php',
 			type : 'POST',

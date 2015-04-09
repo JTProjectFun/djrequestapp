@@ -20,7 +20,6 @@ switch($action) {
 		?>
 
                 <form id="gridder_addform" method="post">
-<a href="gridder_addnew" id="gridder_addnew" class="gridder_addnew"><img src="../images/insert.png" alt="Add New" title="Add New" />Add New User</a>
                     <input type="hidden" name="action" value="addnew" />
                     <table class="addnewrequest" id="addnew">
                         <tr class="newadd">
@@ -138,12 +137,12 @@ switch($action) {
 	
 	case "addnew":
                 $conn = mysqli_connect($host,$username,$password,$db);
-		$username 	= isset($_POST['username']) ? mysqli_real_escape_string($rq, $_POST['username']) : '';
-		$name 		= isset($_POST['name']) ? mysqli_real_escape_string($rq, $_POST['name']) : '';
-		$password       = isset($_POST['password']) ? mysqli_real_escape_string($rq, $_POST['password']) : '';
-		$email  	= isset($_POST['email']) ? mysqli_real_escape_string($rq, $_POST['email']) : '';
-		$userlevel	= isset($_POST['userlevel']) ? mysqli_real_escape_string($rq, $_POST['userlevel']) : '';
-		mysqli_query($conn, "INSERT INTO `systemUser` (timedate, username, password, name, userlevel) VALUES (NOW(), '$username','$password','$name','$userlevel')");
+		$username 	= isset($_POST['username']) ? mysqli_real_escape_string($conn, $_POST['username']) : '';
+		$name 		= isset($_POST['name']) ? mysqli_real_escape_string($conn, $_POST['name']) : '';
+		$password       = isset($_POST['password']) ? mysqli_real_escape_string($conn, $_POST['password']) : '';
+		$email  	= isset($_POST['email']) ? mysqli_real_escape_string($conn, $_POST['email']) : '';
+		$userlevel	= isset($_POST['userlevel']) ? mysqli_real_escape_string($conn, $_POST['userlevel']) : '';
+		mysqli_query($conn, "INSERT INTO `systemUser` (timedate, username, password, name, email, userlevel) VALUES (now(), '$username','$password','$name','$email', '$userlevel') ");
                 mysqli_close($conn);
                 $response['status'] = 'success';
                 header('Content-type: application/json');
