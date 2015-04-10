@@ -45,8 +45,12 @@ switch($action) {
                 </tr>
                 <tr>
                     <td class="setting_title">Max Requests Per User</td>
-                    <td class="date"><div class="grid_content editable"><span><?php echo $records['maxRequests']; ?></span>
-                    <input type="text" class="gridder_input" name="<?php echo encrypt("maxRequests|".$records['id']); ?>" value="<?php echo $records['maxRequests']; ?>" /></div></td>
+                    <td class="date"><div class="grid_content editable"><span><?php echo $records['maxUserRequestDefault']; ?></span>
+                    <input type="text" class="gridder_input" name="<?php echo encrypt("maxUserRequestDefault|".$records['id']); ?>" value="<?php echo $records['maxRequests']; ?>" /></div></td>
+                </tr>
+                    <td class="setting_title">Max Requests Per Event</td>
+                    <td class="date"><div class="grid_content editable"><span><?php echo $records['maxRequestDefault']; ?></span>
+                    <input type="text" class="gridder_input" name="<?php echo encrypt("maxRequestDefault|".$records['id']); ?>" value="<?php echo $records['maxRequests']; ?>" /></div></td>
                 </tr>
                 <tr>
                     <td class="setting_title">Overrun by (hours)</td>

@@ -29,6 +29,7 @@ switch($action) {
                 <td class="id"><div class="grid_heading">id</div></td>
                 <td class="date"><div class="grid_heading">Date Added</div></td>
                 <td><div class="grid_heading">Key</div></td>
+                <td><div class="grid_heading">Created by</div></td>
                 <td class="date"><div class="grid_heading">Active Date</div></td>
                 <td><div class="grid_heading">Show Requests</div></td>
                 <td><div class="grid_heading">Will Expire</div></td>
@@ -42,9 +43,21 @@ switch($action) {
             <td></td>
             	<td>
                          <td> <input type="text" name="thekey" id="thekey" class="gridder_add" value="<?php echo $tempkey; ?>" /> </td>
+                         <td></td>
                          <td> <input type="text" name="date" id="date" class="datepiker" /> </td>
                          <td><input type="checkbox" name="showrequests" id="showrequests" class="gridder_add" /> </td>
                          <td><input type="checkbox" name="willexpire" id="willexpire" class="gridder_add" /> </td>
+                         <td class="maxrequests">
+                             <div class="grid_content editable">
+                                 <input type="text" class="gridder_add" name="<?php echo encrypt("maxUserRequests|".$records['id']); ?>" value="<?php echo $maxUserRequestDefault; ?>" />
+                             </div>
+                         </td>
+                         <td class="maxrequests">
+                             <div class="grid_content editable">
+                                 <input type="text" class="gridder_add" name="<?php echo encrypt("maxRequests|".$records['id']); ?>" value="<?php echo $maxRequestDefault; ?>" />
+                             </div>
+                         </td>
+                         <td></td>
                          <td>&nbsp;
                         <input type="submit" id="gridder_addrecord" value="Add" class="gridder_addrecord_button" title="Add" /></td>
                         <td><a href="cancel" id="gridder_cancel" class="gridder_cancel"><img src="../images/delete.png" alt="Cancel" title="Cancel" />Cancel</a></td>
@@ -65,6 +78,7 @@ switch($action) {
                 <td class="id"><div class="grid_content sno"><span><?php echo $records['id']; ?></span></div></td>
                 <td class="date"><div class="grid_content sno"><span><?php echo $records['timedate']; ?></span></div></td>
                 <td class="key"><div class="grid_content editable"><span><?php echo $records['thekey']; ?></span><input type="text" class="gridder_input" name="<?php echo encrypt("thekey|".$records['id']); ?>" value="<?php echo $records['thekey']; ?>" /></div></td>
+                <td class="key"><div class="grid_content editable"><span><?php echo $records['userid']; ?></span><input type="text" class="gridder_input" name="<?php echo encrypt("userid|".$records['id']); ?>" value="<?php echo $records['userid']; ?>" /></div></td>
                 <td class="date"><div class="grid_content editable"><span><?php echo $records['date']; ?></span>
                     <input type="text" class="gridder_input datepiker" name="<?php echo encrypt("date|".$records['id']); ?>" value="<?php echo $records['date']; ?>" /></div></td>
                 <td class="showreq">
@@ -148,7 +162,6 @@ switch($action) {
                 $conn = mysqli_connect($host,$username,$password,$db);
 		$value 	= decrypt($_POST['value']);
                 $query = mysqli_query($conn, "SELECT thekey FROM `requestkeys` WHERE id = '$value' limit 1");
-//                $delkey = mysql_result($query, 0);
                 $data = mysqli_fetch_row($query);
                 $delkey = $data[0];
 		$query = mysqli_query($conn, "DELETE FROM `requestkeys` WHERE id = '$value' ");

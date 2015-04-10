@@ -203,8 +203,10 @@ $(function(){
 <div id="logo">&nbsp;</div>
 	<h1 class="h1"><a href="">Administer Event Keys</a></h1>
 <a class="logout" href="settings.php">Settings</a>
-<a href="gridder_addnew" id="meh" class="gridder_addnew">Add New</a>
 <a class="logout" href="requests.php">Admin All Requests</a>
+<a class="logout" href="user.php">Admin Request Users</a>
+<a class="logout" href="useradmin.php">Admin System Users</a>
+<a href="gridder_addnew" id="meh" class="gridder_addnew">Add New Event Key</a>
 <a class="logout" href="logout.php">Log out</a>
 	<div class="as_grid_container">
             <div class="as_gridder" id="as_gridder"></div> <!-- GRID LOADER -->
