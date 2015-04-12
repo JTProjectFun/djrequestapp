@@ -12,7 +12,7 @@ if (isset($_GET["eventkey"])) {
 }
 
 if (isset($_POST['submit'])) {
-    if (empty($_POST['eventkey'])) {
+    if (!isset($_POST['eventkey'])) {
         $error = "Key Code is not valid";
         }
     else

@@ -1,5 +1,7 @@
 <?php
-include '../configuration.php';
+include_once '../configuration.php';
+include_once 'adminconfig.php';
+
 session_start();
 if(!isset($_SESSION['login_user']) || $_SESSION['login_user'] == "") {
      header('Location: index.php');
@@ -7,6 +9,12 @@ if(!isset($_SESSION['login_user']) || $_SESSION['login_user'] == "") {
 else {
      $id = $_SESSION['login_user'];
 }
+
+if (isset($_COOKIE['adminuser'])) {
+    $user = $_COOKIE['adminuser'];
+    $userlevel = $_COOKIE['adminlevel'];
+}
+
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -201,6 +209,7 @@ $(function(){
 <body>
 <div class="as_wrapper">
 <div id="logo">&nbsp;</div>
+<?php echo "Welcome, " . $id . " User: " . $user . " Level: ". $userlevel ; ?>
 	<h1 class="h1"><a href="">Administer Event Keys</a></h1>
 <a class="logout" href="settings.php">Settings</a>
 <a class="logout" href="requests.php">Admin All Requests</a>

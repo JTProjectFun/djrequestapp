@@ -32,8 +32,13 @@ switch($action) {
 
                 mysqli_close($conn);
 
-		?>
+                $conn = mysqli_connect($host, $username, $password, $db);
+                $namequery = mysqli_query($conn, "SELECT systemUser.name FROM systemUser LEFT JOIN requestkeys ON systemUser.id=requestkeys.userid WHERE requestkeys.thekey='$key'");
+                $row = mysqli_fetch_row($namequery);
+                $djName = $row[0];
 
+		?>
+                <?php if (!empty($djName)) { echo "<div><span>Your DJ tonight is ". $djName . "</span></div>"; } ?>
                 <div id="goodpopup">
                     <div class="content">
                         THANKYOU

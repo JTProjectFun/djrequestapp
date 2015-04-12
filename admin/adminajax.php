@@ -1,11 +1,12 @@
 <?php
-include '../configuration.php';
-include '../functions/functions.php';
-include('generatekey.php');
+session_start();
+include_once '../configuration.php';
+include_once '../functions/functions.php';
+include_once ('generatekey.php');
 
 $action = $_REQUEST['action'];
 $record="";
-
+$id = $_SESSION['login_user'];
 switch($action) {
 	case "load":
                 $tempkey = random_string();
@@ -14,7 +15,8 @@ switch($action) {
                     $tempkey = random_string();
                 }
                 $conn = mysqli_connect($host, $username, $password, $db);
-		$query 	= mysqli_query($conn, "SELECT * FROM `requestkeys` ORDER BY id ASC");
+//		$query 	= mysqli_query($conn, "SELECT * FROM `requestkeys` ORDER BY id ASC");
+$query = mysqli_query($conn, "SELECT requestkeys.*,systemUser.username FROM requestkeys LEFT JOIN systemUser ON requestkeys.userid = systemUser.id");
 		$count  = mysqli_num_rows($query);
 		if($count > 0) {
 			while($fetch = mysqli_fetch_array($query)) {
@@ -22,6 +24,7 @@ switch($action) {
 			}
 		}
 		?>
+
                     <form id="gridder_addform" method="post">
                     <input type="hidden" name="action" value="addnew" />
         <table class="as_gridder_table">
@@ -78,7 +81,7 @@ switch($action) {
                 <td class="id"><div class="grid_content sno"><span><?php echo $records['id']; ?></span></div></td>
                 <td class="date"><div class="grid_content sno"><span><?php echo $records['timedate']; ?></span></div></td>
                 <td class="key"><div class="grid_content editable"><span><?php echo $records['thekey']; ?></span><input type="text" class="gridder_input" name="<?php echo encrypt("thekey|".$records['id']); ?>" value="<?php echo $records['thekey']; ?>" /></div></td>
-                <td class="key"><div class="grid_content editable"><span><?php echo $records['userid']; ?></span><input type="text" class="gridder_input" name="<?php echo encrypt("userid|".$records['id']); ?>" value="<?php echo $records['userid']; ?>" /></div></td>
+                <td class="key"><div class="grid_content sno"><span><?php echo $records['username']; ?></span></div></td>
                 <td class="date"><div class="grid_content editable"><span><?php echo $records['date']; ?></span>
                     <input type="text" class="gridder_input datepiker" name="<?php echo encrypt("date|".$records['id']); ?>" value="<?php echo $records['date']; ?>" /></div></td>
                 <td class="showreq">
@@ -136,7 +139,10 @@ switch($action) {
 		$date 		= isset($_POST['date']) ? mysqli_real_escape_string($conn, $_POST['date']) : '';
 		$showrequests = isset($_POST['showrequests']) ? mysqli_real_escape_string($conn, $_POST['showrequests']) : '';
 		$willexpire		= isset($_POST['willexpire']) ? mysqli_real_escape_string($conn, $_POST['willexpire']) : '';
-		mysqli_query($conn, "INSERT INTO `requestkeys` (timedate, thekey, date, showrequests, willexpire) VALUES ('$timedate', '$thekey', '$date', '$showrequests', '$willexpire')");
+                $useridq = mysqli_query($conn, "SELECT id FROM `systemUser` WHERE username='$id'");
+                $userids = mysqli_fetch_row($useridq);
+                $userid = $userids[0];
+		mysqli_query($conn, "INSERT INTO `requestkeys` (timedate, thekey, date, showrequests, willexpire,userid) VALUES ('$timedate', '$thekey', '$date', '$showrequests', '$willexpire', '$userid')");
                 mysqli_close($conn);
 	break;
 

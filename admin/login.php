@@ -22,12 +22,19 @@ else
     $user = mysqli_real_escape_string($conn, $user);
     $pass = mysqli_real_escape_string($conn, $pass);
 
-    // SQL query to fetch information of registerd users and finds user match.
-    $query = mysqli_query($conn, "select * from admin where password='$pass' AND username='$user'");
+    // SQL query to fetch information of registered users and finds user match.
+    $query = mysqli_query($conn, "select * from systemUser where password='$pass' AND username='$user'");
     $rows = mysqli_num_rows($query);
 
     if ($rows == 1) {
-        $_SESSION['login_user']=$username; // Initializing Session
+        $_SESSION['login_user']=$user; // Initializing Session
+
+            $query = mysqli_query($conn, "SELECT userlevel FROM systemUser WHERE username='$user'");
+            $result = mysqli_fetch_row($query);
+            $userlevel = $result[0];
+            setcookie("adminuser", $user);
+            setcookie("adminlevel", $userlevel);
+
         header("location: admin.php"); // Redirecting To Other Page
         } else {
                 $error = $rows . " : " . $user . " : " . $pass . " : Whoops. Username or Password is invalid";

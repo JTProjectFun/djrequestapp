@@ -1,11 +1,17 @@
 <?php
-include '../configuration.php';
+include_once '../configuration.php';
+include_once 'adminconfig.php';
+
 session_start();
 if(!isset($_SESSION['login_user']) || $_SESSION['login_user'] == "") {
      header('Location: index.php');
 }
 else {
      $id = $_SESSION['login_user'];
+}
+
+if ($userlevel < 3) {
+    header('Location: admin.php');
 }
 
 $key = 0;

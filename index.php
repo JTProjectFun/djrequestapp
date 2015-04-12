@@ -45,7 +45,7 @@ header("location: requests.php");
             <h2>Enter the event key code</h2>
             <form action="" method="post">
                 <div id="inputting">
-                    <input name="eventKey" type="text" class="inputbox" style="background-color:#9eff9e;"/>
+                    <input name="eventkey" type="text" class="inputbox" style="background-color:#9eff9e;"/>
                  </div>
                 <center>
                     <input name="submit" type="submit" value=" Login ">
