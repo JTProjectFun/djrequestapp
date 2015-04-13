@@ -1,21 +1,45 @@
 <?php
-include '../configuration.php';
-include '../functions/functions.php';
-include('generatekey.php');
+include_once '../configuration.php';
+include_once 'adminconfig.php';
+include_once '../functions/functions.php';
+include_once('generatekey.php');
 session_start();
 $record="";
 $action = $_REQUEST['action'];
-
 $key = $_SESSION['key'];
+
 switch($action) {
 	case "load":
                 $rq = mysqli_connect($host, $username, $password, $db);
-                if ($key == "0") {
-                      $query = mysqli_query($rq, "SELECT * FROM requests ORDER BY id ASC");
+
+                switch($userlevel) {
+                    case 1: // Only show requests from this admin user's events on key = 0
+                        $query_string = "SELECT requests.* FROM requests LEFT JOIN requestkeys ON requests.thekey=requestkeys.thekey WHERE requestkeys.userid='".$userid."'";
+                        if ($key != "0") {
+                            $query_string = $query_string . " AND requestkeys.id='".$key;
+                        }
+                        break;
+
+                    case 2: // Only show requests from this admin user's events on key = 0
+                        $query_string = "SELECT requests.* FROM requests LEFT JOIN requestkeys ON requests.thekey=requestkeys.thekey WHERE requestkeys.userid ='".$userid;"'";
+                        if ($key != "0") {
+                            $query_string = $query_string . " AND requestkeys.id='".$key;
+                        }
+                        break;
+
+                    case 3: // Only show requests from this admin user's events on key = 0
+                        if ($key == "0") {
+                            $query_string = "SELECT * from requests";
+                        }
+                        else {
+                            $query_string = "SELECT requests.* FROM requests LEFT JOIN requestkeys ON requests.thekey=requestkeys.thekey WHERE requestkeys.id='".$key."'";
+                        }
+                        break;
                 }
-                else {
-                      $query = mysqli_query($rq, "SELECT requests.* FROM requests LEFT JOIN requestkeys ON requests.thekey=requestkeys.thekey WHERE requestkeys.id='".$key."' ORDER BY id ASC");
-                }
+
+                $query_string = $query_string . " ORDER BY requests.id DESC";
+
+                $query = mysqli_query($rq, $query_string);
 		$count  = mysqli_num_rows($query);
 		if($count > 0) {
 			while($fetch = mysqli_fetch_array($query)) {
@@ -78,7 +102,7 @@ switch($action) {
             if($count <= 0) {
             ?>
             <tr id="norecords">
-                <td colspan="11" align="center">No records found <a href="addnew" id="gridder_insert" class="gridder_insert"><img src="../images/insert.png" alt="Add New" title="Add New" /></a></td>
+                <td colspan="11" align="center">No requests found</td>
             </tr>
             <?php } else {
             $i = 0;
