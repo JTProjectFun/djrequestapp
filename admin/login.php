@@ -32,12 +32,12 @@ else
             $query = mysqli_query($conn, "SELECT userlevel, name, id FROM systemUser WHERE username='$user'");
             $result = mysqli_fetch_row($query);
             $userlevel = $result[0];
-            $username = $result[1];
+            $realname = $result[1];
             $userid = $result[2];
             setcookie("adminuser", $user);
             setcookie("adminuserid", $userid);
             setcookie("adminlevel", $userlevel);
-            setcookie("adminusername", $username);
+            setcookie("adminrealname", $realname);
 
         header("location: admin.php"); // Redirecting To Other Page
         } else {

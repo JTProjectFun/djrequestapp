@@ -18,6 +18,7 @@ switch($action) {
 				$record[] = $fetch;
 			}
 		}
+mysqli_close($rq);
 		?>
 
                 <form id="gridder_addform" method="post">
