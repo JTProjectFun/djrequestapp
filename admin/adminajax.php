@@ -15,8 +15,7 @@ switch($action) {
                     $tempkey = random_string();
                 }
                 $conn = mysqli_connect($host, $username, $password, $db);
-//		$query 	= mysqli_query($conn, "SELECT * FROM `requestkeys` ORDER BY id ASC");
-$query = mysqli_query($conn, "SELECT requestkeys.*,systemUser.username FROM requestkeys LEFT JOIN systemUser ON requestkeys.userid = systemUser.id");
+                $query = mysqli_query($conn, "SELECT requestkeys.*,systemUser.username FROM requestkeys LEFT JOIN systemUser ON requestkeys.userid = systemUser.id");
 		$count  = mysqli_num_rows($query);
 		if($count > 0) {
 			while($fetch = mysqli_fetch_array($query)) {

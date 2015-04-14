@@ -29,13 +29,15 @@ else
     if ($rows == 1) {
         $_SESSION['login_user']=$user; // Initializing Session
 
-            $query = mysqli_query($conn, "SELECT userlevel, id FROM systemUser WHERE username='$user'");
+            $query = mysqli_query($conn, "SELECT userlevel, name, id FROM systemUser WHERE username='$user'");
             $result = mysqli_fetch_row($query);
             $userlevel = $result[0];
-            $userid = $result[1];
+            $username = $result[1];
+            $userid = $result[2];
             setcookie("adminuser", $user);
             setcookie("adminuserid", $userid);
             setcookie("adminlevel", $userlevel);
+            setcookie("adminusername", $username);
 
         header("location: admin.php"); // Redirecting To Other Page
         } else {

@@ -209,7 +209,7 @@ $(function(){
 <body>
 <div class="as_wrapper">
 <div id="logo">&nbsp;</div>
-<?php echo "Welcome, " . $id . " User: " . $user . " Level: ". $userlevel ; ?>
+<?php echo "Welcome, " . $username; ?>
 	<h1 class="h1"><a href="">Administer Event Keys</a></h1>
 <a class="logout" href="settings.php">Settings</a>
 <a class="logout" href="requests.php">Admin All Requests</a>
