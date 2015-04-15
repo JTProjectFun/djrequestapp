@@ -24,33 +24,26 @@ switch($action) {
 		}
 		?>
 
-                    <form id="gridder_addform" method="post">
+                <form id="gridder_addform" method="post">
                     <input type="hidden" name="action" value="addnew" />
 
                     <div class="addnewkey" id="addnew">
-                        <div class="keyadd">Event Key<input type="text" name="thekey" id="thekey" class="gridder_add" value="<?php echo $tempkey; ?>"/> </div>
-                        <div class="keyadd" id="inputlabel">Date</div>
-                        <div class="keyadd" id="inputbox"><input type="text" name="date" id="date" class="datepiker" /> </div>
-                        <div class="keyadd" id="inputlabel">Show Requests</div>
-                        <div class="keyadd" id="inputbox"><input type="checkbox" name="showrequests" id="showrequests" class="gridder_add" /></div>
-                        <div class="keyadd" id="inputlabel">Will Expire</div>
-                        <div class="keyadd" id="inputbox">
-                            <input type="checkbox" name="willexpire" id="willexpire" class="gridder_add" /></div>
-                        <div class="keyadd" id="inputlabel">Max User Requests</div>
-                        <div class="keyadd" id="inputbox">
-                            <input type="text" class="gridder_add" name="maxUserRequests" value="<?php echo $maxUserRequestDefault; ?>" />
-                        <div class="keyadd" id="inputlabel">Max Requests</div>
-                        <div class="keyadd" id="inputbox">
-                                 <input type="text" class="gridder_add" name="maxRequests" value="<?php echo $maxRequestDefault; ?>" />
-                        </div>
+                        <table>
+                            <tr><td>Event Key</td><td><input type="text" name="thekey" id="thekey" class="gridder_add" value="<?php echo $tempkey; ?>"/></td></tr>
+                            <tr><td>Date</td><td><input type="text" name="date" id="date" class="datepiker" /></td></tr>
+                            <tr><td>Show Requests</td><td><input type="checkbox" name="showrequests" id="showrequests" class="gridder_add" /></td></tr>
+                            <tr><td>Will Expire</td><td><input type="checkbox" name="willexpire" id="willexpire" class="gridder_add" /></td></tr>
+                            <tr><td>Max User Requests</td><td><input type="text" class="gridder_add" name="maxUserRequests" value="<?php echo $maxUserRequestDefault; ?>" /></td>
+                            <tr><td>Max Requests</td><td><input type="text" class="gridder_add" name="maxRequests" value="<?php echo $maxRequestDefault; ?>" /></td></tr>
+                        </table>
 
-                        <div class="newadd" id="submitbutton"><input type="submit" id="gridder_addrecord" value="submit" class="gridder_addrecord_button" $
-                        <div class="newadds" id="cancelbutton">
+                        <div class="keyadd" id="submitbutton"><input type="submit" id="gridder_addrecord" value="submit" class="gridder_addrecord_button" $
+                        <div class="keyadd" id="cancelbutton">
                             <a href="cancel" id="gridder_cancel" class="gridder_cancel">Cancel</a>
                         </div>
                  </div>
-                 </form>
-</div>
+             </form>
+        </div>
         <table class="as_gridder_table">
             <tr class="grid_header">
                 <td class="id"><div class="grid_heading">id</div></td>
