@@ -67,6 +67,7 @@ mysqli_close($rq);
                 <th class="date"><div class="grid_heading">Name</div></th>
                 <th class="date"><div class="grid_heading">Email</div></th>
                 <th class="del"><div class="grid_heading">User Level</div></th>
+                <th class="del"><div class="grid_heading">Enabled</div></th>
                 <th class="del"><div class="grid_heading">Delete</div></th>
             </tr>
 
@@ -121,6 +122,13 @@ mysqli_close($rq);
                         <span><?php echo $records['userlevel']; ?></span>
                         <input type="text" class="gridder_input" name="
                         <?php echo encrypt("userlevel|".$records['id']); ?>" value="<?php echo $records['userlevel']; ?>" />
+                    </div>
+                </td>
+                <td class="date">
+                    <div class="grid_content editable">
+                        <span></span>
+                        <input type="checkbox" class="toggle" name="<?php echo encrypt("enabled|".$records['id']); ?>"
+                        <?php if ($records['enabled'] == 1) { echo ' checked '; } ?> />
                     </div>
                 </td>
                 <td>
