@@ -32,30 +32,36 @@ switch($action) {
                     <td class="setting_title">Site Base URL</td>
                     <td style="width:300px"><div class="grid_content editable"><span><?php echo $records['baseURL']; ?></span>
                     <input type="text" class="gridder_input" name="<?php echo encrypt("baseURL|".$records['id']); ?>" value="<?php echo $records['baseURL']; ?>" /></div></td>
+                    <td>The base URL of the request system, e.g. www.yoursite.com/requests - used when generating QR codes</td>
                 </tr>
                 <tr>
                     <td class="setting_title">Session Timeout (minutes)</td>
                     <td class="date"><div class="grid_content editable"><span><?php echo $records['session_timeout']; ?></span>
                     <input type="text" class="gridder_input" name="<?php echo encrypt("session_timeout|".$records['id']); ?>" value="<?php echo $records['session_timeout']; ?>" /></div></td>
+                    <td>How long a user's session should time out after</td>
                 </tr>
                 <tr>
                     <td class="setting_title">Flood Period (seconds)</td>
                     <td class="date"><div class="grid_content editable"><span><?php echo $records['flood_period']; ?></span>
                     <input type="text" class="gridder_input" name="<?php echo encrypt("flood_period|".$records['id']); ?>" value="<?php echo $records['flood_period']; ?>" /></div></td>
+                    <td>The minimum period between a user's request posts, to discourage spamming the system</td>
                 </tr>
                 <tr>
                     <td class="setting_title">Max Requests Per User</td>
                     <td class="date"><div class="grid_content editable"><span><?php echo $records['maxUserRequestDefault']; ?></span>
                     <input type="text" class="gridder_input" name="<?php echo encrypt("maxUserRequestDefault|".$records['id']); ?>" value="<?php echo $records['maxRequests']; ?>" /></div></td>
+                    <td>How many requests one user can make for an event. If set to zero, there will be no limit</td>
                 </tr>
                     <td class="setting_title">Max Requests Per Event</td>
                     <td class="date"><div class="grid_content editable"><span><?php echo $records['maxRequestDefault']; ?></span>
                     <input type="text" class="gridder_input" name="<?php echo encrypt("maxRequestDefault|".$records['id']); ?>" value="<?php echo $records['maxRequests']; ?>" /></div></td>
+                    <td>The total number of requests which may be made at an event. If set to zero, there will be no limit</td>
                 </tr>
                 <tr>
                     <td class="setting_title">Overrun by (hours)</td>
                     <td class="date"><div class="grid_content editable"><span><?php echo $records['over_hours']; ?></span>
                     <input type="text" class="gridder_input" name="<?php echo encrypt("over_hours|".$records['id']); ?>" value="<?php echo $records['over_hours']; ?>" /></div></td>
+                    <td>How many hours into the next day an event key can be valid for, e.g. for a key to expire at 2am the following morning, set this to 2</td>
                 </tr>
                 <tr>
                     <td class="setting_title">Show Requests by default</td>
@@ -67,6 +73,7 @@ switch($action) {
                             <?php if ($records['show_requests'] == 1) { echo ' checked '; } ?> />
                         </div>
                     </td>
+                    <td>If set, requests submitted will be listed. If not set, only the number of requests submitted will be shown to the user</td>
                 </tr>
                 <tr>
                     <td class="setting_title">Keys expire by default</td>
@@ -78,6 +85,7 @@ switch($action) {
                             <?php if ($records['willexpire'] == 1) { echo ' checked '; } ?> />
                         </div>
                     </td>
+                    <td>If set, an event key will automatically be locked out (expired) after its valid date has passed</td>
                 </tr>
                 <tr>
                     <td class="setting_title">Keep Users For (Days)</td>
@@ -86,7 +94,7 @@ switch($action) {
                     <td class="date"><div class="grid_content editable"><span><?php echo $records['maxUserAge']; ?></span>
                     <input type="text" class="gridder_input" name="<?php echo encrypt("maxUserAge|".$records['id']); ?>" value="<?php echo $records['maxUserAge']; ?>" />
                     </td>
-                    </div>
+                    <td>The length of time in days for event key users to stay in the database. Any older than this value will be deleted automatically</td>
                 </tr>
                 <?php
                 }

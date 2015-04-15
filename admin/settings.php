@@ -150,10 +150,7 @@ $(function(){
 <div class="as_wrapper">
 <div id="logo">&nbsp;</div>
 	<h1 class="h1"><a href="">Administer Request System Settings</a></h1>
-<a class="logout" href="settings.php">Settings</a>
-<a href="admin.php" id="meh" class="gridder_addnew">Admin Event Keys</a>
-<a class="logout" href="requests.php">Admin All Requests</a>
-<a class="logout" href="logout.php">Log out</a>
+<?php include 'menu.php'; ?>
 	<div class="as_grid_container">
             <div class="as_gridder" id="as_gridder"></div> <!-- GRID LOADER -->
         </div>

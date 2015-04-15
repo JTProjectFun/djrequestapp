@@ -186,13 +186,24 @@ background-color:#00d200;
 padding:10px;
 border-radius:10px;
 color:white;
+margin:2px;
 }
+
 
 a.logout{
 background-color:#00d200;
 padding:10px;
 border-radius:10px;
 color:white;
+margin:2px;
+}
+
+a.menu{
+background-color:#00d200;
+padding:10px;
+border-radius:10px;
+color:white;
+margin:2px;
 }
 
 .as_wrapper{

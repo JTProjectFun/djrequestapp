@@ -267,14 +267,12 @@ $(function(){
 <div class="as_wrapper">
 <div id="logo">&nbsp;</div>
 	<h1 class="h1"><a href="">Song Requests</a></h1>
-<a href="gridder_addnew" id="gridder_addnew" class="gridder_addnew"><img src="../images/insert.png" alt="Add New" title="Add New" />Add New Request</a>
-<a class="logout" href="admin.php">Keys Admin</a>
-<a class="logout" href="logout.php">Log out</a>
-
+<?php include 'menu.php'; ?>
 <div class="as_wrapper">
 	<div class="as_grid_container">
 
         <div class="as_gridder" id="as_gridder"></div> <!-- GRID LOADER -->
+<a href="gridder_addnew" class="gridder_addnew">Add New Request</a>
     </div>
 </div>
 </div>
