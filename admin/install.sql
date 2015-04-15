@@ -3,3 +3,4 @@ CREATE TABLE IF NOT EXISTS settings(session_timeout int default 120, flood_perio
 CREATE TABLE IF NOT EXISTS requestkeys (id int NOT NULL AUTO_INCREMENT, timedate varchar(32),thekey varchar(8) NOT NULL, date varchar(32), showrequests int(1), willexpire int(1), maxRequests int default 0, maxUserRequests int default 0, PRIMARY KEY(id));
 CREATE TABLE IF NOT EXISTS requests(id int NOT NULL AUTO_INCREMENT,timedate varchar(32),thekey NOT NULL varchar(8),name varchar(64),artist varchar(64),title varchar(64),message varchar(140),willplay int,played int,ipaddr varchar(20),uniqueid varchar(64),PRIMARY KEY(id));
 CREATE TABLE IF NOT EXISTS requestusers(id int NOT NULL AUTO_INCREMENT, uniqueid varchar(16), ipaddr varchar(20), thekey varchar(8), banned int DEFAULT 0, createdTime varchar(32), numRequests int default 0, PRIMARY KEY(id));
+INSERT INTO systemUser(timedate, username, password, name) VALUES (NOW(), "admin", "password", "Administrator");
