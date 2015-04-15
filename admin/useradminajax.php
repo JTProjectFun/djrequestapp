@@ -184,6 +184,10 @@ mysqli_close($rq);
 		$explode = explode('|', $crypto);
 		$columnName = $explode[0];
 		$rowId = $explode[1];
+                // Don't allow the admin user to toggle their own setting
+                if ($userid == $rowId) {
+                    break;
+                }
                 if ($value == "on") { $value = 1; } else { $value = 0; }
 		$query = mysqli_query($conn, "UPDATE `systemUser` SET `$columnName` = '$value' WHERE id = '$rowId' ");
                 mysqli_close($conn);

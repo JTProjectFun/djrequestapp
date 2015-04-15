@@ -78,7 +78,7 @@ $(function(){
                 else {
                     value = 0;
                 }
-		var UrlToPass = 'action=update&value='+value+'&crypto='+ThisElement.prop('name');
+		var UrlToPass = 'action=toggle&value='+value+'&crypto='+ThisElement.prop('name');
 		$.ajax({
 			url : 'useradminajax.php',
 			type : 'POST',
