@@ -20,7 +20,7 @@ switch($action) {
 		}
 mysqli_close($rq);
 		?>
-
+<pre><?php echo "userid: " . $userid; ?></pre>
                 <form id="gridder_addform" method="post">
                     <input type="hidden" name="action" value="addnew" />
                     <table class="addnewrequest" id="addnew">
@@ -127,14 +127,20 @@ mysqli_close($rq);
                 <td class="date">
                     <div class="grid_content editable">
                         <span></span>
-                        <input type="checkbox" class="toggle" name="<?php echo encrypt("enabled|".$records['id']); ?>"
+                        <!-- Only show checkbox if userid isn't self to stop admin disabling their own account -->
+                        <?php if ($userid != $records['id']) { ?>
+                            <input type="checkbox" class="toggle" name="<?php echo encrypt("enabled|".$records['id']); ?>"
                         <?php if ($records['enabled'] == 1) { echo ' checked '; } ?> />
+                        <?php } ?>
                     </div>
                 </td>
                 <td>
-                    <a href="<?php echo encrypt($records['id']); ?>" class="gridder_delete">
+                    <?php if ($userid != $records['id']) { ?>
+                        <!-- Only show delete button if userid isn't self to stop admin deleting their own account -->
+                        <a href="<?php echo encrypt($records['id']); ?>" class="gridder_delete">
                         <img src="../images/delete.png" alt="Delete" title="Delete" />
-                    </a>
+                        </a>
+                    <?php } ?>
                 </td>
             </tr>
             <?php
