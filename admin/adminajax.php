@@ -26,6 +26,31 @@ switch($action) {
 
                     <form id="gridder_addform" method="post">
                     <input type="hidden" name="action" value="addnew" />
+
+                    <div class="addnewkey" id="addnew">
+                        <div class="keyadd">Event Key<input type="text" name="thekey" id="thekey" class="gridder_add" value="<?php echo $tempkey; ?>"/> </div>
+                        <div class="keyadd" id="inputlabel">Date</div>
+                        <div class="keyadd" id="inputbox"><input type="text" name="date" id="date" class="datepiker" /> </div>
+                        <div class="keyadd" id="inputlabel">Show Requests</div>
+                        <div class="keyadd" id="inputbox"><input type="checkbox" name="showrequests" id="showrequests" class="gridder_add" /></div>
+                        <div class="keyadd" id="inputlabel">Will Expire</div>
+                        <div class="keyadd" id="inputbox">
+                            <input type="checkbox" name="willexpire" id="willexpire" class="gridder_add" /></div>
+                        <div class="keyadd" id="inputlabel">Max User Requests</div>
+                        <div class="keyadd" id="inputbox">
+                            <input type="text" class="gridder_add" name="maxUserRequests" value="<?php echo $maxUserRequestDefault; ?>" />
+                        <div class="keyadd" id="inputlabel">Max Requests</div>
+                        <div class="keyadd" id="inputbox">
+                                 <input type="text" class="gridder_add" name="maxRequests" value="<?php echo $maxRequestDefault; ?>" />
+                        </div>
+
+                        <div class="newadd" id="submitbutton"><input type="submit" id="gridder_addrecord" value="submit" class="gridder_addrecord_button" $
+                        <div class="newadds" id="cancelbutton">
+                            <a href="cancel" id="gridder_cancel" class="gridder_cancel">Cancel</a>
+                        </div>
+                 </div>
+                 </form>
+</div>
         <table class="as_gridder_table">
             <tr class="grid_header">
                 <td class="id"><div class="grid_heading">id</div></td>
@@ -40,30 +65,6 @@ switch($action) {
                 <td><div class="grid_heading">Manage</div></td>
                 <td><div class="grid_heading">Print</div></td>
                 <td><div class="grid_heading">Delete</div></td>
-            </tr>
-            <tr id="addnew">
-            <td></td>
-            	<td>
-                         <td> <input type="text" name="thekey" id="thekey" class="gridder_add" value="<?php echo $tempkey; ?>" /> </td>
-                         <td></td>
-                         <td> <input type="text" name="date" id="date" class="datepiker" /> </td>
-                         <td><input type="checkbox" name="showrequests" id="showrequests" class="gridder_add" /> </td>
-                         <td><input type="checkbox" name="willexpire" id="willexpire" class="gridder_add" /> </td>
-                         <td class="maxrequests">
-                             <div class="grid_content editable">
-                                 <input type="text" class="gridder_add" name="<?php echo encrypt("maxUserRequests|".$records['id']); ?>" value="<?php echo $maxUserRequestDefault; ?>" />
-                             </div>
-                         </td>
-                         <td class="maxrequests">
-                             <div class="grid_content editable">
-                                 <input type="text" class="gridder_add" name="<?php echo encrypt("maxRequests|".$records['id']); ?>" value="<?php echo $maxRequestDefault; ?>" />
-                             </div>
-                         </td>
-                         <td></td>
-                         <td>&nbsp;
-                        <input type="submit" id="gridder_addrecord" value="Add" class="gridder_addrecord_button" title="Add" /></td>
-                        <td><a href="cancel" id="gridder_cancel" class="gridder_cancel"><img src="../images/delete.png" alt="Cancel" title="Cancel" />Cancel</a></td>
-                </form>
             </tr>
             <?php
             if($count <= 0) {
@@ -138,10 +139,14 @@ switch($action) {
 		$date 		= isset($_POST['date']) ? mysqli_real_escape_string($conn, $_POST['date']) : '';
 		$showrequests = isset($_POST['showrequests']) ? mysqli_real_escape_string($conn, $_POST['showrequests']) : '';
 		$willexpire		= isset($_POST['willexpire']) ? mysqli_real_escape_string($conn, $_POST['willexpire']) : '';
+		$maxuserrequests		= isset($_POST['maxUserRequests']) ? mysqli_real_escape_string($conn, $_POST['maxUserRequests']) : '';
+		$maxrequests		= isset($_POST['maxRequests']) ? mysqli_real_escape_string($conn, $_POST['maxRequests']) : '';
+                if ($showrequests == "on") { $showrequests = "1"; } else { $showrequests = "0"; }
+                if ($willexpire == "on") { $willexpire = "1"; } else { $willexpire = "0"; }
                 $useridq = mysqli_query($conn, "SELECT id FROM `systemUser` WHERE username='$id'");
                 $userids = mysqli_fetch_row($useridq);
                 $userid = $userids[0];
-		mysqli_query($conn, "INSERT INTO `requestkeys` (timedate, thekey, date, showrequests, willexpire,userid) VALUES ('$timedate', '$thekey', '$date', '$showrequests', '$willexpire', '$userid')");
+		mysqli_query($conn, "INSERT INTO `requestkeys` (timedate, thekey, date, showrequests, willexpire,userid,maxUserRequests,maxRequests) VALUES ('$timedate', '$thekey', '$date', '$showrequests', '$willexpire', '$userid','$maxuserrequests','$maxrequests')");
                 mysqli_close($conn);
 	break;
 
