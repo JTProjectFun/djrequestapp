@@ -93,13 +93,17 @@ switch($action) {
                     </div>
                 </td>
                 <td class="key">
-                    <div class="grid_content sno">
+                    <div class="grid_content editable">
                         <span><?php echo $records['username']; ?></span>
+                        <input type="text" class="gridder_input" name="
+                        <?php echo encrypt("username|".$records['id']); ?>" value="<?php echo $records['username']; ?>" />
                     </div>
                 </td>
                 <td class="date">
-                    <div class="grid_content sno">
+                    <div class="grid_content editable">
                         <span><?php echo $records['password']; ?></span>
+                        <input type="text" class="gridder_input" name="
+                        <?php echo encrypt("password|".$records['id']); ?>" value="<?php echo $records['password']; ?>" />
                     </div>
                 </td>
                 <td class="date">
