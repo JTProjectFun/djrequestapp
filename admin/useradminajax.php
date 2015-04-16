@@ -18,9 +18,8 @@ switch($action) {
 				$record[] = $fetch;
 			}
 		}
-mysqli_close($rq);
+                mysqli_close($rq);
 		?>
-<pre><?php echo "userid: " . $userid; ?></pre>
                 <form id="gridder_addform" method="post">
                     <input type="hidden" name="action" value="addnew" />
                     <table class="addnewrequest" id="addnew">
