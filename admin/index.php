@@ -34,6 +34,13 @@ header("location: admin.php");
                             </center>
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="2">
+                            <center>
+                                <a href="resetpassword.php">Reset Password</a>
+                            </center>
+                        </td>
+                    </tr>
                 </table>
                 <span><?php echo $error; ?></span>
             </form>

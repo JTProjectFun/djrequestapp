@@ -9,11 +9,9 @@ else {
      $id = $_SESSION['login_user'];
 }
 
-if (isset($_GET['user'])) {
-  $user = $_GET['user'];
-  $_SESSION['listuser'] = $user;
+if ($userlevel == "1") {
+    header('Location: admin.php');
 }
-else header('Location: admin.php');
 
 ?>
 <!DOCTYPE html>
@@ -245,9 +243,7 @@ $(function(){
 <div class="as_wrapper">
 <div id="logo">&nbsp;</div>
 	<h1 class="h1"><a href="">User Management</a></h1>
-<a class="logout" href="admin.php">Keys Admin</a>
-<a class="logout" href="logout.php">Log out</a>
-
+<?php include 'menu.php'; ?>
 <div class="as_wrapper">
 	<div class="as_grid_container">
 
