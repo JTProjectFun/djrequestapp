@@ -20,6 +20,10 @@ td {
 word-wrap: break-word;
 }
 
+.as_grid_container{
+margin-top:20px;
+}
+
 td.setting_title{
 width:200px;
 max-width:200px;
