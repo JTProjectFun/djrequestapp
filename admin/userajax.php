@@ -83,7 +83,7 @@ switch($action) {
                 <td>
                     <a href="<?php echo encrypt($records['uniqueid']); ?>" class="gridder_ban">
                         <img src="../images/delete.png" alt="Ban this user" title="BAN" />
-                    </a>
+                    </a> 
                 </td>
             </tr>
             <?php
