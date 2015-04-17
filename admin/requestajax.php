@@ -184,8 +184,14 @@ switch($action) {
                     </a>
                 </td>
                 <td>
-                    <a href="<?php echo encrypt($records['uniqueid']); ?>" class="gridder_ban">
-                        <img src="../images/delete.png" alt="BAN" title="Ban User" />
+                <?php $conn = mysqli_connect($host,$username,$password,$db);
+                      $theid=$records['uniqueid'];
+                      $query = mysqli_query($conn,"SELECT username FROM systemUser WHERE username='$theid'");
+                      $num = mysqli_num_rows($query);
+                      if ($num < 1) { ?>
+                          <a href="<?php echo encrypt($records['uniqueid']); ?>" class="gridder_ban">
+                          <img src="../images/delete.png" alt="BAN" title="Ban User" />
+                      <?php } ?> 
                     </a>
                 </td>
                 <td>
@@ -206,12 +212,12 @@ switch($action) {
                 $conn = mysqli_connect($host,$username,$password,$db);
                 $timedate = date("Y-m-d.H:i:s");
                 $ip_addr = $_SERVER['REMOTE_ADDR'];
-                $key = isset($_POST['key']) ? mysqli_real_escape_string($rq, $_POST['key']) : '';
-		$name 		= isset($_POST['name']) ? mysqli_real_escape_string($rq, $_POST['name']) : '';
-		$artist         = isset($_POST['artist']) ? mysqli_real_escape_string($rq, $_POST['artist']) : '';
-		$title 		= isset($_POST['title']) ? mysqli_real_escape_string($rq, $_POST['title']) : '';
-		$message 	= isset($_POST['message']) ? mysqli_real_escape_string($rq, $_POST['message']) : '';
-		mysqli_query($conn, "INSERT INTO `requests` (timedate, thekey, name, artist, title, message, ipaddr) VALUES ('$timedate', '$key', '$name', '$artist', '$title', '$message', '$ip_addr')");
+                $key = isset($_POST['key']) ? mysqli_real_escape_string($conn, $_POST['key']) : '';
+		$name 		= isset($_POST['name']) ? mysqli_real_escape_string($conn, $_POST['name']) : '';
+		$artist         = isset($_POST['artist']) ? mysqli_real_escape_string($conn, $_POST['artist']) : '';
+		$title 		= isset($_POST['title']) ? mysqli_real_escape_string($conn, $_POST['title']) : '';
+		$message 	= isset($_POST['message']) ? mysqli_real_escape_string($conn, $_POST['message']) : '';
+		mysqli_query($conn, "INSERT INTO `requests` (timedate, thekey, name, artist, title, message, ipaddr,uniqueid) VALUES ('$timedate', '$key', '$name', '$artist', '$title', '$message', '$ip_addr','$user')");
                 mysqli_close($conn);
 	break;
 
@@ -254,7 +260,7 @@ switch($action) {
 	case "ban":
                 $conn = mysqli_connect($host,$username,$password,$db);
 		$value 	= decrypt($_POST['value']);
-		$query = mysqli_query($conn, "UPDATE `requestusers` SET banned=1 WHERE uniqueid = '$value' ");
+                $query = mysqli_query($conn, "UPDATE `requestusers` SET banned=1 WHERE uniqueid = '$value' ");
                 mysqli_close($conn);
 	break;
 
