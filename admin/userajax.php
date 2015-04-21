@@ -2,6 +2,7 @@
 include '../configuration.php';
 include '../functions/functions.php';
 include('../generatekey.php');
+include_once 'adminconfig.php';
 session_start();
 $record="";
 $action = $_REQUEST['action'];
@@ -13,13 +14,15 @@ switch($action) {
 	case "load":
                 $rq = mysqli_connect($host, $username, $password, $db);
                 if ($luser == 0){
-$query = mysqli_query($rq, "SELECT requestusers.* FROM requestusers LEFT JOIN requestkeys ON requestusers.thekey=requestkeys.thekey");
-//                    $query = mysqli_query($rq, "SELECT * FROM requestusers ORDER BY id ASC");
-// Add extra WHERE clause for multiuser!
+                    $querystring = "SELECT requestusers.* FROM requestusers LEFT JOIN requestkeys ON requestusers.thekey=requestkeys.thekey";
                 }
                 else {
-                    $query = mysqli_query($rq, "SELECT * FROM requestusers WHERE uniqueid='$luser' ORDER BY id ASC");
+                    $querystring = "SELECT * FROM requestusers WHERE uniqueid='".$luser."'";
                 }
+                if ($userlevel != "3") {
+                    $querystring = $querystring . " WHERE requestkeys.userid='".$userid."'";
+                }
+                $query = mysqli_query($rq, $querystring);
 		$count  = mysqli_num_rows($query);
 		if($count > 0) {
 			while($fetch = mysqli_fetch_array($query)) {
