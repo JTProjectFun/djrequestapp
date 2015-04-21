@@ -88,7 +88,7 @@ switch($action) {
                 </td>
                 <td class="date">
                     <div class="grid_content sno">
-                        <span><a href="user.php?user=<?php echo $records['uniqueid']; ?>"> <?php echo $records['thekey']; ?></a></span>
+                        <span><a href="admin.php?eventkey=<?php echo $records['thekey']; ?>"> <?php echo $records['thekey']; ?></a></span>
                     </div>
                 </td>
                 <td class="date">
