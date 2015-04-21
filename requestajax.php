@@ -45,6 +45,30 @@ switch($action) {
                         <span class="error">Your request submission was successful</span>
                     </div>
                 </div>
+                <div id="nametooshort">
+                    <div class="errorcontent">
+                        WHOOPS
+                        <span>There was a problem with the text you entered in the 'name' field. Try again.</span>
+                    </div>
+                </div>
+                <div id="titletooshort">
+                    <div class="errorcontent">
+                        WHOOPS
+                        <span>There was a problem with the text you entered in the 'title' field. Try again.</span>
+                    </div>
+                </div>
+                <div id="artisttooshort">
+                    <div class="errorcontent">
+                        WHOOPS
+                        <span>There was a problem with the text you entered in the 'artist' field. Try again.</span>
+                    </div>
+                </div>
+                <div id="titletooshort">
+                    <div class="errorcontent">
+                        WHOOPS
+                        <span>There was a problem with the text you entered in the 'title' field. Try again.</span>
+                    </div>
+                </div>
                 <div id="toomanyuser">
                     <div class="errorcontent">
                         WHOOPS
@@ -197,6 +221,28 @@ switch($action) {
                 $artist = strip_tags($_POST['artist']);
                 $title = strip_tags($_POST['title']);
                 $message = strip_tags($_POST['message']);
+
+                if (strlen($name) < 2) {
+                    $response['status'] = 'nametooshort';
+                    header('Content-type: application/json');
+                    echo json_encode($response);
+                    break;
+                }
+
+                if (strlen($artist) < 2) {
+                    $response['status'] = 'artisttooshort';
+                    header('Content-type: application/json');
+                    echo json_encode($response);
+                    break;
+                }
+
+                if (strlen($title) < 2) {
+                    $response['status'] = 'titletooshort';
+                    header('Content-type: application/json');
+                    echo json_encode($response);
+                    break;
+                }
+
                 $result = mysqli_query($conn, "INSERT INTO `requests` (timedate, thekey, name, artist, title, message, ipaddr, uniqueid) VALUES ('".$timedate."', '".$key."', '".$name."', '".$artist."', '".$title."', '".$message."', '".$ip_addr."', '".$uniqueid."')");
                 $result = mysqli_query($conn, "UPDATE requestusers set numRequests=numRequests+1 WHERE uniqueid='$uniqueid'");
                 mysqli_close($conn);

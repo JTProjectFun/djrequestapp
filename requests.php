@@ -245,6 +245,21 @@ $(function(){
 			type : 'POST',
 			data : data,
 			success: function(data) {
+                            if (data.status == "nametooshort") {
+                                 setTimeout(function(){ $('#nametooshort').show(); }, 100);
+                                 setTimeout(function(){ $('#nametooshort').fadeOut('fast'); }, 8000);
+                                $('#name').focus();
+                            }
+                            if (data.status == "artisttooshort") {
+                                 setTimeout(function(){ $('#artisttooshort').show(); }, 100);
+                                 setTimeout(function(){ $('#artisttooshort').fadeOut('fast'); }, 8000);
+                                $('#name').focus();
+                            }
+                            if (data.status == "titletooshort") {
+                                 setTimeout(function(){ $('#titletooshort').show(); }, 100);
+                                 setTimeout(function(){ $('#titletooshort').fadeOut('fast'); }, 8000);
+                                $('#name').focus();
+                            }
                             if (data.status == "toomany") {
                                  setTimeout(function(){ $('#toomany').show(); }, 100);
                                  setTimeout(function(){ $('#toomany').fadeOut('fast'); }, 8000);
