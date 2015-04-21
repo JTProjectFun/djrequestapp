@@ -38,7 +38,11 @@ switch($action) {
                 $djName = $row[0];
 
 		?>
-                <?php if (!empty($djName)) { echo "<div><span>Your DJ tonight is ". $djName . "</span></div>"; } ?>
+                <?php if (!empty($djName)) { echo "<div><span>Your DJ "; 
+                    if (date("H") < 12) { echo "this morning"; }
+                    else if (date("H") > 11 && date("H") < 18) { echo "this afternoon"; }
+                    else if (date("H") > 17) { echo "tonight"; }
+                    echo " is ". $djName . "</span></div>"; } ?>
                 <div id="goodpopup">
                     <div class="content">
                         THANKYOU
