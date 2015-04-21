@@ -140,7 +140,7 @@ switch($action) {
                 ?>
                 <div class="<?php if($i%2 == 0) { echo 'even'; } else { echo 'odd'; } ?>">
                     <span class="list"><?php echo $records['name']; ?> : &lsquo;<?php echo $records['title']; ?>&rsquo; by <?php echo $records['artist']; ?></span>
-                    <div class="message">Message: <?php echo $records['message']; ?></div>
+                    <?php if (strlen($records['message']) > 1) { echo '<div class="message">Message: ' . $records['message'] . "</div>"; } ?>
                     <?php if ($records['played'] == 1) {echo '<span class="played">Played</span>'; } ?>
                 </div>
                 <?php
