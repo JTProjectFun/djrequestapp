@@ -26,16 +26,18 @@ if (isset($_POST['submit'])) {
         $key = mysqli_real_escape_string($conn, $key);
         $date = mysqli_real_escape_string($conn, $date);
 
-        $result = mysqli_query($conn, "SELECT date, willexpire FROM requestkeys WHERE thekey='$key'");
+        $result = mysqli_query($conn, "SELECT date, willexpire, id FROM requestkeys WHERE thekey='$key'");
         $rows = mysqli_num_rows($result);
         if ($rows == 1) {
             $row = mysqli_fetch_row($result);
             $data = $row[0];
             $date = strtotime($data);
             $willexpire = $row[1];
+            $thekeyid = $row[2];
             $cur_date = date("U");
             if (($cur_date - (3600 * (24 + $over_hours)) < $date) || ($willexpire == "0")) {
                 $_SESSION['eventkey'] = $key; 
+                $_SESSION['eventkeyid'] = $thekeyid; 
                 $_SESSION['timeout'] = time();
                 mysqli_close($conn); // Closing Connection
                 header("location: requests.php"); 

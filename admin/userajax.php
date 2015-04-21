@@ -15,14 +15,14 @@ switch($action) {
                 $rq = mysqli_connect($host, $username, $password, $db);
                 switch($userlevel) {
                     case 1: // Only show requests from this admin user's events on key = 0
-                        $query_string = "SELECT requestusers.* FROM requestusers LEFT JOIN requestkeys ON requestusers.thekey=requestkeys.thekey WHERE requestkeys.userid='".$userid."'";
+                        $query_string = "SELECT requestusers.*,requestkeys.id FROM requestusers LEFT JOIN requestkeys ON requestusers.thekey=requestkeys.thekey WHERE requestkeys.userid='".$userid."'";
                         if ($luser != "0") {
                             $query_string = $query_string . " AND requestusers.uniqueid='".$luser;
                         }
                         break;
 
                     case 2: // Only show requests from this admin user's events on key = 0
-                        $query_string = "SELECT requestusers.* FROM requestusers LEFT JOIN requestkeys ON requestusers.thekey=requestkeys.thekey WHERE requestkeys.userid='".$userid."'";
+                        $query_string = "SELECT requestusers.*,requestkeys.id FROM requestusers LEFT JOIN requestkeys ON requestusers.thekey=requestkeys.thekey WHERE requestkeys.userid='".$userid."'";
                         if ($luser != "0") {
                             $query_string = $query_string . " AND requestusers.uniqueid='".$luser."'";
                         }
@@ -30,7 +30,7 @@ switch($action) {
 
                     case 3: // Only show requests from this admin user's events on key = 0
                         if ($luser == "0") {
-                            $query_string = "SELECT * from requestusers";
+                            $query_string = "SELECT requestusers.*,requestkeys.id from requestusers LEFT JOIN requestkeys on requestusers.thekey=requestkeys.thekey";
                         }
                         else {
                             $query_string = "SELECT * FROM requestusers WHERE uniqueid='".$luser."'";
@@ -88,7 +88,7 @@ switch($action) {
                 </td>
                 <td class="date">
                     <div class="grid_content sno">
-                        <span><a href="admin.php?eventkey=<?php echo $records['thekey']; ?>"> <?php echo $records['thekey']; ?></a></span>
+                        <span><a href="requests.php?eventkey=<?php echo $records['id']; ?>"> <?php echo $records['thekey']; ?></a></span>
                     </div>
                 </td>
                 <td class="date">
