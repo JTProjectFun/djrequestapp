@@ -21,9 +21,9 @@ switch($action) {
                         break;
 
                     case 2: // Only show requests from this admin user's events on key = 0
-                        $query_string = "SELECT requests.* FROM requests LEFT JOIN requestkeys ON requests.thekey=requestkeys.thekey WHERE requestkeys.userid ='".$userid;"'";
+                        $query_string = "SELECT requests.* FROM requests LEFT JOIN requestkeys ON requests.thekey=requestkeys.thekey WHERE requestkeys.userid='".$userid."'";
                         if ($key != "0") {
-                            $query_string = $query_string . " AND requestkeys.id='".$key;
+                            $query_string = $query_string . " AND requestkeys.id='".$key."'";
                         }
                         break;
 

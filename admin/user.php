@@ -13,6 +13,10 @@ if ($userlevel == "1") {
     header('Location: admin.php');
 }
 
+if(isset($_GET['user'])) {
+    $user = $_GET['user'];
+}
+    $_SESSION['listuser'] = $user;
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">

@@ -3,7 +3,7 @@ include "../configuration.php";
 include "phpqrcode/qrlib.php";
 $row = "";
 $key = $_GET['key'];
-$codeContents="http://" . $baseURL . "login.php?key=" . $key;
+$codeContents="http://" . $baseURL . "login.php?eventkey=" . $key;
 
 $tempfile = "images/qrcode.png";
 

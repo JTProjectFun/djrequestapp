@@ -38,6 +38,6 @@ switch ($level) {
         break;
 }
 
-
+echo "Userid: " . $userid;
 ?>
 

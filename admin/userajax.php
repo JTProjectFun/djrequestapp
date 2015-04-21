@@ -12,7 +12,14 @@ if (isset($_SESSION['listuser'])) {
 switch($action) {
 	case "load":
                 $rq = mysqli_connect($host, $username, $password, $db);
-                $query = mysqli_query($rq, "SELECT * FROM requestusers WHERE uniqueid='$luser' ORDER BY id ASC");
+                if ($luser == 0){
+$query = mysqli_query($rq, "SELECT requestusers.* FROM requestusers LEFT JOIN requestkeys ON requestusers.thekey=requestkeys.thekey");
+//                    $query = mysqli_query($rq, "SELECT * FROM requestusers ORDER BY id ASC");
+// Add extra WHERE clause for multiuser!
+                }
+                else {
+                    $query = mysqli_query($rq, "SELECT * FROM requestusers WHERE uniqueid='$luser' ORDER BY id ASC");
+                }
 		$count  = mysqli_num_rows($query);
 		if($count > 0) {
 			while($fetch = mysqli_fetch_array($query)) {

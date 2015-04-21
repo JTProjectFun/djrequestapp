@@ -278,14 +278,14 @@ $(function(){
 <div id="main">
  <div id="logo">&nbsp;</div>
 	<h1 class="h1"><a href="">Song Requests</a></h1>
-        <h1 class="gridder_addnew"><a href="gridder_addnew" id="gridder_addnew" class="gridder_addnew">Click to add a new request</a></h1>
+        <h1 class="gridder_addnew"><a href="gridder_addnew" id="gridder_addnew" class="gridder_addnew">Click HERE to add a new request</a></h1>
 
         <div class="as_wrapper">
 	    <div class="as_grid_container">
                 <div class="as_gridder" id="as_gridder"></div> <!-- GRID LOADER -->
             </div>
+ <a class="logout" href="logout.php">Log Out</a>
         </div>
-       <a class="logout" href="logout.php">Log Out</a>
 </div>
 </body>
 </html>

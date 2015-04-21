@@ -5,6 +5,20 @@ body {
 background-color:#fff;
 }
 
+#helpmain {
+border-radius:0.5em;
+border:2px solid #00d200;
+background-color:#ddffdd;
+margin-top:20px;
+min-height:5em;
+}
+
+#helpmain div{
+padding:0.5em;
+width:90%;
+max-width:800px;
+}
+
 #goodpopup{
 display:none;
 height:100%;

@@ -60,7 +60,7 @@ switch($action) {
                 <div id="banned">
                     <div class="errorcontent">
                         WHOOPS
-                        <span>You have been BANNED from making requests, you fool!</span>
+                        <span>You cannot make any more requests at this time, sorry.</span>
                     </div>
                 </div>
                 <div id="floodalert">
