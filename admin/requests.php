@@ -9,9 +9,15 @@ else {
 }
 
 $key = 0;
+$user = 0;
 
 if (isset($_GET['key'])) {
   $key = $_GET['key'];
+}
+$_SESSION['requestuser'] = 0;
+if (isset($_GET['requestuser'])) {
+    $requestuser = $_GET['requestuser'];
+    $_SESSION['requestuser'] = $requestuser;
 }
 
 $_SESSION['key'] = $key;

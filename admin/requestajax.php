@@ -7,6 +7,10 @@ session_start();
 $record="";
 $action = $_REQUEST['action'];
 $key = $_SESSION['key'];
+$requestuser = "0";
+if (isset($_SESSION['requestuser'])) {
+    $requestuser = $_SESSION['requestuser'];
+}
 
 switch($action) {
 	case "load":
@@ -36,7 +40,9 @@ switch($action) {
                         }
                         break;
                 }
-
+if (strlen($requestuser) > 2) {
+$query_string = "SELECT * FROM requests WHERE requests.uniqueid='".$requestuser."'";
+}
                 $query_string = $query_string . " ORDER BY requests.id DESC";
 
                 $query = mysqli_query($rq, $query_string);
