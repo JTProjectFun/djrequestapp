@@ -1,5 +1,5 @@
 <?php
-
+include_once '../configuration.php';
 // Function for encryption
 function encrypt($data) {
 	return base64_encode(base64_encode(base64_encode(strrev($data))));
@@ -16,11 +16,12 @@ function db_connect() {
     static $connection;
 
     // Try and connect to the database, if a connection has not been established yet
-    if(!isset($connection)) {
+//    if(!isset($connection)) {
          // Load configuration as an array. Use the actual location of your configuration file
-        $config = parse_ini_file('../config.ini'); 
-        $connection = mysqli_connect('localhost',$config['username'],$config['password'],$config['dbname']);
-    }
+//        $config = parse_ini_file('../config.ini'); 
+//        $connection = mysqli_connect('localhost',$config['username'],$config['password'],$config['dbname']);
+$connection = mysqli_connect($host,$username,$password,$db);
+//    }
 
     // If connection was not successful, handle the error
     if($connection === false) {

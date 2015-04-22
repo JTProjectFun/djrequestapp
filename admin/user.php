@@ -31,7 +31,7 @@ if(isset($_GET['user'])) {
 <script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script type="text/javascript">
 $(function(){
-	
+
 	// Function for loading the grid
 	function LoadGrid() {
 		var gridder = $('#as_gridder');
@@ -46,97 +46,9 @@ $(function(){
 			}
 		});
 	}
-	
-	// Seperate Function for datepiker() to save the value
-	function ForDatePiker(ThisElement) {
-		ThisElement.prev('span').html(ThisElement.val()).prop('title', ThisElement.val());
-		var UrlToPass = 'action=update&value='+ThisElement.val()+'&crypto='+ThisElement.prop('name');
-		$.ajax({
-			url : 'userajax.php',
-			type : 'POST',
-			data : UrlToPass
-		});
-	}
-	
+
 	LoadGrid(); // Load the grid on page loads
-	
-	// Execute datepiker() for date fields
-	$("body").delegate("input[type=text].datepicker", "focusin", function(){
-		var ThisElement = $(this);
-		$(this).datetimepicker({
-	   		dateFormat: 'yy/mm/dd',
-			onSelect: function() {
-				setTimeout(ForDatePiker(ThisElement), 500);
-			}
-	   });
-	});
-	
-        // Show the tickable thing on click
-        $('body').delegate('.tickable', 'click', function(){
-            var ThisElement = $(this);
-            ThisElement.find('span').hide();
-            ThisElement.find('.gridder_input').show().focus();
-        });
-            
-	// Show the text box on click
-	$('body').delegate('.editable', 'click', function(){
-		var ThisElement = $(this);
-		ThisElement.find('span').hide();
-		ThisElement.find('.gridder_input').show().focus();
-	});
-	
-        // On click, do the toggle thing
-        $('body').delegate('.toggle', 'click', function(){
-		var ThisElement = $(this);
-                var value = 0;
-                if ($(ThisElement).prop("checked")){
-                    value = 1;
-                }
-                else {
-                    value = 0;
-                }
-		var UrlToPass = 'action=update&value='+value+'&crypto='+ThisElement.prop('name');
-		$.ajax({
-			url : 'userajax.php',
-			type : 'POST',
-			data : UrlToPass
-		});
-	});
 
-	// Pass and save the textbox values on blur function
-	$('body').delegate('.gridder_input', 'blur', function(){
-		var ThisElement = $(this);
-		ThisElement.hide();
-		ThisElement.prev('span').show().html($(this).val()).prop('title', $(this).val());
-		var UrlToPass = 'action=update&value='+ThisElement.val()+'&crypto='+ThisElement.prop('name');
-		if(ThisElement.hasClass('datepicker')) {
-			return false;
-		}
-		$.ajax({
-			url : 'userajax.php',
-			type : 'POST',
-			data : UrlToPass
-		});
-	});
-
-	// Same as the above blur() when user hits the 'Enter' key
-	$('body').delegate('.gridder_input', 'keypress', function(e){
-		if(e.keyCode == '13') {
-			var ThisElement = $(this);
-			ThisElement.hide();
-			ThisElement.prev('span').show().html($(this).val()).prop('title', $(this).val());
-			var UrlToPass = 'action=update&value='+ThisElement.val()+'&crypto='+ThisElement.prop('name');
-			if(ThisElement.hasClass('datepicker')) {
-				return false;
-			}
-			$.ajax({
-				url : 'userajax.php',
-				type : 'POST',
-				data : UrlToPass
-			});
-		}
-	});
-	
 	// Function for deleting all the user's requests
 	$('body').delegate('.gridder_delete', 'click', function(){
 		var conf = confirm("Are you sure want to delete this user's requests?");
@@ -167,72 +79,6 @@ $(function(){
 			url : 'userajax.php',
 			type : 'POST',
 			data : UrlToPass,
-			success: function() {
-				LoadGrid();
-			}
-		});
-		return false;
-	});
-	
-	// Add new record
-	
-	// Add new record when the table is empty
-	$('body').delegate('.gridder_insert', 'click', function(){
-		$('#norecords').hide();
-		$('#addnew').slideDown();
-		return false;
-	});
-	
-	// Add new record when the table in non-empty
-	$('body').delegate('.gridder_addnew', 'click', function(){
-		$('html, body').animate({ scrollTop: $('.as_gridder').offset().top}, 250); // Scroll to top gridder table
-		$('#addnew').slideDown();
-		return false;
-	});
-	
-	// Cancel the insertion
-	$('body').delegate('.gridder_cancel', 'click', function(){
-		LoadGrid()
-		return false;
-	});
-	
-	// For datepiker
-	$("body").delegate(".gridder_add.datepiker", "focusin", function(){
-		var ThisElement = $(this);
-		$(this).datepicker({
-	   		dateFormat: '@'
-	   });
-	});
-	
-	// Pass the values to ajax page to add the values
-	$('body').delegate('#gridder_addrecord', 'click', function(){
-		// Do insert validation here
-		if($('#name').val() == '') {
-			$('#name').focus();
-                             alert('The "Name" field cannot be left blank. Please enter a name.');
-		return false;
-		}
-		if($('#artist').val() == '') {
-			$('#artist').focus();
-                        alert('The "Artist" field cannot be left blank. Please enter an artist.');
-			return false;
-		}
-		if($('#title').val() == '') {
-			$('#title').focus();
-                        alert('The "Title" field cannot be left blank. Please enter a title.');
-			return false;
-		}
-		if($('#message').val().length > 140)	 {
-                        $('#message').focus();
-                             alert('The "Message" field cannot contain more than 140 characters. Consider using a shorter message.');
-                        return false;
-                }
-		// Pass the form data to the ajax page
-		var data = $('#gridder_addform').serialize();
-		$.ajax({
-			url : 'userajax.php',
-			type : 'POST',
-			data : data,
 			success: function() {
 				LoadGrid();
 			}

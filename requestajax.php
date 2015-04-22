@@ -9,7 +9,7 @@ $record=""; // Initialise variables which may have been previously used & would 
 
 $action = $_REQUEST['action'];
 $key = $_SESSION['eventkey'];
-$uniqueid = $_COOKIE['user'];
+$uniqueid = $_COOKIE['requestuser'];
 $error = '';
 switch($action) {
 	case "load":
@@ -247,6 +247,10 @@ switch($action) {
                     break;
                 }
 
+//$query="INSERT INTO `requests` (timedate, thekey, name, artist, title, message, ipaddr, uniqueid) VALUES ('".$timedate."', '".$key."', '".$name."', '".$artist."', '".$title."', '".$message."', '".$ip_addr."', '".$uniqueid."')";
+//db_query($query);
+//$query="UPDATE requestusers set numRequests=numRequests+1 WHERE uniqueid='".$uniqueid."'";
+//db_query($query);
                 $result = mysqli_query($conn, "INSERT INTO `requests` (timedate, thekey, name, artist, title, message, ipaddr, uniqueid) VALUES ('".$timedate."', '".$key."', '".$name."', '".$artist."', '".$title."', '".$message."', '".$ip_addr."', '".$uniqueid."')");
                 $result = mysqli_query($conn, "UPDATE requestusers set numRequests=numRequests+1 WHERE uniqueid='$uniqueid'");
                 mysqli_close($conn);

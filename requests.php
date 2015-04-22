@@ -18,18 +18,12 @@ if (isset($_SESSION['timeout'])){
     }
 }
 
-//if (!isset($_SESSION['uniqueid'])){
-//  $_SESSION['uniqueid'] = uniqid();
-//}
-
-//$uniqeid = $_SESSION['uniqueid'];
-
 $key = $_SESSION['eventkey'];
 $uniqueid = uniqid();
 // If cookie hasn't been set, set it and put this user in the requestuser table
-if (!isset($_COOKIE['user'])) {
-    setcookie("user", $uniqueid, time() + (60 * 60 * 8), "/"); // 60 * 60 * 8 seconds = 8 hours
-    setcookie("key", $key, time() + (60 * 60 * 8), "/"); // 60 * 60 * 8 seconds = 8 hours
+if (!isset($_COOKIE['requestuser'])) {
+    setcookie("requestuser", $uniqueid, time() + (60 * 60 * 8), "/"); // 60 * 60 * 8 seconds = 8 hours
+    setcookie("requestkey", $key, time() + (60 * 60 * 8), "/"); // 60 * 60 * 8 seconds = 8 hours
     $ip_addr = $_SERVER['REMOTE_ADDR'];
     $conn = mysqli_connect($host, $username, $password, $db);
     $query = mysqli_query($conn, "INSERT INTO requestusers (uniqueid, ipaddr, thekey, createdTime) VALUES ('$uniqueid', '$ip_addr', '$key', NOW())");
@@ -37,9 +31,23 @@ if (!isset($_COOKIE['user'])) {
     $query = mysql_query($conn, "DELETE FROM requestusers WHERE createdTime < NOW - INTERVAL '$maxUserAge' DAY");
     mysqli_close($conn);
 }
+else {
+    $uniqueid=$_COOKIE['requestuser'];
+    $conn = mysqli_connect($host, $username,$password,$db);
+    $query = mysqli_query($conn, "SELECT logintimes,thekey FROM requestusers WHERE uniqueid='".$uniqueid."'");
+    $result = mysqli_fetch_row($query);
+    $times = $result[0];
+    $lastkey = $result[1];
+    if ($lastkey != $key) { // If key is different to the one the user originally logged in with, increment their logintimes counter
+        $query = mysqli_query($conn, "UPDATE requestusers SET logintimes=logintimes+1 WHERE uniqueid='".$uniqueid."'");
+    }
 
-//echo "<p>" . $_COOKIE['user'] . " : " . $_COOKIE['key'] . "</p>";
+    mysqli_close($conn);
 
+    if ($times > 3) { // If user has logged into 2 events or more, kick em out!
+        header('Location: logout.php');
+    }
+}
 // Better check key exists. If not, kick back to login page
 $result=""; 
 $record="";
@@ -49,8 +57,8 @@ $result = mysqli_query($conn, "select thekey from requestkeys where thekey='$key
         if ($rows == 1) {
             $row = mysqli_fetch_row($result);
             $result = $row[0];
-}
-mysqli_close($conn);
+        }
+        mysqli_close($conn);
 
 if (empty($result)) {
     header("Location: logout.php");
