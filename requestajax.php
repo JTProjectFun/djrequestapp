@@ -49,6 +49,12 @@ switch($action) {
                         <span class="error">Your request submission was successful</span>
                     </div>
                 </div>
+                <div id="databaseerror">
+                    <div class="errorcontent">
+                        OH DEAR
+                        <span>There's a problem with the database. Guru meditation error, or something.</span>
+                    </div>
+                </div>
                 <div id="nametooshort">
                     <div class="errorcontent">
                         WHOOPS
@@ -247,10 +253,6 @@ switch($action) {
                     break;
                 }
 
-//$query="INSERT INTO `requests` (timedate, thekey, name, artist, title, message, ipaddr, uniqueid) VALUES ('".$timedate."', '".$key."', '".$name."', '".$artist."', '".$title."', '".$message."', '".$ip_addr."', '".$uniqueid."')";
-//db_query($query);
-//$query="UPDATE requestusers set numRequests=numRequests+1 WHERE uniqueid='".$uniqueid."'";
-//db_query($query);
                 $result = mysqli_query($conn, "INSERT INTO `requests` (timedate, thekey, name, artist, title, message, ipaddr, uniqueid) VALUES ('".$timedate."', '".$key."', '".$name."', '".$artist."', '".$title."', '".$message."', '".$ip_addr."', '".$uniqueid."')");
                 $result = mysqli_query($conn, "UPDATE requestusers set numRequests=numRequests+1 WHERE uniqueid='$uniqueid'");
                 mysqli_close($conn);

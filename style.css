@@ -38,6 +38,16 @@ text-align:center;
 margin:auto;
 }
 
+#databaseerror{
+display:none;
+height:100%;
+width:100%;
+z-index:1000;
+background-color:red;
+font-size:2em;
+text-align:center;
+border-radius:1em;
+}
 #nametooshort{
 display:none;
 height:100%;
