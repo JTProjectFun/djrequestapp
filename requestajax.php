@@ -108,19 +108,19 @@ switch($action) {
 
                     <div class="addnewrequest" id="addnew">
                         <div class="newadd" id="inputlabel">Your name</div>
-                        <div class="newadd" id="inputbox"><input type="text" name="name" id="name" class="gridder_add" /> </div>
+                        <div class="newadd" id="inputbox"><input type="text" name="name" id="name" class="gridder_add" maxlength="64"/> </div>
                         <div class="newadd" id="nameerror">ERROR<span class="error">The name field cannot be left blank</span></div>
                         <div class="newadd" id="nameerror_tl">ERROR<span class="error">The name you entered is too long. Please use less than 64 characters</span></div>
                         <div class="newadd" id="inputlabel">Song Artist</div>
-                        <div class="newadd" id="inputbox"><input type="text" name="artist" id="artist" class="gridder_add" /> </div>
+                        <div class="newadd" id="inputbox"><input type="text" name="artist" id="artist" class="gridder_add" maxlength="64"/> </div>
                         <div class="newadd" id="artisterror">ERROR<span class="error">The artist field cannot be left blank</span></div>
                         <div class="newadd" id="artisterror_tl">ERROR<span class="error">The artist you entered is too long. Please use less than 64 characters</span></div>
                         <div class="newadd" id="inputlabel">Song Title</div>
-                        <div class="newadd" id="inputbox"><input type="text" name="title" id="title" class="gridder_add" /> </div>
+                        <div class="newadd" id="inputbox"><input type="text" name="title" id="title" class="gridder_add" maxlength="64"/> </div>
                         <div class="newadd" id="titleerror">ERROR<span class="error">The title field cannot be left blank</span></div>
                         <div class="newadd" id="titleerror_tl">ERROR<span class="error"> The title you entered is too long. Please use less than 64 characters</span></div>
                         <div class="newadd" id="inputlabel">Your Message (up to 140 characters)</div>
-                        <div class="newadd" id="inputbox"><textarea name="message" id="message" class="gridder_add"></textarea></div>
+                        <div class="newadd" id="inputbox"><textarea name="message" id="message" class="gridder_add" maxlength="140"></textarea></div>
                         <div class="newadd" id="messageerror_tl">ERROR<span class="error">The message you entered is too long. Please use 140 characters or less</span></div>
                         <div class="newadd" id="submitbutton"><input type="submit" id="gridder_addrecord" value="submit" class="gridder_addrecord_button" title="Add" /></div>
                         <div class="newadds" id="cancelbutton">
