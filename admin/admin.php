@@ -210,12 +210,12 @@ $(function(){
 <div class="as_wrapper">
 <div id="logo">&nbsp;</div>
 <?php echo "Welcome, " . $adminrealname; ?>
-	<h1 class="h1"><a href="">Administer Event Keys</a></h1>
+	<h1 class="h1"><a href="">Administer Events</a></h1>
 <?php include 'menu.php'; ?>
 	<div class="as_grid_container">
             <div class="as_gridder" id="as_gridder"></div> <!-- GRID LOADER -->
         </div>
-<a href="gridder_addnew" class="gridder_addnew">Add New Event Key</a>
+<a href="gridder_addnew" class="gridder_addnew">Add New Event</a>
 </div>
 </body>
 </html>

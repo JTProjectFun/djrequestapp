@@ -11,7 +11,7 @@ echo '<a class="menu" href="logout.php">Log out</a>';
 function level2Menu(){
 echo '<a class="menu" href="requests.php">Admin All Requests</a>';
 echo '<a class="menu" href="user.php">Admin Request Users</a>';
-echo '<a class="menu" href="admin.php">Admin Event Keys</a>';
+echo '<a class="menu" href="admin.php">Admin Events</a>';
 echo '<a class="menu" href="logout.php">Log out</a>';
 }
 
@@ -20,7 +20,7 @@ echo '<a class="menu" href="settings.php">Settings</a>';
 echo '<a class="menu" href="requests.php">Admin All Requests</a>';
 echo '<a class="menu" href="user.php">Admin Request Users</a>';
 echo '<a class="menu" href="useradmin.php">Admin System Users</a>';
-echo '<a class="menu" href="admin.php">Admin Event Keys</a>';
+echo '<a class="menu" href="admin.php">Admin Events</a>';
 echo '<a class="menu" href="logout.php">Log out</a>';
 }
 
@@ -38,6 +38,5 @@ switch ($level) {
         break;
 }
 
-echo "Userid: " . $userid;
 ?>
 
