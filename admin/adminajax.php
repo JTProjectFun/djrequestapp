@@ -147,6 +147,16 @@ switch($action) {
                 $userids = mysqli_fetch_row($useridq);
                 $userid = $userids[0];
 		mysqli_query($conn, "INSERT INTO `requestkeys` (timedate, thekey, date, showrequests, willexpire,userid,maxUserRequests,maxRequests) VALUES ('$timedate', '$thekey', '$date', '$showrequests', '$willexpire', '$userid','$maxuserrequests','$maxrequests')");
+                if (mysqli_error($conn)) {
+                    $error=mysqli_error($conn);
+                    $response['status'] = 'sqlerror'. $error;
+                    header('Content-type: application/json');
+                    echo json_encode($response);
+                    break;
+                }
+                $response['status'] = 'sqlerror'. $error;
+                header('Content-type: application/json');
+                echo json_encode($response);
                 mysqli_close($conn);
 	break;
 

@@ -196,7 +196,13 @@ $(function(){
 			url : 'adminajax.php',
 			type : 'POST',
 			data : data,
-			success: function() {
+			success: function(data) {
+if(data.status.indexOf("sqlerror") >=0) {
+    if (data.status.indexOf("Duplicate entry") >=0) {
+        alert ("Whoops. That event key was not unique. Try again with a different key.");
+        return false;
+    }
+}
 				LoadGrid();
 			}
 		});
