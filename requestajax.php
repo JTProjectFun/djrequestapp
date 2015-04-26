@@ -165,7 +165,7 @@ switch($action) {
                 $row="";
                 $timedate = date("Y-m-d.H:i:s");
                 $ip_addr = $_SERVER['REMOTE_ADDR'];
-                $uniqueid = $_COOKIE['user'];
+                $uniqueid = $_COOKIE['requestuser'];
                 $conn = mysqli_connect($host, $username, $password, $db);
                 $bannedquery = mysqli_query($conn, "SELECT banned FROM requestusers WHERE uniqueid='$uniqueid'");
                 $banned = mysqli_fetch_row($bannedquery);

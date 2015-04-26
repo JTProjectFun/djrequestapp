@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
             $cur_date = date("U");
             if (($cur_date - (3600 * (24 + $over_hours)) < $date) || ($willexpire == "0")) {
                 $_SESSION['eventkey'] = $key; 
-//                $_SESSION['eventkeyid'] = $thekeyid; 
+                $_SESSION['eventkeyid'] = $thekeyid; 
                 $_SESSION['timeout'] = time();
                 mysqli_close($conn); // Closing Connection
                 header("location: requests.php"); 
