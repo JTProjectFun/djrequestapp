@@ -87,7 +87,15 @@ $(function(){
 		$.ajax({
 			url : 'adminajax.php',
 			type : 'POST',
-			data : UrlToPass
+			data : UrlToPass,
+                        success : function(data) {
+                            if(data.status.indexOf("sqlerror") >=0) {
+                                if (data.status.indexOf("Duplicate entry") >=0) {
+                                    alert ("Whoops. That event key was not unique. Try again with a different key.");
+                                    LoadGrid();
+                                }
+                           }
+                       }
 		});
 	});
 

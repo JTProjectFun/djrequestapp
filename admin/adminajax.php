@@ -171,10 +171,32 @@ switch($action) {
                      $query = mysqli_query($conn, "SELECT thekey FROM `requestkeys` where id = '$rowId' ");
                      $data = mysqli_fetch_row($query);
                      $thekey = $data[0];
+                     $query = mysqli_query($conn, "UPDATE `requestkeys` SET `$columnName` = '$value' WHERE id = '$rowId' ");
+                if (mysqli_error($conn)) {
+                    $error=mysqli_error($conn);
+                    $response['status'] = 'sqlerror'. $error;
+                    header('Content-type: application/json');
+                    echo json_encode($response);
+                    mysqli_close($conn);
+                    break;
+                }
+                $response['status'] = 'sqlerror'. $error;
+                header('Content-type: application/json');
+                echo json_encode($response);
                      $query = mysqli_query($conn, "UPDATE `requests` SET thekey = '$value' WHERE thekey = '$thekey' ");
                      $query = mysqli_query($conn, "UPDATE `requestusers` SET thekey = '$value' WHERE thekey = '$thekey' ");
                 }
 		$query = mysqli_query($conn, "UPDATE `requestkeys` SET `$columnName` = '$value' WHERE id = '$rowId' ");
+                if (mysqli_error($conn)) {
+                    $error=mysqli_error($conn);
+                    $response['status'] = 'sqlerror'. $error;
+                    header('Content-type: application/json');
+                    echo json_encode($response);
+                    break;
+                }
+                $response['status'] = 'sqlerror'. $error;
+                header('Content-type: application/json');
+                echo json_encode($response);
                 mysqli_close($conn);
 	break;
 
@@ -186,6 +208,16 @@ switch($action) {
                 $delkey = $data[0];
 		$query = mysqli_query($conn, "DELETE FROM `requestkeys` WHERE id = '$value' ");
 		$query = mysqli_query($conn, "DELETE FROM `requests` WHERE thekey = '$delkey' ");
+                if (mysqli_error($conn)) {
+                    $error=mysqli_error($conn);
+                    $response['status'] = 'sqlerror'. $error;
+                    header('Content-type: application/json');
+                    echo json_encode($response);
+                    break;
+                }
+                $response['status'] = 'sqlerror'. $error;
+                header('Content-type: application/json');
+                echo json_encode($response);
                 mysqli_close($conn);
 	break;
 }
