@@ -176,6 +176,14 @@ switch($action) {
 		$columnName = $explode[0];
 		$rowId = $explode[1];
 		$query = mysqli_query($conn, "UPDATE `systemUser` SET `$columnName` = '$value' WHERE id = '$rowId' ");
+                if (mysqli_error($conn)) {
+                    $error=mysqli_error($conn);
+                    mysqli_close($conn);
+                    $response['status'] = 'sqlerror'. $error;
+                    header('Content-type: application/json');
+                    echo json_encode($response);
+                    break;
+                }
                 mysqli_close($conn);
 
 	break;

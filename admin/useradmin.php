@@ -95,7 +95,16 @@ $(function(){
 		$.ajax({
 			url : 'useradminajax.php',
 			type : 'POST',
-			data : UrlToPass
+			data : UrlToPass,
+                        success : function(data) {
+                                    if(data.status.indexOf("sqlerror") >=0) {
+                                        if (data.status.indexOf("Duplicate entry") >=0) {
+                                            alert ("Whoops. You can't use a username more than once. Try again.");
+                                            LoadGrid();
+                                        }
+                                    }
+                               }
+
 		});
 	});
 
@@ -109,7 +118,15 @@ $(function(){
 			$.ajax({
 				url : 'useradminajax.php',
 				type : 'POST',
-				data : UrlToPass
+				data : UrlToPass,
+                                success : function(data) {
+                                    if(data.status.indexOf("sqlerror") >=0) {
+                                        if (data.status.indexOf("Duplicate entry") >=0) {
+                                            alert ("Whoops. You can't use a username more than once. Try again.");
+                                            LoadGrid();
+                                        }
+                                    }
+                               }
 			});
 		}
 	});

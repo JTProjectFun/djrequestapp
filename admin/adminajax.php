@@ -194,7 +194,7 @@ switch($action) {
                     echo json_encode($response);
                     break;
                 }
-                $response['status'] = 'sqlerror'. $error;
+                $response['status'] = 'sucess';
                 header('Content-type: application/json');
                 echo json_encode($response);
                 mysqli_close($conn);
