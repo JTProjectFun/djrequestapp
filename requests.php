@@ -29,6 +29,8 @@ if (!isset($_COOKIE['requestuser'])) {
     $query = mysqli_query($conn, "INSERT INTO requestusers (uniqueid, ipaddr, thekey, createdTime) VALUES ('$uniqueid', '$ip_addr', '$key', NOW())");
     // Delete users older than $maxUserAge days old
     $query = mysql_query($conn, "DELETE FROM requestusers WHERE createdTime < NOW - INTERVAL '$maxUserAge' DAY");
+    // Delete requests older than $maxUserAge days old
+    $query = mysql_query($conn, "DELETE FROM requests WHERE timedate < NOW - INTERVAL '$maxUserAge' DAY");
     mysqli_close($conn);
 }
 else {
