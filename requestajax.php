@@ -14,6 +14,9 @@ $error = '';
 switch($action) {
 	case "load":
                 $conn = mysqli_connect($host, $username, $password, $db);
+                $mess = mysqli_query($conn, "SELECT showMessages FROM requestkeys WHERE thekey='".$key."'");
+                $showMes = mysqli_fetch_row($mess);
+                $showMessages = $showMes[0];
                 $result = mysqli_query($conn, "SELECT * FROM requests WHERE thekey='".$key."' ORDER BY timedate DESC");
                 $count = mysqli_num_rows($result);
 
@@ -150,7 +153,7 @@ switch($action) {
                 ?>
                 <div class="<?php if($i%2 == 0) { echo 'even'; } else { echo 'odd'; } ?>">
                     <span class="list"><?php echo $records['name']; ?> : &lsquo;<?php echo $records['title']; ?>&rsquo; by <?php echo $records['artist']; ?></span>
-                    <?php if (strlen($records['message']) > 1) { echo '<div class="message">Message: ' . $records['message'] . "</div>"; } ?>
+                    <?php if ((strlen($records['message']) > 1) && ($showMessages == "1")) { echo '<div class="message">Message: ' . $records['message'] . "</div>"; } ?>
                     <?php if ($records['played'] == 1) {echo '<span class="played">Played</span>'; } ?>
                 </div>
                 <?php

@@ -39,6 +39,7 @@ switch($action) {
                             <tr><td>Event Key</td><td><input type="text" name="thekey" id="thekey" class="gridder_add" value="<?php echo $tempkey; ?>"/></td></tr>
                             <tr><td>Date</td><td><input type="text" name="date" id="date" class="datepiker" /></td></tr>
                             <tr><td>Show Requests</td><td><input type="checkbox" name="showrequests" id="showrequests" class="gridder_add" /></td></tr>
+                            <tr><td>Show Messages</td><td><input type="checkbox" name="showMessages" id="showMessages" class="gridder_add" /></td></tr>
                             <tr><td>Will Expire</td><td><input type="checkbox" name="willexpire" id="willexpire" class="gridder_add" /></td></tr>
                             <tr><td>Max User Requests</td><td><input type="text" class="gridder_add" name="maxUserRequests" value="<?php echo $maxUserRequestDefault; ?>" /></td>
                             <tr><td>Max Requests</td><td><input type="text" class="gridder_add" name="maxRequests" value="<?php echo $maxRequestDefault; ?>" /></td></tr>
@@ -59,6 +60,7 @@ switch($action) {
                 <td><div class="grid_heading">Created by</div></td>
                 <td class="date"><div class="grid_heading">Active Date</div></td>
                 <td><div class="grid_heading">Show Requests</div></td>
+                <td><div class="grid_heading">Show Messages</div></td>
                 <td><div class="grid_heading">Will Expire</div></td>
                 <td><div class="grid_heading">Max Requests per user</div></td>
                 <td><div class="grid_heading">Max Requests</div></td>
@@ -90,6 +92,14 @@ switch($action) {
                         <input type="checkbox" class="toggle" name="
                         <?php echo encrypt("showrequests|".$records['id']); ?>"
                         <?php if ($records['showrequests'] == 1) { echo ' checked '; } ?> />
+                    </div>
+                </td>
+                <td class="showreq">
+                    <div class="gridder_content">
+                        <span></span>
+                        <input type="checkbox" class="toggle" name="
+                        <?php echo encrypt("showMessages|".$records['id']); ?>"
+                        <?php if ($records['showMessages'] == 1) { echo ' checked '; } ?> />
                     </div>
                 </td>
                 <td class="expire">
