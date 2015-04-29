@@ -4,9 +4,9 @@ CREATE TABLE IF NOT EXISTS settings(session_timeout int default 120, flood_perio
 CREATE TABLE IF NOT EXISTS requestkeys (id int NOT NULL AUTO_INCREMENT, timedate varchar(32),thekey varchar(16) NOT NULL UNIQUE, date varchar(32), showrequests int(1), willexpire int(1), maxRequests int default 0, maxUserRequests int default 0, userid int, showMessages, PRIMARY KEY(id));
 CREATE TABLE IF NOT EXISTS requests(id int NOT NULL AUTO_INCREMENT, timedate varchar(32), thekey varchar(16) NOT NULL, name varchar(64), artist varchar(64), title varchar(64), message varchar(140), willplay int, played int, ipaddr varchar(20), uniqueid varchar(64), PRIMARY KEY(id));
 CREATE TABLE IF NOT EXISTS requestusers(id int NOT NULL AUTO_INCREMENT, uniqueid varchar(16), ipaddr varchar(20), thekey varchar(16), banned int DEFAULT 0, createdTime varchar(32), numRequests int default 0, logintimes int DEFAULT 0, PRIMARY KEY(id));
-CREATE TABLE IF NOT EXISTS customtext(id,title,text PRIMARY KEY(id));
+CREATE TABLE IF NOT EXISTS customtext(title,content);
 INSERT INTO systemUser(timedate, username, password, name, userlevel) VALUES (NOW(), "admin", "password", "Administrator", "3");
-INSERT INTO customtext(title,text) VALUES 
+INSERT INTO customtext(title,content) VALUES 
 ("banned","I'm sorry. You cannot make any more requests"),
 ("toomany","You have already submitted the maximum number of requests set by the administrator"),
 ("sqlerror","There seems to be a problem with the database."),
