@@ -162,6 +162,13 @@ switch($action) {
 		$email  	= isset($_POST['email']) ? mysqli_real_escape_string($conn, $_POST['email']) : '';
 		$userlevel	= isset($_POST['userlevel']) ? mysqli_real_escape_string($conn, $_POST['userlevel']) : '';
 		mysqli_query($conn, "INSERT INTO `systemUser` (timedate, username, password, name, email, userlevel) VALUES (now(), '$username','$password','$name','$email', '$userlevel') ");
+$user_q = mysqli_query($conn, "SELECT id FROM systemUser WHERE username='$username'");
+$usern = mysqli_fetch_row($user_q);
+$userid = $usern[0];
+mysqli_query($conn, "CREATE TEMPORARY TABLE temptext SELECT * FROM customtext WHERE userid=0;"); 
+mysqli_query($conn, "UPDATE temptext SET userid='$userid'");
+mysqli_query($conn, "INSERT INTO customtext SELECT * FROM temptext");
+mysqli_query($conn, "DROP TABLE temptext");
                 mysqli_close($conn);
                 $response['status'] = 'success';
                 header('Content-type: application/json');

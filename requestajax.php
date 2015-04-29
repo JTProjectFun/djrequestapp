@@ -41,7 +41,7 @@ switch($action) {
                 $djName = $row[0];
 
                 $conn = mysqli_connect($host, $username, $password, $db);
-                $customquery = mysqli_query($conn, "SELECT * FROM customtext");
+                $customquery = mysqli_query($conn, "SELECT customtext.* FROM customtext LEFT JOIN systemUser ON systemUser.id=customtext.userid WHERE systemUser.name='$djName'");
                 $customtext = mysqli_fetch_array($customquery, MYSQLI_ASSOC);
                 mysqli_close($conn);
 
