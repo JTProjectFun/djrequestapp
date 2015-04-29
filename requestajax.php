@@ -40,6 +40,11 @@ switch($action) {
                 $row = mysqli_fetch_row($namequery);
                 $djName = $row[0];
 
+                $conn = mysqli_connect($host, $username, $password, $db);
+                $customquery = mysqli_query($conn, "SELECT * FROM customtext");
+                $customtext = mysqli_fetch_array($customquery, MYSQLI_ASSOC);
+                mysqli_close($conn);
+
 		?>
                 <?php if (!empty($djName)) { echo "<div><span>Your DJ "; 
                     if (date("H") < 12) { echo "this morning"; }
@@ -49,55 +54,55 @@ switch($action) {
                 <div id="goodpopup">
                     <div class="content">
                         THANKYOU
-                        <span class="error">Your request submission was successful</span>
+                        <span class="error"><?php echo $customtext['success']; ?></span>
                     </div>
                 </div>
                 <div id="databaseerror">
                     <div class="errorcontent">
                         OH DEAR
-                        <span>There's a problem with the database. Guru meditation error, or something.</span>
+                        <span><?php echo $customtext['sqlerror']; ?></span>
                     </div>
                 </div>
                 <div id="nametooshort">
                     <div class="errorcontent">
                         WHOOPS
-                        <span>There was a problem with the text you entered in the 'name' field. Try again.</span>
+                        <span><?php echo str_replace("%FIELD%", "name", $customtext['tooshort']); ?></span>
                     </div>
                 </div>
                 <div id="titletooshort">
                     <div class="errorcontent">
                         WHOOPS
-                        <span>There was a problem with the text you entered in the 'title' field. Try again.</span>
+                        <span><?php echo str_replace("%FIELD%", "title", $customtext['tooshort']); ?></span>
                     </div>
                 </div>
                 <div id="artisttooshort">
                     <div class="errorcontent">
                         WHOOPS
-                        <span>There was a problem with the text you entered in the 'artist' field. Try again.</span>
+                        <span><?php echo str_replace("%FIELD%", "artist", $customtext['tooshort']); ?></span>
                     </div>
                 </div>
                 <div id="titletooshort">
                     <div class="errorcontent">
                         WHOOPS
-                        <span>There was a problem with the text you entered in the 'title' field. Try again.</span>
+                        <span><?php echo str_replace("%FIELD%", "title", $customtext['tooshort']); ?></span>
                     </div>
                 </div>
                 <div id="toomanyuser">
                     <div class="errorcontent">
                         WHOOPS
-                        <span>You have already made the maximum amount of requests allowed, sorry</span>
+                        <span><?php echo $customtext['toomanyuser']; ?></span>
                     </div>
                 </div>
                 <div id="toomany">
                     <div class="errorcontent">
                         WHOOPS
-                        <span>The maximum number of requests for this event has been reached, sorry</span>
+                        <span><?php echo $customtext['toomany']; ?></span>
                     </div>
                 </div>
                 <div id="banned">
                     <div class="errorcontent">
                         WHOOPS
-                        <span>You cannot make any more requests at this time, sorry.</span>
+                        <span><?php echo $customtext['banned']; ?></span>
                     </div>
                 </div>
                 <div id="floodalert">
@@ -112,19 +117,19 @@ switch($action) {
                     <div class="addnewrequest" id="addnew">
                         <div class="newadd" id="inputlabel">Your name</div>
                         <div class="newadd" id="inputbox"><input type="text" name="name" id="name" class="gridder_add" maxlength="64"/> </div>
-                        <div class="newadd" id="nameerror">ERROR<span class="error">The name field cannot be left blank</span></div>
-                        <div class="newadd" id="nameerror_tl">ERROR<span class="error">The name you entered is too long. Please use less than 64 characters</span></div>
+                        <div class="newadd" id="nameerror">ERROR<span class="error"><?php echo str_replace("%FIELD%", "name", $customtext['tooshort']); ?></span></div>
+                        <div class="newadd" id="nameerror_tl">ERROR<span class="error"><?php echo str_replace("%FIELD%", "name", $customtext['toolong']); ?></span></div>
                         <div class="newadd" id="inputlabel">Song Artist</div>
                         <div class="newadd" id="inputbox"><input type="text" name="artist" id="artist" class="gridder_add" maxlength="64"/> </div>
-                        <div class="newadd" id="artisterror">ERROR<span class="error">The artist field cannot be left blank</span></div>
-                        <div class="newadd" id="artisterror_tl">ERROR<span class="error">The artist you entered is too long. Please use less than 64 characters</span></div>
+                        <div class="newadd" id="artisterror">ERROR<span class="error"><?php echo str_replace("%FIELD%", "artist", $customtext['tooshort']); ?></span></div>
+                        <div class="newadd" id="artisterror_tl">ERROR<span class="error"><?php echo str_replace("%FIELD%", "artist", $customtext['toolong']); ?></span></div>
                         <div class="newadd" id="inputlabel">Song Title</div>
                         <div class="newadd" id="inputbox"><input type="text" name="title" id="title" class="gridder_add" maxlength="64"/> </div>
-                        <div class="newadd" id="titleerror">ERROR<span class="error">The title field cannot be left blank</span></div>
-                        <div class="newadd" id="titleerror_tl">ERROR<span class="error"> The title you entered is too long. Please use less than 64 characters</span></div>
+                        <div class="newadd" id="titleerror">ERROR<span class="error"><?php echo str_replace("%FIELD%", "title", $customtext['tooshort']); ?></span></div>
+                        <div class="newadd" id="titleerror_tl">ERROR<span class="error"><?php echo str_replace("%FIELD%", "title", $customtext['toolong']); ?></span></div>
                         <div class="newadd" id="inputlabel">Your Message (up to 140 characters)</div>
                         <div class="newadd" id="inputbox"><textarea name="message" id="message" class="gridder_add" maxlength="140"></textarea></div>
-                        <div class="newadd" id="messageerror_tl">ERROR<span class="error">The message you entered is too long. Please use 140 characters or less</span></div>
+                        <div class="newadd" id="messageerror_tl">ERROR<span class="error"><?php echo str_replace("%FIELD%", "message", $customtext['toolong']); ?></span></div>
                         <div class="newadd" id="submitbutton"><input type="submit" id="gridder_addrecord" value="submit" class="gridder_addrecord_button" title="Add" /></div>
                         <div class="newadds" id="cancelbutton">
                             <a href="cancel" id="gridder_cancel" class="gridder_cancel">Cancel</a>
@@ -136,7 +141,7 @@ switch($action) {
             <?php
             if ($showrequests == 0) {
                 if ($count == 0) {
-                    echo '<h1>There have been no requests made yet';
+                    echo '<h1>There have been no requests made yet</h1>';
                 }
                 if ($count == 1) {
                     echo '<h1>There has been one request made so far</h1>';
