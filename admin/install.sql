@@ -6,7 +6,8 @@ CREATE TABLE IF NOT EXISTS requests(id int NOT NULL AUTO_INCREMENT, timedate var
 CREATE TABLE IF NOT EXISTS requestusers(id int NOT NULL AUTO_INCREMENT, uniqueid varchar(16), ipaddr varchar(20), thekey varchar(16), banned int DEFAULT 0, createdTime varchar(32), numRequests int default 0, logintimes int DEFAULT 0, PRIMARY KEY(id));
 CREATE TABLE IF NOT EXISTS customtext(userid int, success text,banned text,toomany text,sqlerror text,tooshort text,toomanyuser text,floodalert text,fieldblank text,fieldtoolong text,norequests text,numrequests text);
 INSERT INTO systemUser(timedate, username, password, name, userlevel) VALUES (NOW(), "admin", "password", "Administrator", "3");
-INSERT INTO customtext(userid,success,banned,toomany,sqlerror,tooshort,toomanyuser,floodalert,fieldblank,fieldtoolong,norequests,numrequests) VALUES (0,
+INSERT INTO customtext(userid,success,banned,toomany,sqlerror,tooshort,toomanyuser,floodalert,fieldblank,fieldtoolong,norequests,
+numrequests) VALUES (0,
 "Your request submission was successful.",
 "I'm sorry. You cannot make any more requests",
 "You have already submitted the maximum number of requests set by the administrator",

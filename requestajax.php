@@ -8,7 +8,7 @@ $fetch=""; // Initialise variables which may have been previously used & would c
 $record=""; // Initialise variables which may have been previously used & would contain data already
 
 $action = $_REQUEST['action'];
-$key = $_SESSION['eventkey'];
+$key = $_COOKIE['requestkey'];
 $uniqueid = $_COOKIE['requestuser'];
 $error = '';
 switch($action) {
@@ -229,8 +229,12 @@ switch($action) {
         }
                 mysqli_close($conn);
                 $result="";
+                $key = $_COOKIE['requestkey'];
+                if (strlen($key) < 3){   // If eventkey is blank, kick the user out & make em log back in.
+                        header('Location:logout.php');
+                        break;
+                }
                 $conn = mysqli_connect($host, $username, $password, $db);
-                $key = $_SESSION['eventkey'];
 		$name 		= isset($_POST['name']) ? mysqli_real_escape_string($conn, strip_tags($_POST['name'])) : '';
 		$artist         = isset($_POST['artist']) ? mysqli_real_escape_string($conn, strip_tags($_POST['artist'])) : '';
 		$title 		= isset($_POST['title']) ? mysqli_real_escape_string($conn, strip_tags($_POST['title'])) : '';
