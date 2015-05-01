@@ -4,7 +4,7 @@ include_once 'configuration.php';
 $bypass = 0;
 
 // check user is logged in
-if (!(isset($_SESSION['eventkey']) && $_SESSION['eventkey'] != ''))
+if (!(isset($_COOKIE['eventkey']) && $_COOKIE['eventkey'] != ''))
 {
   header("Location: index.php");
 }
@@ -18,7 +18,7 @@ if (isset($_SESSION['timeout'])){
     }
 }
 
-$key = $_SESSION['eventkey'];
+$key = $_COOKIE['eventkey'];
 $uniqueid = uniqid();
 // If cookie hasn't been set, set it and put this user in the requestuser table
 if (!isset($_COOKIE['requestuser'])) {

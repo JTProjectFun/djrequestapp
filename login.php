@@ -39,6 +39,7 @@ if (isset($_POST['submit'])) {
                 $_SESSION['eventkey'] = $key; 
                 $_SESSION['eventkeyid'] = $thekeyid; 
                 $_SESSION['timeout'] = time();
+                setcookie("eventkey", $key, time() + (60 * 60 * 8), "/"); // 60 * 60 * 8 seconds = 8 hours
                 mysqli_close($conn); // Closing Connection
                 header("location: requests.php"); 
                 } else {
