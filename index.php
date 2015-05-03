@@ -2,7 +2,7 @@
 session_start();
 include('login.php'); // Includes Login Script
 
-if((isset($_SESSION['loginkey']) && $_SESSION['loginkey'] ='')){
+if((isset($_SESSION['eventkey']) && $_SESSION['eventkey'] ='')){
 header("location: requests.php");
 }
 
