@@ -35,8 +35,6 @@ if (!isset($_COOKIE['requestuser'])) {
 }
 else {
     $uniqueid=$_COOKIE['requestuser'];
-echo "<pre>".$uniqueid."</pre>";
-echo "<pre>".$key."</pre>";
     $conn = mysqli_connect($host, $username,$password,$db);
     $query = mysqli_query($conn, "SELECT logintimes,thekey FROM requestusers WHERE uniqueid='".$uniqueid."'");
     $result = mysqli_fetch_row($query);
