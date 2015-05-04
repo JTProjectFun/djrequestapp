@@ -1,5 +1,6 @@
 <?php
-session_start(); // Starting Session
+include_once 'functions/functions.php';
+start_session();
 $error=''; // Variable To Store Error Message
 include_once 'configuration.php';
 

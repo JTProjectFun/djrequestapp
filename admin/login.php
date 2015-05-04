@@ -1,6 +1,7 @@
 <?php
-include '../configuration.php';
-session_start(); // Starting Session
+include_once '../configuration.php';
+include_once '../functions/functions.php';
+start_session();
 $error=''; // Variable To Store Error Message
 if (isset($_POST['submit'])) {
 if (empty($_POST['username']) || empty($_POST['password'])) {

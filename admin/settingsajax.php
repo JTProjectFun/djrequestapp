@@ -1,8 +1,8 @@
 <?php
-include '../configuration.php';
-include '../functions/functions.php';
-include('../generatekey.php');
-
+include_once '../configuration.php';
+include_once '../functions/functions.php';
+include_once '../generatekey.php';
+start_session();
 $action = $_REQUEST['action'];
 $record = "";
 switch($action) {

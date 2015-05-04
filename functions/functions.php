@@ -46,4 +46,16 @@ function db_query($query) {
 
 }
 
+function start_session() {
+//  if(version_compare(phpversion(), "5.4.0") != -1){
+//    if (session_status() == PHP_SESSION_NONE) {
+      session_start();
+//    }
+//  } else {
+//    if(session_id() == '') {
+//      session_start();
+//    }
+//  }
+}
+
 ?>

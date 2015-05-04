@@ -1,5 +1,7 @@
 <?php
-include('login.php'); // Includes Login Script
+include_once 'login.php'; // Includes Login Script
+include_once '../functions/functions.php';
+start_session();
 
 if(isset($_SESSION['login_user'])){
 header("location: admin.php");

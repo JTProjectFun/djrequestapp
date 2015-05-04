@@ -1,6 +1,7 @@
 <?php
-session_start();
-include('login.php'); // Includes Login Script
+include_once 'login.php'; // Includes Login Script
+include_once 'functions/functions.php';
+start_session();
 
 if((isset($_SESSION['eventkey']) && $_SESSION['eventkey'] ='')){
 header("location: requests.php");

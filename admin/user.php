@@ -1,7 +1,8 @@
 <?php
-include '../configuration.php';
+include_once '../configuration.php';
+include_once '../functions/functions.php';
+start_session();
 $user = 0;
-session_start();
 if(!isset($_SESSION['login_user']) || $_SESSION['login_user'] == "") {
      header('Location: index.php');
 }

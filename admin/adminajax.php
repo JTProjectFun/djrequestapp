@@ -1,10 +1,9 @@
 <?php
-session_start();
 include_once '../configuration.php';
 include_once '../functions/functions.php';
 include_once ('generatekey.php');
 include_once 'adminconfig.php';
-
+start_session();
 $action = $_REQUEST['action'];
 $record="";
 $id = $_SESSION['login_user'];

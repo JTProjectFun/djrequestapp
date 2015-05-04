@@ -1,6 +1,7 @@
 <?php
-session_start();
 include_once 'configuration.php';
+include_once 'functions/functions.php';
+start_session();
 $bypass = 0;
 
 // check user is logged in

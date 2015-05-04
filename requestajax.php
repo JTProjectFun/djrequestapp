@@ -1,7 +1,7 @@
 <?php
-session_start(); // Starting Session
 include_once 'configuration.php';
 include_once 'functions/functions.php';
+start_session();
 
 $result=""; // Initialise variables which may have been previously used & would contain data already
 $fetch=""; // Initialise variables which may have been previously used & would contain data already

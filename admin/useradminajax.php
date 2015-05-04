@@ -3,7 +3,8 @@ include_once '../configuration.php';
 include_once '../functions/functions.php';
 include_once 'adminconfig.php';
 include_once ('generatekey.php');
-session_start();
+start_session();
+
 $record="";
 $action = $_REQUEST['action'];
 

@@ -1,9 +1,9 @@
 <?php
-include '../configuration.php';
-include '../functions/functions.php';
-include('../generatekey.php');
+include_once '../configuration.php';
+include_once '../functions/functions.php';
+include_once '../generatekey.php';
 include_once 'adminconfig.php';
-session_start();
+start_session();
 $record="";
 $action = $_REQUEST['action'];
 if (isset($_SESSION['listuser'])) {

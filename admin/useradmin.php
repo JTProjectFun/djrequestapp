@@ -1,8 +1,9 @@
 <?php
 include_once '../configuration.php';
 include_once 'adminconfig.php';
+include_once '../functions/functions.php';
+start_session();
 
-session_start();
 if(!isset($_SESSION['login_user']) || $_SESSION['login_user'] == "") {
      header('Location: index.php');
 }
