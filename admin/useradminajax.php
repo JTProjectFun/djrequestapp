@@ -203,7 +203,6 @@ mysqli_query($conn, "DROP TABLE temptext");
 		$explode = explode('|', $crypto);
 		$columnName = $explode[0];
 		$rowId = $explode[1];
-                error_log("userid: " . $userid . " Rowid: ". $rowId . " Value: " .$value . " Column: ". $columnName);
                 // Don't allow the admin user to toggle their own setting
                 if ($userid == $rowId) {
                     break;

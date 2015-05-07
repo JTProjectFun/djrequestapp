@@ -4,7 +4,7 @@ start_session();
 $error=''; // Variable To Store Error Message
 include_once 'configuration.php';
 
-// If user comes in via a URL obtained from somewhere, e.g. the (not yet implemented QR code generator), set their session as 'logged in'
+// If user comes in via a URL obtained from somewhere, e.g. the QR code generator), set their session as 'logged in'
 
 if (isset($_GET["eventkey"])) {
     $key = $_GET["eventkey"];
@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
                    }
         }
         else {
-            echo $key . " is not valid. Ooops";
+            $error =  $key . " is not valid. Ooops";
         }
 //        mysqli_close($conn); // Closing Connection
     }
