@@ -1,8 +1,10 @@
 <?php
-$host 		= "localhost"; // Your hostname
-$username	= "requests"; // Your host username
-$password	= "r3qu35t"; // Your host password
-$db		= "djrequests"; // Your database name
+$init = parse_ini_file('config.php');
+$host = $init['host'];
+$username = $init['username'];
+$password = $init['password'];
+$db = $init['db'];
+
 $record = "";
 $settingdb = mysqli_connect($host, $username, $password, $db) or die("Some error occurred during connection " . mysqli_error($settingdb));
 
