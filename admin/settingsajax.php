@@ -29,12 +29,6 @@ switch($action) {
             foreach($record as $records) {
                 ?>
                 <tr>
-                    <td class="setting_title">Site Base URL</td>
-                    <td style="width:300px"><div class="grid_content editable"><span><?php echo $records['baseURL']; ?></span>
-                    <input type="text" class="gridder_input" name="<?php echo encrypt("baseURL|".$records['id']); ?>" value="<?php echo $records['baseURL']; ?>" /></div></td>
-                    <td>The base URL of the request system, e.g. www.yoursite.com/requests - used when generating QR codes</td>
-                </tr>
-                <tr>
                     <td class="setting_title">Session Timeout (minutes)</td>
                     <td class="date"><div class="grid_content editable"><span><?php echo $records['session_timeout']; ?></span>
                     <input type="text" class="gridder_input" name="<?php echo encrypt("session_timeout|".$records['id']); ?>" value="<?php echo $records['session_timeout']; ?>" /></div></td>

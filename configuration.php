@@ -4,6 +4,8 @@ $host = $init['host'];
 $username = $init['username'];
 $password = $init['password'];
 $db = $init['db'];
+$webroot = $init['webroot'];
+$requestAppURL = rtrim($init['requestAppURL'], "/");  // trim trailing slash of requestAppURL
 
 $record = "";
 $settingdb = mysqli_connect($host, $username, $password, $db) or die("Some error occurred during connection " . mysqli_error($settingdb));
@@ -23,7 +25,6 @@ $conn = mysqli_connect($host, $username, $password, $db);
                 }
 
 mysqli_close($conn);
-$baseURL = $record['baseURL'];
 $session_timeout = $record['session_timeout'];
 $flood_period = $record['flood_period'];
 $over_hours = $record['over_hours'];
