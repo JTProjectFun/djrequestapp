@@ -24,27 +24,36 @@ else
     $pass = mysqli_real_escape_string($conn, $pass);
 
     // SQL query to fetch information of registered users and finds user match.
-    $query = mysqli_query($conn, "select * from systemUser where password='$pass' AND username='$user' AND enabled='1'");
+//    $query = mysqli_query($conn, "select * from systemUser where password='$pass' AND username='$user' AND enabled='1'");
+//    $rows = mysqli_num_rows($query);
+
+    $query = mysqli_query($conn, "SELECT userlevel, name, id, timedate, password from systemUser WHERE username='$user' AND enabled='1'");
     $rows = mysqli_num_rows($query);
 
     if ($rows == 1) {
-        $_SESSION['login_user']=$user; // Initializing Session
 
-            $query = mysqli_query($conn, "SELECT userlevel, name, id FROM systemUser WHERE username='$user'");
+  //          $query = mysqli_query($conn, "SELECT userlevel, name, id, timedate FROM systemUser WHERE username='$user'");
             $result = mysqli_fetch_row($query);
             $userlevel = $result[0];
             $realname = $result[1];
             $userid = $result[2];
-            setcookie("adminuser", $user);
-            setcookie("adminuserid", $userid);
-            setcookie("adminlevel", $userlevel);
-            setcookie("adminrealname", $realname);
-
-        header("location: admin.php"); // Redirecting To Other Page
-        } else {
-                $error = $rows . " : " . $user . " : " . $pass . " : Whoops. Username or Password is invalid";
-               }
+            $timedate = $result[3];
+            $gotpass = $result[4];
+            $salt = strrev(date('U', strtotime($timedate)));
+error_log("Salt: " . $salt . " timedate =" . $timedate);
+            $hashedPass = sha1($salt.$pass);
+error_log("Password:". $pass . " hashedpass = " . $hashedPass . " Got pass=".$gotpass );
+            if ($hashedPass == $gotpass) { 
+                setcookie("adminuser", $user);
+                setcookie("adminuserid", $userid);
+                setcookie("adminlevel", $userlevel);
+                setcookie("adminrealname", $realname);
+                $_SESSION['login_user']=$user; // Initializing Session
+                header("location: admin.php"); // Redirecting To Other Page
+            } else {
+                     $error = $rows . " : " . $user . " : " . $pass . " : Whoops. Username or Password is invalid";
+                   }
         mysqli_close($connection); // Closing Connection
-    }
+}    }
 }
 ?>

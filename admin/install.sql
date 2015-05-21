@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS requestusers(id int NOT NULL AUTO_INCREMENT, uniqueid
     createdTime varchar(32), numRequests int default 0, logintimes int DEFAULT 0, PRIMARY KEY(id));
 CREATE TABLE IF NOT EXISTS customtext(userid int, success text,banned text,toomany text,sqlerror text,tooshort text,toomanyuser text,floodalert text,
     fieldblank text,fieldtoolong text,norequests text,numrequests text, warningmsg text, errormsg text);
-INSERT INTO systemUser(timedate, username, password, name, userlevel) VALUES (NOW(), "admin", "password", "Administrator", "3");
+INSERT INTO systemUser(timedate, username, password, name, userlevel) VALUES ("1970-01-01 01:00:00", "admin", "6f404ea32dc5bb6e9b5ba3d82f36476dc5b10e9c", "Administrator", "3");
 INSERT INTO customtext(userid,success,banned,toomany,sqlerror,tooshort,toomanyuser,floodalert,fieldblank,fieldtoolong,norequests,
 numrequests, warningmsg, errormsg) VALUES (0,
 "Your request submission was successful.",

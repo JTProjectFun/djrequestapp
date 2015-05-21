@@ -102,9 +102,9 @@ switch($action) {
                 </td>
                 <td class="date">
                     <div class="grid_content editable">
-                        <span><?php echo $records['password']; ?></span>
+                        <span>********</span>
                         <input type="text" class="gridder_input" name="
-                        <?php echo encrypt("password|".$records['id']); ?>" value="<?php echo $records['password']; ?>" />
+                        <?php echo encrypt("password|".$records['id']); ?>" value="********" />
                     </div>
                 </td>
                 <td class="date">
@@ -162,7 +162,10 @@ switch($action) {
 		$password       = isset($_POST['password']) ? mysqli_real_escape_string($conn, $_POST['password']) : '';
 		$email  	= isset($_POST['email']) ? mysqli_real_escape_string($conn, $_POST['email']) : '';
 		$userlevel	= isset($_POST['userlevel']) ? mysqli_real_escape_string($conn, $_POST['userlevel']) : '';
-		mysqli_query($conn, "INSERT INTO `systemUser` (timedate, username, password, name, email, userlevel) VALUES (now(), '$username','$password','$name','$email', '$userlevel') ");
+                $timedate = time();
+                $salt = strrev(date('U', strtotime($timedate)));
+                $newpassword = sha1($salt.$password);
+		mysqli_query($conn, "INSERT INTO `systemUser` (timedate, username, password, name, email, userlevel) VALUES ('$timedate', '$username','$newpassword','$name','$email', '$userlevel') ");
 $user_q = mysqli_query($conn, "SELECT id FROM systemUser WHERE username='$username'");
 $usern = mysqli_fetch_row($user_q);
 $userid = $usern[0];
@@ -183,6 +186,15 @@ mysqli_query($conn, "DROP TABLE temptext");
 		$explode = explode('|', $crypto);
 		$columnName = $explode[0];
 		$rowId = $explode[1];
+
+                if ($columnName = "password") {
+                    $pass = $value;
+                    $timequery = mysqli_query($conn, "SELECT timedate FROM systemUser WHERE id = '$rowId' ");
+                    $timeq_result = mysqli_fetch_row($timequery);
+                    $usertime = $timeq_result[0];
+                    $salt = strrev(date('U', strtotime($timedate)));
+                    $value = sha1($salt.$pass);
+                }
 		$query = mysqli_query($conn, "UPDATE `systemUser` SET `$columnName` = '$value' WHERE id = '$rowId' ");
                 if (mysqli_error($conn)) {
                     $error=mysqli_error($conn);
