@@ -1,3 +1,4 @@
+
 <?php
 include_once '../configuration.php';
 include_once 'adminconfig.php';
@@ -91,7 +92,12 @@ $(function(){
 	$('body').delegate('.gridder_input', 'blur', function(){
 		var ThisElement = $(this);
 		ThisElement.hide();
-		ThisElement.prev('span').show().html($(this).val()).prop('title', $(this).val());
+                if (ThisElement.prop('type') == "password") {
+                    ThisElement.prev('span').show().html("************").prop('title', $(this).val());
+                }
+                else {
+		    ThisElement.prev('span').show().html($(this).val()).prop('title', $(this).val());
+                }
 		var UrlToPass = 'action=update&value='+ThisElement.val()+'&crypto='+ThisElement.prop('name');
 		$.ajax({
 			url : 'useradminajax.php',

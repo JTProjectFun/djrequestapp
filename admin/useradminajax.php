@@ -103,7 +103,7 @@ switch($action) {
                 <td class="date">
                     <div class="grid_content editable">
                         <span>********</span>
-                        <input type="text" class="gridder_input" name="
+                        <input type="password" class="gridder_input" name="
                         <?php echo encrypt("password|".$records['id']); ?>" value="********" />
                     </div>
                 </td>
