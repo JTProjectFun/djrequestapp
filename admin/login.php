@@ -32,7 +32,7 @@ else
 
     if ($rows == 1) {
 
-  //          $query = mysqli_query($conn, "SELECT userlevel, name, id, timedate FROM systemUser WHERE username='$user'");
+            $query = mysqli_query($conn, "SELECT userlevel, name, id, timedate, password FROM systemUser WHERE username='$user'");
             $result = mysqli_fetch_row($query);
             $userlevel = $result[0];
             $realname = $result[1];
@@ -40,9 +40,9 @@ else
             $timedate = $result[3];
             $gotpass = $result[4];
             $salt = strrev(date('U', strtotime($timedate)));
-//error_log("Salt: " . $salt . " timedate =" . $timedate);
+error_log("Salt: " . $salt . " timedate =" . $timedate);
             $hashedPass = sha1($salt.$pass);
-//error_log("Password:". $pass . " hashedpass = " . $hashedPass . " Got pass=".$gotpass );
+error_log("Password:". $pass . " hashedpass = " . $hashedPass . " Got pass=".$gotpass );
             if ($hashedPass == $gotpass) { 
                 setcookie("adminuser", $user);
                 setcookie("adminuserid", $userid);

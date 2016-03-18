@@ -192,8 +192,9 @@ mysqli_query($conn, "DROP TABLE temptext");
                     $timequery = mysqli_query($conn, "SELECT timedate FROM systemUser WHERE id = '$rowId' ");
                     $timeq_result = mysqli_fetch_row($timequery);
                     $usertime = $timeq_result[0];
-                    $salt = strrev(date('U', strtotime($timedate)));
+                    $salt = strrev(date('U', strtotime($usertime)));
                     $value = sha1($salt.$pass);
+//error_log("Updating Password:". $value . " text given = " . $pass . " timedate:" . $usertime);
                 }
 		$query = mysqli_query($conn, "UPDATE `systemUser` SET `$columnName` = '$value' WHERE id = '$rowId' ");
                 if (mysqli_error($conn)) {
