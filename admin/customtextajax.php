@@ -30,6 +30,7 @@ switch($action) {
             <?php } else {
             foreach($record as $records) {
                 ?>
+                <tr><th>Code</th><th>Text user sees</th><th>Explanation</th></tr>
                 <tr>
                     <td>success</td>
                     <td><div class="grid_content editable"><span><?php echo $records['success']; ?></span>
