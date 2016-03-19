@@ -27,3 +27,6 @@ numrequests, warningmsg, errormsg) VALUES (0,
 "There %HAS% been %NUM% request%S% made so far"
 "WARNING", "ERROR"
 );
+CREATE TABLE IF NOT EXISTS systemUserKey(userid int NOT NULL, pkey varchar(32) NOT NULL, expire varchar(32) NOT NULL, status varchar(7) NOT NULL, PRIMARY KEY (userid));
+
+
