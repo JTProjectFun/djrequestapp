@@ -1,5 +1,5 @@
 use djrequests;
-CREATE TABLE IF NOT EXISTS systemUser(id int NOT NULL AUTO_INCREMENT, timedate varchar(32), username varchar(32) NOT NULL UNIQUE, password varchar(32), name varchar(32),
+CREATE TABLE IF NOT EXISTS systemUser(id int NOT NULL AUTO_INCREMENT, timedate varchar(32), username varchar(32) NOT NULL UNIQUE, password varchar(32), realname varchar(32),
     email varchar(32), userlevel varchar(32), enabled int DEFAULT 1, PRIMARY KEY (id));
 CREATE TABLE IF NOT EXISTS settings(session_timeout int default 120, flood_period int default 30,over_hours int default 2,willexpire int default 1,
     show_requests int default 1, maxUserAge int default 30, maxUserRequestDefault int default 0, maxRequestDefault int default 0);

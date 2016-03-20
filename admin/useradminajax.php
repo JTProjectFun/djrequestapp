@@ -33,8 +33,8 @@ switch($action) {
                             <td class="tbname"><input type="text" name="password" id="password" class="gridder_add" /></td>
                         </tr>
                         <tr class="newadd">
-                            <td>Name</td>
-                            <td class="tbartist"><input type="text" name="name" id="name" class="gridder_add" /></td>
+                            <td>RealName</td>
+                            <td class="tbartist"><input type="text" name="realname" id="realname" class="gridder_add" /></td>
                         </tr>
                         <tr class="newadd">
                             <td>Email Address</td>
@@ -64,7 +64,7 @@ switch($action) {
                 <th class="date"><div class="grid_heading">Date &amp; Time Added</div></th>
                 <th class="key"><div class="grid_heading">Username</div></th>
                 <th class="key"><div class="grid_heading">Password</div></th>
-                <th class="date"><div class="grid_heading">Name</div></th>
+                <th class="date"><div class="grid_heading">RealName</div></th>
                 <th class="date"><div class="grid_heading">Email</div></th>
                 <th class="del"><div class="grid_heading">User Level</div></th>
                 <th class="del"><div class="grid_heading">Enabled</div></th>
@@ -109,9 +109,9 @@ switch($action) {
                 </td>
                 <td class="date">
                     <div class="grid_content editable">
-                        <span><?php echo $records['name']; ?></span>
+                        <span><?php echo $records['realname']; ?></span>
                         <input type="text" class="gridder_input" name="
-                        <?php echo encrypt("name|".$records['id']); ?>" value="<?php echo $records['name']; ?>" />
+                        <?php echo encrypt("realname|".$records['id']); ?>" value="<?php echo $records['realname']; ?>" />
                     </div>
                 </td>
                 <td class="date">
@@ -158,21 +158,21 @@ switch($action) {
 	case "addnew":
                 $conn = mysqli_connect($host,$username,$password,$db);
 		$username 	= isset($_POST['username']) ? mysqli_real_escape_string($conn, $_POST['username']) : '';
-		$name 		= isset($_POST['name']) ? mysqli_real_escape_string($conn, $_POST['name']) : '';
+		$realname 		= isset($_POST['realname']) ? mysqli_real_escape_string($conn, $_POST['realname']) : '';
 		$password       = isset($_POST['password']) ? mysqli_real_escape_string($conn, $_POST['password']) : '';
 		$email  	= isset($_POST['email']) ? mysqli_real_escape_string($conn, $_POST['email']) : '';
 		$userlevel	= isset($_POST['userlevel']) ? mysqli_real_escape_string($conn, $_POST['userlevel']) : '';
                 $timedate = time();
                 $salt = strrev(date('U', strtotime($timedate)));
                 $newpassword = sha1($salt.$password);
-		mysqli_query($conn, "INSERT INTO `systemUser` (timedate, username, password, name, email, userlevel) VALUES ('$timedate', '$username','$newpassword','$name','$email', '$userlevel') ");
-$user_q = mysqli_query($conn, "SELECT id FROM systemUser WHERE username='$username'");
-$usern = mysqli_fetch_row($user_q);
-$userid = $usern[0];
-mysqli_query($conn, "CREATE TEMPORARY TABLE temptext SELECT * FROM customtext WHERE userid=0;"); 
-mysqli_query($conn, "UPDATE temptext SET userid='$userid'");
-mysqli_query($conn, "INSERT INTO customtext SELECT * FROM temptext");
-mysqli_query($conn, "DROP TABLE temptext");
+		mysqli_query($conn, "INSERT INTO `systemUser` (timedate, username, password, realname, email, userlevel) VALUES ('$timedate', '$username','$newpassword','$realname','$email', '$userlevel') ");
+                $user_q = mysqli_query($conn, "SELECT id FROM systemUser WHERE username='$username'");
+                $usern = mysqli_fetch_row($user_q);
+                $userid = $usern[0];
+                mysqli_query($conn, "CREATE TEMPORARY TABLE temptext SELECT * FROM customtext WHERE userid=0;"); 
+                mysqli_query($conn, "UPDATE temptext SET userid='$userid'");
+                mysqli_query($conn, "INSERT INTO customtext SELECT * FROM temptext");
+                mysqli_query($conn, "DROP TABLE temptext");
                 mysqli_close($conn);
                 $response['status'] = 'success';
                 header('Content-type: application/json');
@@ -186,17 +186,15 @@ mysqli_query($conn, "DROP TABLE temptext");
 		$explode = explode('|', $crypto);
 		$columnName = $explode[0];
 		$rowId = $explode[1];
-
-                if ($columnName = "password") {
+                if ($columnName == "password") {
                     $pass = $value;
-                    $timequery = mysqli_query($conn, "SELECT timedate FROM systemUser WHERE id = '$rowId' ");
+                    $timequery = mysqli_query($conn, "SELECT timedate FROM systemUser WHERE id = '$rowId';");
                     $timeq_result = mysqli_fetch_row($timequery);
                     $usertime = $timeq_result[0];
                     $salt = strrev(date('U', strtotime($usertime)));
                     $value = sha1($salt.$pass);
-//error_log("Updating Password:". $value . " text given = " . $pass . " timedate:" . $usertime);
                 }
-		$query = mysqli_query($conn, "UPDATE `systemUser` SET `$columnName` = '$value' WHERE id = '$rowId' ");
+		$query = mysqli_query($conn, "UPDATE `systemUser` SET `$columnName`='$value' WHERE id = '$rowId';");
                 if (mysqli_error($conn)) {
                     $error=mysqli_error($conn);
                     mysqli_close($conn);

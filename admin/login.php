@@ -27,12 +27,12 @@ else
 //    $query = mysqli_query($conn, "select * from systemUser where password='$pass' AND username='$user' AND enabled='1'");
 //    $rows = mysqli_num_rows($query);
 
-    $query = mysqli_query($conn, "SELECT userlevel, name, id, timedate, password from systemUser WHERE username='$user' AND enabled='1'");
+    $query = mysqli_query($conn, "SELECT userlevel, realname, id, timedate, password from systemUser WHERE username='$user' AND enabled='1'");
     $rows = mysqli_num_rows($query);
 
     if ($rows == 1) {
 
-            $query = mysqli_query($conn, "SELECT userlevel, name, id, timedate, password FROM systemUser WHERE username='$user'");
+            $query = mysqli_query($conn, "SELECT userlevel, realname, id, timedate, password FROM systemUser WHERE username='$user'");
             $result = mysqli_fetch_row($query);
             $userlevel = $result[0];
             $realname = $result[1];
