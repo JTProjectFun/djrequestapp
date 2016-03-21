@@ -78,6 +78,7 @@ error_log("Hashed Password: " .$hashedPass);
 
 $hashedNewPass = sha1($salt.$newPass1);
 $query = mysqli_query($conn, "UPDATE systemUser SET password='$hashedNewPass' WHERE id='$userid'");
+$query = mysqli_query($conn, "DELETE FROM systemUserKey WHERE id='$userid'");
 
                 $response['status'] = 'success';
                 header('Content-type: application/json');

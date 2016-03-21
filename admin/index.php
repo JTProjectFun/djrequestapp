@@ -39,7 +39,7 @@ header("location: admin.php");
                     <tr>
                         <td colspan="2">
                             <center>
-                                <a href="remindpassword.php">Forgot Your Password?</a>
+                                <a href="forgotpass.php">Forgot Your Password?</a>
                             </center>
                         </td>
                     </tr>
