@@ -63,11 +63,11 @@ switch($action) {
                 <th class="id"><div class="grid_heading">id</div></th>
                 <th class="date"><div class="grid_heading">Date &amp; Time Added</div></th>
                 <th class="key"><div class="grid_heading">Username</div></th>
-                <th class="key"><div class="grid_heading">Password</div></th>
                 <th class="date"><div class="grid_heading">RealName</div></th>
                 <th class="date"><div class="grid_heading">Email</div></th>
                 <th class="del"><div class="grid_heading">User Level</div></th>
                 <th class="del"><div class="grid_heading">Enabled</div></th>
+                <th class="del"><div class="grid_heading">Reset Password</div></th>
                 <th class="del"><div class="grid_heading">Delete</div></th>
             </tr>
 
@@ -102,13 +102,6 @@ switch($action) {
                 </td>
                 <td class="date">
                     <div class="grid_content editable">
-                        <span>********</span>
-                        <input type="password" class="gridder_input" name="
-                        <?php echo encrypt("password|".$records['id']); ?>" value="********" />
-                    </div>
-                </td>
-                <td class="date">
-                    <div class="grid_content editable">
                         <span><?php echo $records['realname']; ?></span>
                         <input type="text" class="gridder_input" name="
                         <?php echo encrypt("realname|".$records['id']); ?>" value="<?php echo $records['realname']; ?>" />
@@ -138,6 +131,7 @@ switch($action) {
                         <?php } ?>
                     </div>
                 </td>
+                <td><?php echo $records['id'] ?></td>
                 <td>
                     <?php if ($userid != $records['id']) { ?>
                         <!-- Only show delete button if userid isn't self to stop admin deleting their own account -->
@@ -186,14 +180,6 @@ switch($action) {
 		$explode = explode('|', $crypto);
 		$columnName = $explode[0];
 		$rowId = $explode[1];
-                if ($columnName == "password") {
-                    $pass = $value;
-                    $timequery = mysqli_query($conn, "SELECT timedate FROM systemUser WHERE id = '$rowId';");
-                    $timeq_result = mysqli_fetch_row($timequery);
-                    $usertime = $timeq_result[0];
-                    $salt = strrev(date('U', strtotime($usertime)));
-                    $value = sha1($salt.$pass);
-                }
 		$query = mysqli_query($conn, "UPDATE `systemUser` SET `$columnName`='$value' WHERE id = '$rowId';");
                 if (mysqli_error($conn)) {
                     $error=mysqli_error($conn);
@@ -223,12 +209,10 @@ switch($action) {
 
         break;
 
-	case "delete":
-                $conn = mysqli_connect($host,$username,$password,$db);
-		$value 	= decrypt($_POST['value']);
-		$query = mysqli_query($conn, "DELETE FROM `systemUser` WHERE id = '$value' ");
-                mysqli_close($conn);
+	case "resetpassword":
+               // do something here
 	break;
+
 
 }
 ?>
