@@ -1,12 +1,25 @@
 <?php
-$init = parse_ini_file('config.php');
-$host = $init['host'];
-$username = $init['username'];
-$password = $init['password'];
-$db = $init['db'];
-$webroot = $init['webroot'];
-$requestAppURL = rtrim($init['requestAppURL'], "/");  // trim trailing slash of requestAppURL
+// Your name or company name
+$company_name = "Your Mobile DJ";
 
+// where this is installed, with trailing slash e.g. http://www.mydomain.com/requests/
+// only used in the generation of QR codes for now
+$baseURL = "http://mydomain.ccm/requests/";
+
+// quick and simple effort to stop abuse of QR Code Generator
+// append some random alphanumerics to /phpqrcode...
+$phpqrcodeFolder = "phpqrcode-763hjgfsg4";
+
+// full URL to your logo - recommended 840px wide
+$logoURL = "http://mydomain.ccm/requests/images/logo.png";
+
+// database details next
+$host 		= "localhost"; // Your hostname
+$username	= "djrequests"; // Your host username
+$password	= "78sfg6sd8f6"; // Your host password
+$db		= "djrequests"; // Your database name
+
+// don't edit anything below here
 $record = "";
 $settingdb = mysqli_connect($host, $username, $password, $db) or die("Some error occurred during connection " . mysqli_error($settingdb));
 

@@ -131,7 +131,7 @@ switch($action) {
                         <?php } ?>
                     </div>
                 </td>
-                <td><?php echo $records['id'] ?></td>
+                <td><a href="resetpassword.php?userid=<?php echo $records['id']; ?>">link</a></td>
                 <td>
                     <?php if ($userid != $records['id']) { ?>
                         <!-- Only show delete button if userid isn't self to stop admin deleting their own account -->
