@@ -90,8 +90,8 @@ $(function(){
 <div class="as_wrapper">
 <div id="logo">&nbsp;</div>
 <?php echo "Welcome, " . $adminrealname; ?>
-	<h1 class="h1"><a href="">Change Your Password</a></h1>
-<?php include 'menu.php'; ?>
+<h1 class="h1"><a href="">Change Your Password</a></h1>
+<?php include "menu.php"; ?>	
 	<div class="as_grid_container">
             <div class="as_gridder" id="as_gridder"></div> <!-- GRID LOADER -->
         </div>
