@@ -17,7 +17,7 @@ mysqli_close($conn);
 <html>
 <head><title>Print Event Key Code for key <?php echo $key; ?></title></head>
 <body>
-<h1>Mr Deejay Request System</h1>
+<h1><?php echo $company_name; ?> Request System</h1>
 Scan the QR code with your smartphone or tablet to automatically log into the request system
 <?php
                              QRcode::png($codeContents, $tempfile, QR_ECLEVEL_L, 8); 

@@ -11,7 +11,7 @@ header("location: requests.php");
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Mr Deejay Request System Login</title>
+        <title><?php echo $company_name; ?> Request System Login</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="loginstyle.css" rel="stylesheet" type="text/css">
     </head>

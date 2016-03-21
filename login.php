@@ -1,13 +1,13 @@
 <?php
+include_once 'configuration.php';
 include_once 'functions/functions.php';
 start_session();
 $error=''; // Variable To Store Error Message
-include_once 'configuration.php';
 
-// If user comes in via a URL obtained from somewhere, e.g. the QR code generator), set their session as 'logged in'
-
+// If user comes in via a URL obtained from somewhere, e.g. the QR code generator, set their session as 'logged in'
 if (isset($_GET["eventkey"])) {
-    $key = $_GET["eventkey"];
+	// only letters, numbers and underscore allowed in keys, strip everything else
+    $key = preg_replace('/[^\w]/', '', $_GET['eventkey']);
     $_POST['submit'] = true;
     $_POST['eventkey'] = $key;
 }
@@ -15,44 +15,42 @@ if (isset($_GET["eventkey"])) {
 if (isset($_POST['submit'])) {
     if (!isset($_POST['eventkey'])) {
         $error = "Key Code is not valid";
-        }
-    else
-    {
-        $conn = mysqli_connect($host, $username, $password, $db);
-        $key=$_POST['eventkey'];
-        $date = date("d-m-Y");
-        // To protect MySQL injection for Security purpose
-        $key = stripslashes($key);
-        $date = stripslashes($date);
-        $key = mysqli_real_escape_string($conn, $key);
-        $date = mysqli_real_escape_string($conn, $date);
+	} else {
+		$conn = mysqli_connect($host, $username, $password, $db);
+		// only aletters, numbers and underscore allowed in keys, strip everything else
+		$key=preg_replace('/[^\w]/', '', $_POST['eventkey']);
+		$date = date("d-m-Y");
+		// To protect MySQL injection for Security purpose
+		$key = stripslashes($key);
+		$date = stripslashes($date);
+		$key = mysqli_real_escape_string($conn, $key);
+		$date = mysqli_real_escape_string($conn, $date);
 
-        $result = mysqli_query($conn, "SELECT date, willexpire, id FROM requestkeys WHERE thekey='$key'");
-        $rows = mysqli_num_rows($result);
-        if ($rows == 1) {
-            $row = mysqli_fetch_row($result);
-            $data = $row[0];
-            $date = strtotime($data);
-            $willexpire = $row[1];
-            $thekeyid = $row[2];
-            $cur_date = date("U");
-            if (($cur_date - (3600 * (24 + $over_hours)) < $date) || ($willexpire == "0")) {
-                $_SESSION['eventkey'] = $key; 
-                $_SESSION['eventkeyid'] = $thekeyid; 
-                $_SESSION['timeout'] = time();
-                setcookie("eventkey", $key, time() + (60 * 60 * 8), "/"); // 60 * 60 * 8 seconds = 8 hours
-                mysqli_close($conn); // Closing Connection
-                header("location: requests.php"); 
-                } else {
-                       $error = "Willexpire: ". $willexpire. " " . $data . " Key Code '" . $key . "' is not valid " .$date . ", sorry. Try again with a valid code.";
-                       mysqli_close($conn); // Closing Connection
-                       header("location: index.php");
-                   }
-        }
-        else {
-            $error =  $key . " is not valid. Ooops";
-        }
-//        mysqli_close($conn); // Closing Connection
-    }
+		$result = mysqli_query($conn, "SELECT date, willexpire, id FROM requestkeys WHERE thekey='$key'");
+		$rows = mysqli_num_rows($result);
+		if ($rows == 1) {
+			$row = mysqli_fetch_row($result);
+			$data = $row[0];
+			$date = strtotime($data);
+			$willexpire = $row[1];
+			$thekeyid = $row[2];
+			$cur_date = date("U");
+			if (($cur_date - (3600 * (24 + $over_hours)) < $date) || ($willexpire == "0")) {
+				$_SESSION['eventkey'] = $key; 
+				$_SESSION['eventkeyid'] = $thekeyid; 
+				$_SESSION['timeout'] = time();
+				setcookie("eventkey", $key, time() + (60 * 60 * 8), "/"); // 60 * 60 * 8 seconds = 8 hours
+				mysqli_close($conn); // Closing Connection
+				header("location: requests.php");
+			} else {
+				$error = "Willexpire: ". $willexpire. " " . $data . " Key Code '" . $key . "' is not valid " .$date . ", sorry. Try again with a valid code.";
+				mysqli_close($conn); // Closing Connection
+				header("location: index.php");
+			}
+		} else {
+			$error =  "Sorry, '" . $key . "' is not a valid event key.";
+		}
+		// mysqli_close($conn); // Closing Connection
+	}
 }
 ?>

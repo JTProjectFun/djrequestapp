@@ -8,15 +8,15 @@ $baseURL = "http://mydomain.ccm/requests/";
 
 // quick and simple effort to stop abuse of QR Code Generator
 // append some random alphanumerics to /phpqrcode...
-$phpqrcodeFolder = "phpqrcode-763hjgfsg4";
+$phpqrcodeFolder = "phpqrcode";
 
 // full URL to your logo - recommended 840px wide
 $logoURL = "http://mydomain.ccm/requests/images/logo.png";
 
 // database details next
 $host 		= "localhost"; // Your hostname
-$username	= "djrequests"; // Your host username
-$password	= "78sfg6sd8f6"; // Your host password
+$username	= "requests"; // Your host username
+$password	= "r3qu35t"; // Your host password
 $db		= "djrequests"; // Your database name
 
 // don't edit anything below here

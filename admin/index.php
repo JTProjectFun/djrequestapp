@@ -10,13 +10,13 @@ header("location: admin.php");
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Mr Deejay Request System Login</title>
+        <title><?php echo $company_name; ?> Request System Login</title>
         <link href="loginstyle.css" rel="stylesheet" type="text/css">
     </head>
     <body>
     <div id="main">
         <div id="logo">&nbsp;</div>
-        <h1>Mr Deejay Request System Login</h1>
+        <h1><?php echo $company_name; ?> Request System Login</h1>
         <div id="login">
             <h2>Enter your username & password</h2>
             <form action="" method="post">

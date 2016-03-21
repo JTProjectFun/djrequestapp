@@ -23,7 +23,7 @@ if(isset($_GET['user'])) {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Mr Deejay Song Requests</title>
+<title><?php echo $company_name; ?> Song Requests</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link rel="stylesheet" type="text/css" href="style.css" />

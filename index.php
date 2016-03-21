@@ -1,4 +1,5 @@
 <?php
+include_once 'configuration.php';
 include_once 'login.php'; // Includes Login Script
 include_once 'functions/functions.php';
 start_session();
@@ -6,80 +7,173 @@ start_session();
 if((isset($_SESSION['eventkey']) && $_SESSION['eventkey'] ='')){
 header("location: requests.php");
 }
-
 ?>
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Mr Deejay Request System Login</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="loginstyle.css" rel="stylesheet" type="text/css">
-<script type="text/javascript"> 
-    $(document).bind("mobileinit", function () {
-        // jQuery Mobile's Ajax navigation does not work in all cases (e.g.,
-        // when navigating from a mobile to a non-mobile page), especially when going back, hence disabling it.
-        $.extend($.mobile, {
-            ajaxEnabled: false
-        });
-    }); 
-</script>
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-        <script type="text/javascript">
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name="description" content="">
+		<meta name="author" content="">
 
-            $(document).ready(function(){
-                $("#helpbutton").click(function(){
-                    $("#helppopup").show();
-                });
+		<title><?php echo $company_name; ?> Request System Login</title>
 
-            $("#helpclose").click(function(){
-                    $("#helppopup").hide();
-                });
-        });
-        </script>
-    </head>
-    <body>
-    <div id="main">
-        <div id="logo">&nbsp;</div>
-        <h1>Log in to the request system</h1>
-        <div id="login">
-            <h2>Enter the event key code</h2>
-            <form action="" method="post">
-                <div id="inputting">
-                    <input name="eventkey" type="text" class="inputbox" style="background-color:#9eff9e;"/>
-                 </div>
-                <center>
-                    <input name="submit" type="submit" value=" Login ">
-                </center>
-                <span><?php echo $error; ?></span>
-            </form>
-        </div>
-        <h1 id="helpbutton">How to use this service</h1>
-        <div id="helppopup">
-            <div id="helpcontents">
-                <div id="logo">&nbsp;</div>
-                    <h1>Mr Deejay Request System Help</h1>
-                    <div id="helpmain">
-                        <h1 class="title">Logging in</h1>
-                        <div>To log in, enter the key code provided at the venue. Requests cannot be made without logging in.</div>
-                        <div>If the key code entered incorrectly it will not be possible to log in.</div>
-                        <h1 class="title">Using the system</h1>
-                        <div>Once logged in, click the 'Add New Request' button.</div>
-                        <div>A form will be shown where your name, the song artist, title and an optional message can be added.</div>
-                        <div>If there are problems with the information used on the form, error popups will be shown</div>
-                        <div>Upon a request being submitted successfully, a popup will be displayed to say so.</div>
-                        <div>In some circumstances a list of all requests for this event will be displayed.</div>
-                        <h1 class="title">Logging out</h1>
-                        <div>To log out, click the 'log out' button at the bottom of the requests page. Requests cannot be made once logged out. To make further requests, log in with the correct key code again.</div>
-                        <h1 class="title">Time out</h1>
-                        <div>All logged in users are automatically logged out after 2 hours. To make requests again, simply log in again with the correct key code<p></p></div>
-                    </div>
-                    <div id="helpclose">
-                        <h1>CLOSE & RETURN TO THE LOGIN PAGE</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
+		<!-- Bootstrap core CSS -->
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Bootstrap theme -->
+		<link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<link href="bootstrap/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link href="theme.css" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+			<script src="bootstrap/js/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="bootstrap/js/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body role="document">
+
+		<div class="container theme-showcase" role="main">
+
+			<img class="img-responsive" src="<?php echo $logoURL; ?>" alt="<?php echo $company_name; ?>"/>
+
+			<?php if ($error != '') { ?>
+			<!-- start error modal -->
+			<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="errorModalLabel"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Oops</h4>
+						</div>
+						<div class="modal-body">
+							<p><?php echo $error; ?></p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- end error modal -->
+			<?php } ?>
+
+			<div class="row">
+				<div class="col-md-12">
+					<h1 class="text-center">Log in to the <?php echo $company_name; ?> request system</h1>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-6 col-md-6 col-sm-offset-3 col-md-offset-3">
+					<div class="account-wall">
+						<form class="form-signin" action="" method="post">
+							<p class="text-center login-title">Enter the event key code</p>
+							<input type="text" name="eventkey" class="form-control" placeholder="Event Key" required autofocus>
+							<button class="btn btn-lg btn-primary btn-block" name="submit" type="submit"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login</button>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<div class="row top-buffer">
+				<div class="col-md-12">
+					<button class="btn btn-primary btn-howto" type="button" data-toggle="collapse" data-target="#howToText" aria-expanded="false" aria-controls="howToText">
+					  How to use this service
+					</button>
+					<div class="collapse" id="howToText">
+						<div class="panel-group top-buffer" id="accordion" role="tablist" aria-multiselectable="true">
+							<div class="panel panel-default">
+								<div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#loggingIn">
+									<h4 class="panel-title">
+										<a class="accordion-toggle">
+											Logging in
+										</a>
+									</h4>
+								</div>
+								<div id="loggingIn" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingLoggingIn">
+									<div class="panel-body">
+										To log in, enter the key code provided at the venue. Requests cannot be made without logging in.<br/>
+										If the key code entered incorrectly it will not be possible to log in.
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#usingTheSystem">
+									<h4 class="panel-title">
+										<a class="accordion-toggle">
+											Using the system
+										</a>
+									</h4>
+								</div>
+								<div id="usingTheSystem" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingUsingTheSystem">
+									<div class="panel-body">
+										Once logged in, click the 'Add New Request' button.<br/>
+										A form will be shown where your name, the song artist, title and an optional message can be added.<br/>
+										If there are problems with the information used on the form, error popups will be shown.<br/>
+										Upon a request being submitted successfully, a popup will be displayed to say so.<br/>
+										In some circumstances a list of all requests for this event will be displayed.
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#loggingOut">
+									<h4 class="panel-title">
+										<a class="accordion-toggle">
+											Logging out
+										</a>
+									</h4>
+								</div>
+								<div id="loggingOut" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingLoggingOut">
+									<div class="panel-body">
+										To log out, click the 'log out' button at the top of the requests page. Requests cannot be made once logged out. To make further requests, log in with the correct key code again.
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#timeOut">
+									<h4 class="panel-title">
+										<a class="accordion-toggle">
+											Time out
+										</a>
+									</h4>
+								</div>
+								<div id="timeOut" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTimeOut">
+									<div class="panel-body">
+										All logged in users are automatically logged out after 2 hours. To make requests again, simply log in again with the correct key code.
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div> <!-- /container -->
+
+		<!-- Bootstrap core JavaScript
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="bootstrap/js/jquery.1.11.3.min.js"><\/script>')</script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<script src="bootstrap/js/ie10-viewport-bug-workaround.js"></script>
+
+<?php if ($error != '') { ?>
+		<!-- Fire error modal -->
+		<script>
+		$(function(){
+			$('#errorModal').modal('show');
+		});  
+		</script>
+<?php } ?>
+
+	</body>
 </html>
