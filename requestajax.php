@@ -9,9 +9,7 @@ $record=""; // Initialise variables which may have been previously used & would 
 
 $action = $_REQUEST['action'];
 // don't trust cookies
-// $key = $_COOKIE['requestkey'];
-// $uniqueid = $_COOKIE['requestuser'];
-$key = preg_replace('/[^\w]/', '', $_COOKIE['requestkey']);
+$key = preg_replace('/[^\w]/', '', $_COOKIE['eventkey']);
 $uniqueid = preg_replace('/[^a-z0-9]/', '', $_COOKIE['requestuser']);
 $error = '';
 switch($action) {
@@ -301,7 +299,7 @@ switch($action) {
                 $result="";
                 // don't trust cookies
 				// $key = $_COOKIE['requestkey'];
-				$key = preg_replace('/[^\w]/', '', $_COOKIE['requestkey']);
+				$key = preg_replace('/[^\w]/', '', $_COOKIE['eventkey']);
                 if (strlen($key) < 3){   // If eventkey is blank, kick the user out & make em log back in.
 					header('Location:logout.php');
 					break;

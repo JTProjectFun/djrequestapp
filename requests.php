@@ -32,7 +32,7 @@ $uniqueid = uniqid();
 // If cookie hasn't been set, set it and put this user in the requestuser table
 if (!isset($_COOKIE['requestuser'])) {
     setcookie("requestuser", $uniqueid, time() + (60 * 60 * 8), "/"); // 60 * 60 * 8 seconds = 8 hours
-    setcookie("requestkey", $key, time() + (60 * 60 * 8), "/"); // 60 * 60 * 8 seconds = 8 hours
+    setcookie("eventkey", $key, time() + (60 * 60 * 8), "/"); // 60 * 60 * 8 seconds = 8 hours
     $ip_addr = $_SERVER['REMOTE_ADDR'];
     $conn = mysqli_connect($host, $username, $password, $db);
     $query = mysqli_query($conn, "INSERT INTO requestusers (uniqueid, ipaddr, thekey, createdTime) VALUES ('$uniqueid', '$ip_addr', '$key', NOW())");

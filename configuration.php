@@ -2,6 +2,9 @@
 // Your name or company name
 $company_name = "Your Mobile DJ";
 
+$bg_colour = "#000000";
+$body_text_colour = "#ffffff";
+
 // where this is installed, with trailing slash e.g. http://www.mydomain.com/requests/
 // only used in the generation of QR codes for now
 $baseURL = "http://mydomain.ccm/requests/";
