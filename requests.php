@@ -26,8 +26,7 @@ if (isset($_SESSION['timeout'])){
 }
 
 // dont' trust cookies
-// $key = $_COOKIE['eventkey'];
-$key = preg_replace('/[^\w]/', '', $_COOKIE['eventkey']);
+$key = makeSafe($_COOKIE['eventkey']);
 $uniqueid = uniqid();
 // If cookie hasn't been set, set it and put this user in the requestuser table
 if (!isset($_COOKIE['requestuser'])) {
@@ -44,8 +43,7 @@ if (!isset($_COOKIE['requestuser'])) {
 }
 else {
     // dont' trust cookies
-	// $uniqueid=$_COOKIE['requestuser'];
-	$uniqueid = preg_replace('/[^\w]/', '', $_COOKIE['requestuser']);
+	$uniqueid = makeSafe($_COOKIE['requestuser']);
     $conn = mysqli_connect($host, $username,$password,$db);
     $query = mysqli_query($conn, "SELECT logintimes,thekey FROM requestusers WHERE uniqueid='".$uniqueid."'");
     $result = mysqli_fetch_row($query);

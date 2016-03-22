@@ -29,7 +29,7 @@ echo '<a class="menu" href="password.php">Change Password</a>';
 echo '<a class="menu" href="logout.php">Log out</a>';
 }
 
-$level = preg_replace('/[^\w]/', '',  $_COOKIE['adminlevel']);
+$level = makeSafe($_COOKIE['adminlevel']);
 
 switch ($level) {
     case 1:

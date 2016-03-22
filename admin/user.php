@@ -15,7 +15,7 @@ if ($userlevel == "1") {
 }
 
 if(isset($_GET['user'])) {
-    $user = $_GET['user'];
+    $user = makeSafe($_GET['user']);
 }
     $_SESSION['listuser'] = $user;
 ?>

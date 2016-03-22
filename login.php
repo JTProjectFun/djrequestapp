@@ -7,7 +7,7 @@ $error=''; // Variable To Store Error Message
 // If user comes in via a URL obtained from somewhere, e.g. the QR code generator, set their session as 'logged in'
 if (isset($_GET["eventkey"])) {
 	// only letters, numbers and underscore allowed in keys, strip everything else
-    $key = preg_replace('/[^\w]/', '', $_GET['eventkey']);
+    $key = makeSafe($_GET['eventkey']);
     $_POST['submit'] = true;
     $_POST['eventkey'] = $key;
 }

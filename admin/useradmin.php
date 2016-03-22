@@ -19,7 +19,7 @@ if ($userlevel < 3) {
 $key = 0;
 
 if (isset($_GET['key'])) {
-  $key = $_GET['key'];
+  $key = makeSafe($_GET['key']);
 }
 
 $_SESSION['key'] = $key;

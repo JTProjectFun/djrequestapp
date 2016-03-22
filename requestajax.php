@@ -9,8 +9,8 @@ $record=""; // Initialise variables which may have been previously used & would 
 
 $action = $_REQUEST['action'];
 // don't trust cookies
-$key = preg_replace('/[^\w]/', '', $_COOKIE['eventkey']);
-$uniqueid = preg_replace('/[^a-z0-9]/', '', $_COOKIE['requestuser']);
+$key = makeSafe($_COOKIE['eventkey']);
+$uniqueid = makeSafe($_COOKIE['requestuser']);
 $error = '';
 switch($action) {
 	case "load":
@@ -240,8 +240,7 @@ switch($action) {
                 $timedate = date("Y-m-d.H:i:s");
                 $ip_addr = $_SERVER['REMOTE_ADDR'];
 				// don't trust cookies
-                // $uniqueid = $_COOKIE['requestuser'];
-				$uniqueid = preg_replace('/[^\w]/', '', $_COOKIE['requestuser']);
+				$uniqueid = makeSafe($_COOKIE['requestuser']);
                 $conn = mysqli_connect($host, $username, $password, $db);
                 $bannedquery = mysqli_query($conn, "SELECT banned FROM requestusers WHERE uniqueid='$uniqueid'");
                 $banned = mysqli_fetch_row($bannedquery);
@@ -298,8 +297,7 @@ switch($action) {
                 mysqli_close($conn);
                 $result="";
                 // don't trust cookies
-				// $key = $_COOKIE['requestkey'];
-				$key = preg_replace('/[^\w]/', '', $_COOKIE['eventkey']);
+				$key = makeSafe($_COOKIE['eventkey']);
                 if (strlen($key) < 3){   // If eventkey is blank, kick the user out & make em log back in.
 					header('Location:logout.php');
 					break;

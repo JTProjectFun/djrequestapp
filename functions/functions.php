@@ -27,6 +27,11 @@ $init = parse_ini_file(dirname(__DIR__).'/config.php');
     return $connection;
 }
 
+function makeSafe($TheText) {
+    // Probably the tip of the iceberg, but it's a start
+    $TheText = preg_replace('/[^\w]/', '', $TheText);
+    return $TheText;
+}
 
 function db_query($query) {
 

@@ -12,8 +12,8 @@ else {
 }
 
 if (isset($_COOKIE['adminuser'])) {
-    $user = preg_replace('/[^\w]/', '',  $_COOKIE['adminuser']);
-    $userlevel = preg_replace('/[^\w]/', '',  $_COOKIE['adminlevel']);
+    $user = makeSafe($_COOKIE['adminuser']);
+    $userlevel = makeSafe($_COOKIE['adminlevel']);
 }
 
 ?>
@@ -21,7 +21,7 @@ if (isset($_COOKIE['adminuser'])) {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>><?php echo $company_name; ?> Request System Administration</title>
+<title><?php echo $company_name; ?> Request System Administration</title>
 <meta name="keywords" content=""/>
 <meta name="description" content="" />
 <link rel="stylesheet" type="text/css" href="style.css" />
