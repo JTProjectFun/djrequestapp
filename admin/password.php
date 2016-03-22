@@ -12,8 +12,8 @@ else {
 }
 
 if (isset($_COOKIE['adminuser'])) {
-    $user = $_COOKIE['adminuser'];
-    $userlevel = $_COOKIE['adminlevel'];
+    $user = preg_replace('/[^\w]/', '',  $_COOKIE['adminuser']);
+    $userlevel = preg_replace('/[^\w]/', '',  $_COOKIE['adminlevel']);
 }
 
 ?>
