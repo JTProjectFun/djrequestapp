@@ -32,28 +32,30 @@ else
 
     if ($rows == 1) {
 
-            $query = mysqli_query($conn, "SELECT userlevel, realname, id, timedate, password FROM systemUser WHERE username='$user'");
-            $result = mysqli_fetch_row($query);
-            $userlevel = $result[0];
-            $realname = $result[1];
-            $userid = $result[2];
-            $timedate = $result[3];
-            $gotpass = $result[4];
-            $salt = strrev(date('U', strtotime($timedate)));
-error_log("Salt: " . $salt . " timedate =" . $timedate);
-            $hashedPass = sha1($salt.$pass);
-error_log("Password:". $pass . " hashedpass = " . $hashedPass . " Got pass=".$gotpass );
-            if ($hashedPass == $gotpass) { 
-                setcookie("adminuser", $user);
-                setcookie("adminuserid", $userid);
-                setcookie("adminlevel", $userlevel);
-                setcookie("adminrealname", $realname);
-                $_SESSION['login_user']=$user; // Initializing Session
-                header("location: admin.php"); // Redirecting To Other Page
-            } else {
-                     $error = $rows . " : " . $user . " : " . $pass . " : Whoops. Username or Password is invalid";
-                   }
+                         $query = mysqli_query($conn, "SELECT userlevel, realname, id, timedate, password FROM systemUser WHERE username='$user'");
+                         $result = mysqli_fetch_row($query);
+                         $userlevel = $result[0];
+                         $realname = $result[1];
+                         $userid = $result[2];
+                         $timedate = $result[3];
+                         $gotpass = $result[4];
+                         $salt = strrev(date('U', strtotime($timedate)));
+                         error_log("Salt: " . $salt . " timedate =" . $timedate);
+                         $hashedPass = sha1($salt.$pass);
+                         error_log("Password:". $pass . " hashedpass = " . $hashedPass . " Got pass=".$gotpass );
+                         if ($hashedPass == $gotpass) { 
+                                                        setcookie("adminuser", $user);
+                                                        setcookie("adminuserid", $userid);
+                                                        setcookie("adminlevel", $userlevel);
+                                                        setcookie("adminrealname", $realname);
+                                                        $_SESSION['login_user']=$user; // Initializing Session
+                                                        header("location: admin.php"); // Redirecting To Other Page
+                         } 
+
+                    } else {
+                                $error = $rows . " : " . $user . " : " . $pass . " : Whoops. Username or Password is invalid";
+                           }
         mysqli_close($connection); // Closing Connection
-}    }
+    }
 }
 ?>
