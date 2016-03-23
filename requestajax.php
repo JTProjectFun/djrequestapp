@@ -217,7 +217,7 @@ switch($action) {
 					$i = $i + 1;
 					$requestContent .= '<div class="well">' . PHP_EOL;
 					$requestContent .= $records['name'] . ': &lsquo;' . $records['title'] . '&rsquo; <em>by</em> ' . $records['artist'] . PHP_EOL;
-					if ((strlen($records['message']) > 1) && ($showMessages == "1")) {
+					if ((strlen($records['message']) > 0) && ($showMessages == "1")) {
 						$requestContent .= '<br/>Message: ' . $records['message'] . PHP_EOL;
 					}
 					if ($records['played'] == 1) {
