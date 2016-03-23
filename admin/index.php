@@ -69,7 +69,7 @@ header("location: admin.php");
                             <p class="text-center login-title">Username</p>
                             <input type="text" name="username" class="form-control" placeholder="" required autofocus>
                             <p class="text-center login-title">Password</p>
-                            <input type="text" name="password" class="form-control" placeholder="" required autofocus>
+                            <input type="password" name="password" class="form-control" placeholder="" required>
                             <button class="btn btn-lg btn-primary btn-block" name="submit" type="submit"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login</button>
                         </form>
                     </div>
