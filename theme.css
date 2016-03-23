@@ -61,9 +61,16 @@ h1, .h1 {
 {
     z-index: 2;
 }
-.form-signin input[type="text"], .form-signin input[type="password"]
+.form-signin input[type="text"], input[type="password"]
 {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.form-control input
+ {
+    margin-bottom: 100px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
