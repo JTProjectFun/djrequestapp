@@ -18,22 +18,49 @@ if (isset($_COOKIE['adminuser'])) {
 }
 
 ?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?php echo $company_name; ?> Request System Administration</title>
-<meta name="keywords" content=""/>
-<meta name="description" content="" />
-<link rel="stylesheet" type="text/css" href="style.css" />
-<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-<script type="text/javascript">
-$(function(){
+<?php include 'adminheadertop.php'; ?>
+</head>
+
+<body role="document">
+    <div class="container theme-showcase" role="main">
+        <?php include 'menuadmin.php'; ?>
+        <div class="row">
+            <div class="col-md-8">
+                <?php echo "Welcome, " . $adminrealname; ?>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+        <div class="row">
+           <div class="col-md-12">
+               <h1 class="h1"><a href="">Administer Events</a></h1>
+           </div>
+        </div>
+        <div class="row">
+        </div>
+
+        <div id="adminlist">
+            <!-- ajax content -->
+        </div>
+    </div>
+
+
+
+<!-- put all the java stuff here -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="bootstrap/js/jquery.1.11.3.min.js"><\/script>')</script>
+<script src="../bootstrap/js/bootstrap.min.js"></script
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../bootstrap/js/ie10-viewport-bug-workaround.js"></script>
+
+<script type="text/javascript"> 
+        // Function to hide all errors
+        function HideErrors() {
+            $('.error').hide();
+        }
 	// Function for loading the grid
 	function LoadGrid() {
-		var gridder = $('#as_gridder');
+		var gridder = $('#adminlist');
 		var UrlToPass = 'action=load';
 		gridder.html('loading..');
 		$.ajax({
@@ -56,7 +83,6 @@ $(function(){
 			data : UrlToPass
 		});
 	}
-
 	LoadGrid(); // Load the grid on page loads
 
 	// Execute datepiker() for date fields
@@ -207,31 +233,35 @@ $(function(){
 			type : 'POST',
 			data : data,
 			success: function(data) {
-if(data.status.indexOf("sqlerror") >=0) {
-    if (data.status.indexOf("Duplicate entry") >=0) {
-        alert ("Whoops. That event key was not unique. Try again with a different key.");
-        return false;
-    }
-}
-				LoadGrid();
+                                                     if(data.status.indexOf("sqlerror") >=0) {
+                                                                                                if (data.status.indexOf("Duplicate entry") >=0) {
+                                                                                                alert ("Whoops. That event key was not unique. Try again with a different key.");
+                                                                                                return false;
+                                                                                              }
+                                                }
+			LoadGrid();
 			}
 		});
 		return false;
 	});
-});
 </script>
-</head>
 
-<body>
-<div class="as_wrapper">
-<div id="logo">&nbsp;</div>
-<?php echo "Welcome, " . $adminrealname; ?>
-	<h1 class="h1"><a href="">Administer Events</a></h1>
-<?php include 'menu.php'; ?>
-	<div class="as_grid_container">
-            <div class="as_gridder" id="as_gridder"></div> <!-- GRID LOADER -->
-        </div>
-<a href="gridder_addnew" class="gridder_addnew">Add New Event</a>
-</div>
+
+
+
+
+
+
+
+
+
+
+
 </body>
+
+
+
+
+
+
 </html>

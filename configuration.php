@@ -11,7 +11,7 @@ $baseURL = "http://mydomain.ccm/requests/";
 $phpqrcodeFolder = "phpqrcode";
 
 // full URL to your logo - recommended 840px wide
-$logoURL = "http://mydomain.ccm/requests/images/logo.png";
+$logoURL = "http://www.mrdeejay.co.uk/wp-content/uploads/2015/07/cropped-header2.png";
 
 // database details next
 $host 		= "localhost"; // Your hostname

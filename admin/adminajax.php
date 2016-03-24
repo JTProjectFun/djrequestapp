@@ -29,29 +29,8 @@ switch($action) {
 			}
 		}
 		?>
-
-                <form id="gridder_addform" method="post">
-                    <input type="hidden" name="action" value="addnew" />
-
-                    <div class="addnewkey" id="addnew">
-                        <table>
-                            <tr><td>Event Key</td><td><input type="text" name="thekey" id="thekey" class="gridder_add" value="<?php echo $tempkey; ?>"/></td></tr>
-                            <tr><td>Date</td><td><input type="text" name="date" id="date" class="datepiker" /></td></tr>
-                            <tr><td>Show Requests</td><td><input type="checkbox" name="showrequests" id="showrequests" class="gridder_add" /></td></tr>
-                            <tr><td>Show Messages</td><td><input type="checkbox" name="showMessages" id="showMessages" class="gridder_add" /></td></tr>
-                            <tr><td>Will Expire</td><td><input type="checkbox" name="willexpire" id="willexpire" class="gridder_add" /></td></tr>
-                            <tr><td>Max User Requests</td><td><input type="text" class="gridder_add" name="maxUserRequests" value="<?php echo $maxUserRequestDefault; ?>" /></td>
-                            <tr><td>Max Requests</td><td><input type="text" class="gridder_add" name="maxRequests" value="<?php echo $maxRequestDefault; ?>" /></td></tr>
-                        </table>
-
-                        <div class="keyadd" id="submitbutton"><input type="submit" id="gridder_addrecord" value="submit" class="gridder_addrecord_button" $
-                        <div class="keyadd" id="cancelbutton">
-                            <a href="cancel" id="gridder_cancel" class="gridder_cancel">Cancel</a>
-                        </div>
-                 </div>
-             </form>
-        </div>
-        <table class="as_gridder_table">
+<div class="container">
+        <table class="table table bordered">
             <tr class="grid_header">
                 <td class="id"><div class="grid_heading">id</div></td>
                 <td class="date"><div class="grid_heading">Date Added</div></td>
