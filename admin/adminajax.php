@@ -30,7 +30,7 @@ switch($action) {
 		}
 		?>
 <div class="container">
-        <table class="table table bordered table-striped">
+        <table class="table table bordered table-striped table-condensed">
             <tr class="grid_header">
                 <td class="id"><div class="grid_heading">id</div></td>
                 <td class="date"><div class="grid_heading">Date Added</div></td>
