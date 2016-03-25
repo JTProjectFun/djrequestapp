@@ -4,7 +4,7 @@ $company_name = "Mr Deejay";
 
 // where this is installed, with trailing slash e.g. http://www.mydomain.com/requests/
 // only used in the generation of QR codes for now
-$baseURL = "http://mydomain.ccm/requests/";
+$baseURL = "http://www.mrdeejay.co.uk/requests/";
 
 // quick and simple effort to stop abuse of QR Code Generator
 // append some random alphanumerics to /phpqrcode...

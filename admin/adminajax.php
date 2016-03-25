@@ -30,7 +30,7 @@ switch($action) {
 		}
 		?>
 <div class="container">
-        <table class="table table bordered">
+        <table class="table table bordered table-striped">
             <tr class="grid_header">
                 <td class="id"><div class="grid_heading">id</div></td>
                 <td class="date"><div class="grid_heading">Date Added</div></td>
@@ -57,7 +57,7 @@ switch($action) {
             foreach($record as $records) {
             $i = $i + 1;
             ?>
-            <tr class="<?php if($i%2 == 0) { echo 'even'; } else { echo 'odd'; } ?>">
+            <tr>
                 <td class="id"><div class="grid_content sno"><span><?php echo $records['id']; ?></span></div></td>
                 <td class="date"><div class="grid_content sno"><span><?php echo $records['timedate']; ?></span></div></td>
                 <td class="key"><div class="grid_content editable"><span><?php echo $records['thekey']; ?></span><input type="text" class="gridder_input" name="<?php echo encrypt("thekey|".$records['id']); ?>" value="<?php echo $records['thekey']; ?>" /></div></td>
