@@ -1,5 +1,6 @@
 <?php
-include "../configuration.php";
+include "configuration.php";
+include "functions/functions.php";
 include "phpqrcode/qrlib.php";
 $row = "";
 $key = makeSafe($_GET['key']);
