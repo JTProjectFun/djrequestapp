@@ -26,9 +26,7 @@ if (isset($_COOKIE['adminuser'])) {
         <?php include 'menuadmin.php'; ?>
         <div class="row">
             <div class="col-md-12">
-                <div class="col-md-8">
-                    <img class="img-responsive" src="<?php echo $logoURL; ?>" alt="<?php echo $company_name; ?>"/> <?php echo "Welcome, " . $adminrealname; ?>
-                </div>
+                <img class="img-responsive" src="<?php echo $logoURL; ?>" alt="<?php echo $company_name; ?>"/> <?php echo "Welcome, " . $adminrealname; ?>
             </div>
         </div>
         <div class="row">
@@ -43,8 +41,6 @@ if (isset($_COOKIE['adminuser'])) {
             <!-- ajax content -->
         </div>
     </div>
-
-
 
 <!-- put all the java stuff here -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
