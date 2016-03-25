@@ -2,9 +2,9 @@
 include_once '../configuration.php';
 include_once 'adminconfig.php';
 
-echo '<nav class="navbar navbar-default navbar-fixed-top">';
+echo '<nav class="navbar navbar-static-top">';
 echo '<div class="container-fluid">';
-echo '<ul class="nav nav-pills">';
+echo '<ul class="nav navbar-nav nav-pills">';
 function level1Menu(){
 echo '<li><a href="requests.php">All Requests</a></li>';
 echo '<li><a href="user.php">Request Users</a></li>';
@@ -42,10 +42,9 @@ switch ($level) {
         level3Menu();
         break;
 }
+//echo'<a href="logout.php" class="btn btn-danger btn pull-right" role="button">Log Out <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a>';
 echo '</ul>';
-echo '<ul class="nav nav-pills>';
-echo'<li><a href="logout.php" class="btn btn-danger btn pull-right" role="button">Log Out <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>';
-echo '</ul>';
+echo '<ul class="nav navbar-nav navbar-right"><li><a href="logout.php"  class="btn btn-danger" role="button">Log Out <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li></ul>';
 echo '</div>';
 echo '</nav>';
 

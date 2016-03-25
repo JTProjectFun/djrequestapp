@@ -171,3 +171,6 @@ a.accordion-toggle:hover, a.accordion-toggle:focus {
         border:#24E2F2 solid 1px;
 }
 
+.navbar {
+margin-bottom: 0px;
+}

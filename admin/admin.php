@@ -25,10 +25,10 @@ if (isset($_COOKIE['adminuser'])) {
     <div class="container theme-showcase" role="main">
         <?php include 'menuadmin.php'; ?>
         <div class="row">
-            <div class="col-md-8">
-                <?php echo "Welcome, " . $adminrealname; ?>
-            </div>
-            <div class="col-md-4">
+            <div class="col-md-12">
+                <div class="col-md-8">
+                    <img class="img-responsive" src="<?php echo $logoURL; ?>" alt="<?php echo $company_name; ?>"/> <?php echo "Welcome, " . $adminrealname; ?>
+                </div>
             </div>
         </div>
         <div class="row">
