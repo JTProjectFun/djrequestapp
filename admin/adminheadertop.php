@@ -22,3 +22,14 @@
         <script src="../bootstrap/js/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+
+<body role="document" id="adminpage">
+<div class="container theme-showcase" role="main">
+<div id="logo">&nbsp;</div>
+<?php include 'menuadmin.php'; ?>
+<div class="row">
+            <div class="col-md-12">
+                <img class="img-responsive" src="<?php echo $logoURL; ?>" alt="<?php echo $company_name; ?>"/> <?php echo "Welcome, " . $adminrealname; ?>
+            </div>
+</div>
+

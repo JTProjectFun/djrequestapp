@@ -18,6 +18,7 @@ switch($action) {
 		}
                 mysqli_close($conn);
 		?>
+<div class="container">
         <table class="table table bordered table-striped table-condensed settings_table">
  <tr class="grid_header">
 <td>Setting</td>
@@ -100,6 +101,7 @@ switch($action) {
             }
             ?>
             </table>
+</div>
         <?php
 	break;
 

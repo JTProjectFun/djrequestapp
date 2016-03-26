@@ -11,27 +11,15 @@ else {
 }
 ?>
 <?php include 'adminheadertop.php'; ?>
-</head>
-
-<body role="document" id="adminpage">
-<div class="container theme-showcase" role="main">
-<div id="logo">&nbsp;</div>
-<?php include 'menuadmin.php'; ?>
 <div class="row">
-            <div class="col-md-12">
-                <img class="img-responsive" src="<?php echo $logoURL; ?>" alt="<?php echo $company_name; ?>"/> <?php echo "Welcome, " . $adminrealname; ?>
-            </div>
-        </div>
-<div class="row">
-<div class="col-md-12">
+    <div class="col-md-12">
 	<h1 class="h1"><a href="">Administer Request System Settings</a></h1>
-</div>
+    </div>
 </div>
 <div class="row">
 	<div id="settingslist">
             <!-- ajax content -->
         </div>
-</div>
 </div>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>

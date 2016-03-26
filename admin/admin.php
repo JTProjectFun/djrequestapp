@@ -19,28 +19,17 @@ if (isset($_COOKIE['adminuser'])) {
 
 ?>
 <?php include 'adminheadertop.php'; ?>
-</head>
-
-<body role="document" id="adminpage">
-    <div class="container theme-showcase" role="main">
-        <?php include 'menuadmin.php'; ?>
-        <div class="row">
-            <div class="col-md-12">
-                <img class="img-responsive" src="<?php echo $logoURL; ?>" alt="<?php echo $company_name; ?>"/> <?php echo "Welcome, " . $adminrealname; ?>
-            </div>
-        </div>
-        <div class="row">
-           <div class="col-md-12">
-               <h1 class="h1"><a href="">Administer Events</a></h1>
-               <a href="gridder_addnew" class="gridder_addnew">Add New Event</a>
-           </div>
-        </div>
-        <div class="row">
-
-        <div id="adminlist">
-            <!-- ajax content -->
-        </div>
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="h1"><a href="">Administer Events</a></h1>
+        <a href="gridder_addnew" class="gridder_addnew">Add New Event</a>
     </div>
+</div>
+<div class="row">
+    <div id="adminlist">
+        <!-- ajax content -->
+    </div>
+</div>
 
 <!-- put all the java stuff here -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -251,23 +240,5 @@ if (isset($_COOKIE['adminuser'])) {
 		return false;
 	});
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
-
-
-
-
-
-
 </html>
