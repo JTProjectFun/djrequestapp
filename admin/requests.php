@@ -25,23 +25,33 @@ if (isset($_GET['requestuser'])) {
 $_SESSION['key'] = $key;
 
 ?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?php echo $company_name; ?> Song Requests</title>
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<link rel="stylesheet" type="text/css" href="style.css" />
-<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<?php include 'adminheadertop.php'; ?>
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="h1"><a href="">Administer Requests</a></h1>
+        <a href="gridder_addnew" class="gridder_addnew">Add New Request</a>
+    </div>
+</div>
+<div class="row">
+    <div id="adminrequests">
+        <!-- ajax content -->
+    </div>
+</div>
+<!-- and lo all thine java will live here -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="../bootstrap/js/jquery.1.11.3.min.js"><\/script>')</script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../bootstrap/js/ie10-viewport-bug-workaround.js"></script>
+<script src="../datepicker/js/bootstrap-datepicker.js"></script>
 <script type="text/javascript">
-$(function(){
-	
+        // Function to hide all errors
+        function HideErrors() {
+            $('.error').hide();
+        }
 	// Function for loading the grid
 	function LoadGrid() {
-		var gridder = $('#as_gridder');
+		var gridder = $('#adminrequests');
 		var UrlToPass = 'action=load';
 		gridder.html('loading..');
 		$.ajax({
@@ -199,7 +209,6 @@ $(function(){
 		return false;
 	});
 	
-	
 	// Add new record
 	
 	// Add new record when the table is empty
@@ -209,17 +218,18 @@ $(function(){
 		return false;
 	});
 	
-	
-	// Add new record when the table in non-empty
+	// Add new record when the table is non-empty
 	$('body').delegate('.gridder_addnew', 'click', function(){
-		$('html, body').animate({ scrollTop: $('.as_gridder').offset().top}, 250); // Scroll to top gridder table
+$('.gridder_addnew').hide();
+//		$('html, body').animate({ scrollTop: $('.as_gridder').offset().top}, 250);
 		$('#addnew').slideDown();
 		return false;
 	});
 	
 	// Cancel the insertion
 	$('body').delegate('.gridder_cancel', 'click', function(){
-		LoadGrid()
+$('.gridder_addnew').show();
+		LoadGrid();
 		return false;
 	});
 	
@@ -262,27 +272,12 @@ $(function(){
 			type : 'POST',
 			data : data,
 			success: function() {
+                        $('.gridder_addnew').show();
 				LoadGrid();
 			}
 		});
 		return false;
 	});
-});
 </script>
-</head>
-
-<body>
-<div class="as_wrapper">
-<div id="logo">&nbsp;</div>
-	<h1 class="h1"><a href="">Song Requests</a></h1>
-<?php include 'menu.php'; ?>
-<div class="as_wrapper">
-	<div class="as_grid_container">
-
-        <div class="as_gridder" id="as_gridder"></div> <!-- GRID LOADER -->
-<a href="gridder_addnew" class="gridder_addnew">Add New Request</a>
-    </div>
-</div>
-</div>
 </body>
 </html>

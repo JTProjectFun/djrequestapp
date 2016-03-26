@@ -58,26 +58,26 @@ $query_string = "SELECT * FROM requests WHERE requests.uniqueid='".$requestuser.
                 <form id="gridder_addform" method="post">
                     <input type="hidden" name="action" value="addnew" />
 
-                    <table class="addnewrequest" id="addnew">
+                    <table class="table bordered table-striped table-condensed addnewrequest" id="addnew">
                         <tr class="newadd">
                             <td>Key</td>
-                            <td class="tbname"><input type="text" name="key" id="key" class="gridder_add" value="<?php echo $key; ?>"/></td>
+                            <td class="tbname"><input type="text" name="key" id="key" class="" value="<?php echo $key; ?>"/></td>
                         </tr>
                         <tr class="newadd">
                             <td>Your Name</td>
-                            <td class="tbname"><input type="text" name="name" id="name" class="gridder_add" /></td>
+                            <td class="tbname"><input type="text" name="name" id="name" class="" /></td>
                         </tr>
                         <tr class="newadd">
                             <td>Song Artist</td>
-                            <td class="tbartist"><input type="text" name="artist" id="artist" class="gridder_add" /></td>
+                            <td class="tbartist"><input type="text" name="artist" id="artist" class="" /></td>
                         </tr>
                         <tr class="newadd">
                             <td>Song Title</td>
-                            <td class="tbtitle"><input type="text" name="title" id="title" class="gridder_add" /></td>
+                            <td class="tbtitle"><input type="text" name="title" id="title" class="" /></td>
                         </tr>
                         <tr class="newadd">
                             <td>Your message (up to 140 characters)</td>
-                            <td class="message"><textarea name="message" id="message" class="gridder_add"></textarea></td>
+                            <td class="message"><textarea name="message" id="message" class=""></textarea></td>
                         </tr>
                         <tr class="newadd">
                             <td colspan="2" class="tbadd">&nbsp;
@@ -87,7 +87,7 @@ $query_string = "SELECT * FROM requests WHERE requests.uniqueid='".$requestuser.
                      </table>
                  </form>
 
-        <table class="as_gridder_table">
+        <table class="bordered table-striped table-condensed as_gridder">
             <tr>
                 <th class="id"><div class="grid_heading">id</div></th>
                 <th class="date"><div class="grid_heading">Date &amp; Time Added</div></th>
