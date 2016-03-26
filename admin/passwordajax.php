@@ -18,14 +18,14 @@ switch($action) {
 
 		?>
 
-                <form id="changepassform" method="post">
+                <form id="adminpassword" method="post">
                     <input type="hidden" name="action" value="update" />
 
                     <div class="password" id="changepass">
                         <table>
-                            <tr><td>Current Password</td><td><input type="password" name="curPass" id="thekey" class="gridder_add" value=""/></td></tr>
-                            <tr><td>New Password</td><td><input type="password" name="newPass1" id="date" class="gridder_add" /></td></tr>
-                            <tr><td>Confirm New Password</td><td><input type="password" name="newPass2" id="showrequests" class="gridder_add" /></td></tr>
+                            <tr><td>Current Password</td><td><input type="password" name="curPass" value=""/></td></tr>
+                            <tr><td>New Password</td><td><input type="password" name="newPass1" /></td></tr>
+                            <tr><td>Confirm New Password</td><td><input type="password" name="newPass2" /></td></tr>
                         </table>
 
                         <div class="keyadd" id="submitbutton"><input type="submit" id="changepassword" value="submit" class="gridder_addrecord_button"></input></div>
