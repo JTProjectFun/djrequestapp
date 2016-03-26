@@ -14,6 +14,7 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="../bootstrap/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
     <!-- Custom styles for this template -->
+    <link href="../theme.css" rel="stylesheet">
     <link href="admintheme.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

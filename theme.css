@@ -27,7 +27,6 @@ h1, .h1 {
     width: 840px;
   }
 }
-
 .page-header {
 	margin-top:5px;
 }
@@ -159,3 +158,22 @@ a.accordion-toggle:hover, a.accordion-toggle:focus {
 	margin:0px auto;
 }
 /* CSS BELOW HERE IS FOR ADMIN ONLY */
+
+.gridder_input, .gridder_add {
+        display:none;
+        margin:0;
+        padding:0;
+ width:70px;
+        outline:none;
+        border:none;
+        padding:2px;
+        border:#24E2F2 solid 1px;
+}
+
+#addnew {
+display:none;
+}
+
+#gridder_addform {
+padding-bottom:20px;
+}

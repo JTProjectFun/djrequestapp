@@ -21,7 +21,7 @@ if (isset($_COOKIE['adminuser'])) {
 <?php include 'adminheadertop.php'; ?>
 </head>
 
-<body role="document">
+<body role="document" id="adminpage">
     <div class="container theme-showcase" role="main">
         <?php include 'menuadmin.php'; ?>
         <div class="row">

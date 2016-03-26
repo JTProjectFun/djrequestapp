@@ -18,7 +18,12 @@ switch($action) {
 		}
                 mysqli_close($conn);
 		?>
-        <table class="settings_table">
+        <table class="table table bordered table-striped table-condensed settings_table">
+ <tr class="grid_header">
+<td>Setting</td>
+<td>Value</td>
+<td>Description</td>
+</tr>
             <?php
             if($count <= 0) {
             ?>
