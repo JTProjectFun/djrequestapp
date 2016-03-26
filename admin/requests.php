@@ -13,8 +13,8 @@ else {
 $key = 0;
 $user = 0;
 
-if (isset($_GET['key'])) {
-  $key = makeSafe($_GET['key']);
+if (isset($_GET['eventkey'])) {
+  $key = makeSafe($_GET['eventkey']);
 }
 $_SESSION['requestuser'] = 0;
 if (isset($_GET['requestuser'])) {
