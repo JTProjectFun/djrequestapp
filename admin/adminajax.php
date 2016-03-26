@@ -29,8 +29,36 @@ switch($action) {
 			}
 		}
 		?>
-<div class="container">
-        <table class="table table bordered table-striped table-condensed">
+    <div class="container">
+                <form id="gridder_addform" method="post">
+                    <input type="hidden" name="action" value="addnew" />
+                    <div class="addnewkey" id="addnew">
+                        <table class=" table bordered table-striped table-condensed">
+            <tr class="grid_header">
+                <td><div class="grid_heading">Key</div></td>
+                <td class="date"><div class="grid_heading">Active Date</div></td>
+                <td><div class="grid_heading">Show Requests</div></td>
+                <td><div class="grid_heading">Show Messages</div></td>
+                <td><div class="grid_heading">Will Expire</div></td>
+                <td><div class="grid_heading">Max Requests per user</div></td>
+                <td><div class="grid_heading">Max Requests</div></td>
+            </tr>
+            <tr>
+                <td><input type="text" name="thekey" id="thekey" class="gridderadd" value="<?php echo $tempkey; ?>"/></td>
+                <td><input type="text" name="date" id="date" class="datepiker" /></td>
+                <td><input type="checkbox" name="showrequests" id="showrequests" class="gridderadd" /></td>
+                <td><input type="checkbox" name="showMessages" id="showMessages" class="gridderadd" /></td>
+                <td><input type="checkbox" name="willexpire" id="willexpire" class="gridderadd" /></td>
+                <td><input type="text" class="gridderadd" name="maxUserRequests" value="<?php echo $maxUserRequestDefault; ?>" /></td>
+                <td><input type="text" class="gridderadd" name="maxRequests" value="<?php echo $maxRequestDefault; ?>" /></td>
+                        </table>
+                        <div class="keyadd" id="submitbutton"><input type="submit" id="gridder_addrecord" value="submit" class="gridder_addrecord_button" $
+                        <div class="keyadd" id="cancelbutton">
+                            <a href="cancel" id="gridder_cancel" class="gridder_cancel">Cancel</a>
+                        </div>
+                 </div>
+             </form>
+        <table class="table table bordered table-striped table-condensed as_gridder">
             <tr class="grid_header">
                 <td class="id"><div class="grid_heading">id</div></td>
                 <td class="date"><div class="grid_heading">Date Added</div></td>
@@ -46,6 +74,7 @@ switch($action) {
                 <td><div class="grid_heading">Print</div></td>
                 <td><div class="grid_heading">Delete</div></td>
             </tr>
+
             <?php
             if($count <= 0) {
             ?>
@@ -60,7 +89,7 @@ switch($action) {
             <tr>
                 <td class="id"><div class="grid_content sno"><span><?php echo $records['id']; ?></span></div></td>
                 <td class="date"><div class="grid_content sno"><span><?php echo $records['timedate']; ?></span></div></td>
-                <td class="key"><div class="grid_content editable"><span><?php echo $records['thekey']; ?></span><input type="text" class="gridder_input" name="<?php echo encrypt("thekey|".$records['id']); ?>" value="<?php echo $records['thekey']; ?>" /></div></td>
+                <td class="key"><div class="grid_content editable"><span class="thekey"><?php echo $records['thekey']; ?></span><input type="text" class="gridder_input"  name="<?php echo encrypt("thekey|".$records['id']); ?>" value="<?php echo $records['thekey']; ?>" /></div></td>
                 <td class="key"><div class="grid_content sno"><span><?php echo $records['username']; ?></span></div></td>
                 <td class="date"><div class="grid_content editable"><span><?php echo $records['date']; ?></span>
                     <input type="text" class="gridder_input datepiker" name="<?php echo encrypt("date|".$records['id']); ?>" value="<?php echo $records['date']; ?>" /></div></td>

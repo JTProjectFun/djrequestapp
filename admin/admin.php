@@ -32,10 +32,10 @@ if (isset($_COOKIE['adminuser'])) {
         <div class="row">
            <div class="col-md-12">
                <h1 class="h1"><a href="">Administer Events</a></h1>
+               <a href="gridder_addnew" class="gridder_addnew">Add New Event</a>
            </div>
         </div>
         <div class="row">
-        </div>
 
         <div id="adminlist">
             <!-- ajax content -->
@@ -44,11 +44,11 @@ if (isset($_COOKIE['adminuser'])) {
 
 <!-- put all the java stuff here -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="bootstrap/js/jquery.1.11.3.min.js"><\/script>')</script>
-<script src="../bootstrap/js/bootstrap.min.js"></script
+<script>window.jQuery || document.write('<script src="../bootstrap/js/jquery.1.11.3.min.js"><\/script>')</script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../bootstrap/js/ie10-viewport-bug-workaround.js"></script>
-
+<script src="../datepicker/js/bootstrap-datepicker.js"></script>
 <script type="text/javascript"> 
         // Function to hide all errors
         function HideErrors() {
@@ -69,7 +69,9 @@ if (isset($_COOKIE['adminuser'])) {
 		});
 	}
 
-	// Seperate Function for datepiker() to save the value
+	LoadGrid(); // Load the grid on page loads
+
+	// Seperate Function for datepicker() to save the value
 	function ForDatePiker(ThisElement) {
 		ThisElement.prev('span').html(ThisElement.val()).prop('title', ThisElement.val());
 		var UrlToPass = 'action=update&value='+ThisElement.val()+'&crypto='+ThisElement.prop('name');
@@ -79,18 +81,26 @@ if (isset($_COOKIE['adminuser'])) {
 			data : UrlToPass
 		});
 	}
-	LoadGrid(); // Load the grid on page loads
 
-	// Execute datepiker() for date fields
+	// Execute datepicker() for date fields
 	$("body").delegate("input[type=text].datepiker", "focusin", function(){
 		var ThisElement = $(this);
 		$(this).datepicker({
-	   		dateFormat: 'dd-mm-yy',
-			onSelect: function() {
-				setTimeout(ForDatePiker(ThisElement), 500);
-			}
-	   });
+                                    format:"dd-mm-yyyy"
+                                   })
+                                    .on('changeDate', function() {
+                                                                  $(this).datepicker('hide');
+                                                                  //setTimeout(ForDatePiker(ThisElement), 500);
+                                                                  ForDatePiker(ThisElement);
+                                                                 });
 	});
+
+
+
+
+
+
+
 
 	// Show the text box on click
 	$('body').delegate('.editable', 'click', function(){
@@ -180,19 +190,19 @@ if (isset($_COOKIE['adminuser'])) {
 
 	// Add new record
 
-	// Add new record when the table is empty
-	$('body').delegate('.gridder_insert', 'click', function(){
-		$('#norecords').hide();
-		$('#addnew').slideDown();
-		return false;
-	});
+        // Add new record when the table is empty
+        $('body').delegate('.gridder_insert', 'click', function(){
+                $('#norecords').hide();
+                $('#addnew').slideDown();
+                return false;
+        });
 
-	// Add new record when the table in non-empty
-	$('body').delegate('.gridder_addnew', 'click', function(){
-		$('html, body').animate({ scrollTop: $('.as_gridder').offset().top}, 250); // Scroll to top gridder table
-		$('#addnew').slideDown();
-		return false;
-	});
+        // Add new record when the table in non-empty
+        $('body').delegate('.gridder_addnew', 'click', function(){
+                $('html, body').animate({ scrollTop: $('.as_gridder').offset().top}, 250); // Scroll to top gridder table
+                $('#addnew').slideDown();
+                return false;
+        });
 
 	// Cancel the insertion
 	$('body').delegate('.gridder_cancel', 'click', function(){
@@ -200,11 +210,11 @@ if (isset($_COOKIE['adminuser'])) {
 		return false;
 	});
 
-	// For datepiker
-	$("body").delegate(".gridder_add.datepiker", "focusin", function(){
+	// For datepicker
+	$("body").delegate(".datepiker", "focusin", function(){
 		var ThisElement = $(this);
 		$(this).datepicker({
-	   		dateFormat: 'dd-mm-yy',
+	   		format: 'dd-mm-yyyy',
 	   });
 	});
 
