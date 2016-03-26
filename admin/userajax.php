@@ -47,7 +47,7 @@ switch($action) {
 		}
 		?>
 
-        <table class="as_gridder_table">
+        <table class="table bordered table-striped table-condensed as_gridder_table">
             <tr>
                 <th class="id"><div class="grid_heading">id</div></th>
                 <th class="date"><div class="grid_heading">Date &amp; Time Added</div></th>
