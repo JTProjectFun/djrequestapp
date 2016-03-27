@@ -22,14 +22,16 @@ if(isset($_GET['user'])) {
 
 <?php include 'adminheadertop.php'; ?>
 <div class="row">
-    <div class="col-md-12">
+<div class="container-fluid">
         <h1 class="h1"><a href="">Administer Users</a></h1>
-    </div>
+</div>
 </div>
 <div class="row">
+<div class="container-fluid">
     <div id="adminuser">
         <!-- ajax content -->
     </div>
+</div>
 </div>
 
 <?php include 'javaincludes.php'; ?>

@@ -12,13 +12,15 @@ else {
 ?>
 <?php include('adminheadertop.php'); ?>
 <div class="row">
-    <div class="col-md-12">
+    <div class="container-fluid">
 	<h1 class="h1"><a href="">Administer Request System Text</a></h1>
     </div>
 </div>
 <div class="row">
-    <div id="admintext">
-        <!-- ajax content -->
+    <div class="container-fluid">
+        <div id="admintext">
+            <!-- ajax content -->
+        </div>
     </div>
 </div>
 

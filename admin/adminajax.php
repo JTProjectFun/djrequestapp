@@ -29,7 +29,6 @@ switch($action) {
 			}
 		}
 		?>
-    <div class="container">
                 <form id="gridder_addform" method="post">
                     <input type="hidden" name="action" value="addnew" />
                     <div class="addnewkey" id="addnew">
@@ -146,7 +145,6 @@ switch($action) {
             }
             ?>
             </table>
-</div>
         <?php
 	break;
 

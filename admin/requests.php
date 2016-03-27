@@ -27,14 +27,16 @@ $_SESSION['key'] = $key;
 ?>
 <?php include 'adminheadertop.php'; ?>
 <div class="row">
-    <div class="col-md-12">
+    <div class="container-fluid">
         <h1 class="h1"><a href="">Administer Requests</a></h1>
         <a href="gridder_addnew" class="gridder_addnew">Add New Request</a>
     </div>
 </div>
 <div class="row">
-    <div id="adminrequests">
-        <!-- ajax content -->
+    <div class="container-fluid">
+        <div id="adminrequests">
+            <!-- ajax content -->
+        </div>
     </div>
 </div>
 <?php include 'javaincludes.php'; ?>

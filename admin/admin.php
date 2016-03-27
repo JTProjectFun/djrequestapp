@@ -20,14 +20,16 @@ if (isset($_COOKIE['adminuser'])) {
 ?>
 <?php include 'adminheadertop.php'; ?>
 <div class="row">
-    <div class="col-md-12">
+    <div class="container-fluid">
         <h1 class="h1"><a href="">Administer Events</a></h1>
         <a href="gridder_addnew" class="gridder_addnew">Add New Event</a>
     </div>
 </div>
 <div class="row">
-    <div id="adminlist">
-        <!-- ajax content -->
+    <div class="container-fluid">
+        <div id="adminlist">
+            <!-- ajax content -->
+        </div>
     </div>
 </div>
 
