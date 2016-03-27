@@ -154,10 +154,11 @@ switch($action) {
 		$password       = isset($_POST['password']) ? mysqli_real_escape_string($conn, $_POST['password']) : '';
 		$email  	= isset($_POST['email']) ? mysqli_real_escape_string($conn, $_POST['email']) : '';
 		$userlevel	= isset($_POST['userlevel']) ? mysqli_real_escape_string($conn, $_POST['userlevel']) : '';
+		$enabled	= isset($_POST['enabled']) ? mysqli_real_escape_string($conn, $_POST['enabled']) : '';
                 $timedate = time();
                 $salt = strrev(date('U', strtotime($timedate)));
                 $newpassword = sha1($salt.$password);
-		mysqli_query($conn, "INSERT INTO `systemUser` (timedate, username, password, realname, email, userlevel) VALUES ('$timedate', '$username','$newpassword','$realname','$email', '$userlevel') ");
+		mysqli_query($conn, "INSERT INTO `systemUser` (timedate, username, password, realname, email, userlevel, enabled) VALUES ('$timedate', '$username','$newpassword','$realname','$email', '$userlevel', '$enabled') ");
                 $user_q = mysqli_query($conn, "SELECT id FROM systemUser WHERE username='$username'");
                 $usern = mysqli_fetch_row($user_q);
                 $userid = $usern[0];
