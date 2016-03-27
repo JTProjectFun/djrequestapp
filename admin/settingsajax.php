@@ -21,9 +21,9 @@ switch($action) {
 <div class="container">
         <table class="table table bordered table-striped table-condensed settings_table">
  <tr class="grid_header">
-<td>Setting</td>
-<td>Value</td>
-<td>Description</td>
+<th>Setting</th>
+<th>Value</th>
+<th>Description</th>
 </tr>
             <?php
             if($count <= 0) {

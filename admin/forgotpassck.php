@@ -65,7 +65,7 @@ if ($rows == 1) {
     $headersfrom="admin@sitename.com"; // Make this configurable later
     $headers.= "From: ".$headersfrom."\n"; 
 //$headers = "Content-Type: text/html; charset=iso-8859-1\n".$headers;// for html mail
-    $site_url = $requestAppURL."/admin/resetpassword.php?ak=$key&userid=".$id;
+    $site_url = $baseURL."/admin/resetpassword.php?ak=$key&userid=".$id;
     $body="This is in response to your request for login detailst at site_name \n \nLogin ID:". $id ."\n To reset your password, please visit this link( or copy and paste this link in your browser window )\n\n
     \n\n $site_url \n\n <a href='".$site_url."'>".$site_url."</a>  \n\n Thank You \n \n siteadmin";
 

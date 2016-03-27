@@ -35,13 +35,13 @@ switch($action) {
                     <div class="addnewkey" id="addnew">
                         <table class=" table bordered table-striped table-condensed">
             <tr class="grid_header">
-                <td><div class="grid_heading">Key</div></td>
-                <td class="date"><div class="grid_heading">Active Date</div></td>
-                <td><div class="grid_heading">Show Requests</div></td>
-                <td><div class="grid_heading">Show Messages</div></td>
-                <td><div class="grid_heading">Will Expire</div></td>
-                <td><div class="grid_heading">Max Requests per user</div></td>
-                <td><div class="grid_heading">Max Requests</div></td>
+                <th>Key</th>
+                <th>Active Date</th>
+                <th>Show Requests</th>
+                <th>Show Messages</th>
+                <th>Will Expire</th>
+                <th>Max Requests per user</th>
+                <th>Max Requests</th>
             </tr>
             <tr>
                 <td><input type="text" name="thekey" id="thekey" class="gridderadd" value="<?php echo $tempkey; ?>"/></td>
@@ -60,19 +60,19 @@ switch($action) {
              </form>
         <table class="table table bordered table-striped table-condensed as_gridder">
             <tr class="grid_header">
-                <td class="id"><div class="grid_heading">id</div></td>
-                <td class="date"><div class="grid_heading">Date Added</div></td>
-                <td><div class="grid_heading">Key</div></td>
-                <td><div class="grid_heading">Created by</div></td>
-                <td class="date"><div class="grid_heading">Active Date</div></td>
-                <td><div class="grid_heading">Show Requests</div></td>
-                <td><div class="grid_heading">Show Messages</div></td>
-                <td><div class="grid_heading">Will Expire</div></td>
-                <td><div class="grid_heading">Max Requests per user</div></td>
-                <td><div class="grid_heading">Max Requests</div></td>
-                <td><div class="grid_heading">Manage</div></td>
-                <td><div class="grid_heading">Print</div></td>
-                <td><div class="grid_heading">Delete</div></td>
+                <th>id</th>
+                <th>Date Added</th>
+                <th>Key</th>
+                <th>Created by</th>
+                <th>Active Date</th>
+                <th>Show Requests</th>
+                <th>Show Messages</th>
+                <th>Will Expire</th>
+                <th>Max Requests per user</th>
+                <th>Max Requests</th>
+                <th>Manage</th>
+                <th>Print</th>
+                <th>Delete</th>
             </tr>
 
             <?php
