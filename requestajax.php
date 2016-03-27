@@ -113,12 +113,12 @@ switch($action) {
 
 				<form method="post" id="gridder_addform" role="form">				
 					<input type="hidden" name="action" value="addnew" />
-					<div class="addnewrequest" id="addnew">
+					<div class="addnewrequest" id="addnewreq">
 						<div class="row">
 							<div class="col-md-8">
 								<div class="form-group">
 									<label class="control-label" for="name">Your name:</label>
-									<input id="name" name="name" type="text" placeholder="" class="form-control gridder_add" maxlength="64">
+									<input id="name" name="name" type="text" placeholder="" class="form-control gridder_addreq" maxlength="64">
 									<div class="error collapse" id="nameerror">This field is required.</div>
 									<div class="error collapse" id="nameerror_tl"><?php echo str_replace("%FIELD%", "name", $customtext['fieldtoolong']); ?></div>
 								</div>
@@ -128,7 +128,7 @@ switch($action) {
 							<div class="col-md-8">
 								<div class="form-group">
 									<label class="control-label" for="artist">Song Artist:</label>
-									<input id="artist" name="artist" type="text" placeholder="" class="form-control gridder_add" maxlength="64">
+									<input id="artist" name="artist" type="text" placeholder="" class="form-control gridder_addreq" maxlength="64">
 									<div class="error collapse" id="artisterror">This field is required.</div>
 									<div class="error collapse" id="artisterror_tl"><?php echo str_replace("%FIELD%", "artist", $customtext['fieldtoolong']); ?></div>
 								</div>
@@ -138,7 +138,7 @@ switch($action) {
 							<div class="col-md-8">
 								<div class="form-group">
 									<label class="control-label" for="title">Song Title:</label>
-									<input id="title" name="title" type="text" placeholder="" class="form-control gridder_add" maxlength="64">
+									<input id="title" name="title" type="text" placeholder="" class="form-control gridder_addreq" maxlength="64">
 									<div class="error collapse" id="titleerror">This field is required.</div>
 									<div class="error collapse" id="titleerror_tl"><?php echo str_replace("%FIELD%", "title", $customtext['fieldtoolong']); ?></div>
 								</div>
