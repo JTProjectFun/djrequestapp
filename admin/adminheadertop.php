@@ -29,8 +29,8 @@
 <div id="logo">&nbsp;</div>
 <?php include 'menuadmin.php'; ?>
 <div class="row">
-            <div class="col-md-12">
-                <img class="img-responsive" src="<?php echo $logoURL; ?>" alt="<?php echo $company_name; ?>"/> <?php echo "Welcome, " . $adminrealname; ?>
-            </div>
+    <div class="container-fluid">
+        <img class="img-responsive" src="<?php echo $logoURL; ?>" alt="<?php echo $company_name; ?>"/> <?php echo "Welcome, " . $adminrealname; ?>
+    </div>
 </div>
 

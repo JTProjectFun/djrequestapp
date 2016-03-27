@@ -49,7 +49,7 @@ switch ($level) {
 }
 //echo'<a href="logout.php" class="btn btn-danger btn pull-right" role="button">Log Out <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a>';
 echo '</ul>';
-echo '<ul class="nav navbar-nav navbar-right"><li><a href="logout.php"  class="btn btn-danger" role="button">Log Out <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li></ul>';
+echo '<ul class="pull-right"><a href="logout.php"  class="btn btn-lg btn-danger" role="button">Log Out <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></ul>';
 echo '</div>';
 echo '</nav>';
 
