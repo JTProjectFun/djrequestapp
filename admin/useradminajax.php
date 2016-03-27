@@ -21,44 +21,41 @@ switch($action) {
 		}
                 mysqli_close($rq);
 		?>
+<div class="container">
                 <form id="gridder_addform" method="post">
                     <input type="hidden" name="action" value="addnew" />
-                    <table class="addnewrequest" id="addnew">
+                    <table class="table bordered table-striped table-condensed addnewsysuser" id="addnew">
+            <tr>
+                <th class="key"><div class="grid_heading">Username</div></th>
+                <th class="key"><div class="grid_heading">Password</div></th>
+                <th class="date"><div class="grid_heading">RealName</div></th>
+                <th class="date"><div class="grid_heading">Email</div></th>
+                <th class="del"><div class="grid_heading">User Level</div></th>
+                <th class="del"><div class="grid_heading">Enabled</div></th>
+                <th class="del"><div class="grid_heading"></div></th>
+            </tr>
+
                         <tr class="newadd">
-                            <td>Username</td>
-                            <td class="tbname"><input type="text" name="username" id="username" class="gridder_add" /></td>
-                        </tr>
-                        <tr class="newadd">
-                            <td>Password</td>
-                            <td class="tbname"><input type="text" name="password" id="password" class="gridder_add" /></td>
-                        </tr>
-                        <tr class="newadd">
-                            <td>RealName</td>
-                            <td class="tbartist"><input type="text" name="realname" id="realname" class="gridder_add" /></td>
-                        </tr>
-                        <tr class="newadd">
-                            <td>Email Address</td>
-                            <td class="tbtitle"><input type="text" name="email" id="email" class="gridder_add" /></td>
-                        </tr>
-                        <tr class="newadd">
-                            <td>User Level</td>
+                            <td class="tbname"><input type="text" name="username" id="username"/></td>
+                            <td class="tbname"><input type="text" name="password" id="password" /></td>
+                            <td class="tbartist"><input type="text" name="realname" id="realname" /></td>
+                            <td class="tbtitle"><input type="text" name="email" id="email" /></td>
                             <td class="message">
-                                <select name="userlevel" class="gridder_add">
+                                <select name="userlevel">
                                     <option value="1">Normal User</option>
                                     <option value="2">DJ Admin</option>
                                     <option value="3">Superuser</option>
                                 </select>
                             </td>
-                        </tr>
-                        <tr class="newadd">
-                            <td colspan="2" class="tbadd">&nbsp;
+                            <td><input type="checkbox" class="toggle" name="enabled" id="enabled" checked="1"); ?></td>
+                            <td class="tbadd">&nbsp;
                                 <input type="submit" id="gridder_addrecord" value="Submit" class="gridder_addrecord_button" title="Add" />
                                 <a href="cancel" id="gridder_cancel" class="gridder_cancel">CANCEL</a></td>
                         </tr>
                      </table>
                  </form>
 
-        <table class="as_gridder_table">
+        <table class="table bordered table-striped table-condensed as_gridder_table">
             <tr>
                 <th class="id"><div class="grid_heading">id</div></th>
                 <th class="date"><div class="grid_heading">Date &amp; Time Added</div></th>
@@ -146,6 +143,7 @@ switch($action) {
             }
             ?>
             </table>
+</div>
         <?php
 	break;
 	
@@ -212,7 +210,5 @@ switch($action) {
 	case "resetpassword":
                // do something here
 	break;
-
-
 }
 ?>

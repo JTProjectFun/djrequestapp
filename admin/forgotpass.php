@@ -7,13 +7,7 @@ start_session();
 //header("location: admin.php");
 //}
 ?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Request System Forgotten Password</title>
-        <link href="loginstyle.css" rel="stylesheet" type="text/css">
-    </head>
-    <body>
+<?php include ('adminheadertop.php'); ?>
     <div id="main">
         <div id="logo">&nbsp;</div>
         <h1>Request System Forgotten Password</h1>

@@ -1,6 +1,11 @@
 <?php
 include_once '../configuration.php';
 include_once 'adminconfig.php';
+include_once '../functions/functions.php';
+
+if (curPageName()=="forgotpass.php") {
+    return;
+}
 
 echo '<nav class="navbar navbar-static-top">';
 echo '<div class="container-fluid">';

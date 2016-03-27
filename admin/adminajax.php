@@ -146,6 +146,7 @@ switch($action) {
             }
             ?>
             </table>
+</div>
         <?php
 	break;
 
