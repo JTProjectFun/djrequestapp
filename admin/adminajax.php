@@ -131,11 +131,11 @@ switch($action) {
                 </td>
                 <td class="manage">
                     <div class="gridder_content">
-                        <a href="requests.php?key=<?php echo $records['id'] ;?>">manage</a>
+                        <a href="requests.php?eventkey=<?php echo $records['id'] ;?>">manage</a>
                     </div>
                 </td>
                 <td class="print">
-                    <a href="../print.php?key=<?php echo $records['thekey'] ; ?>">Print</a>
+                    <a href="../print.php?eventkey=<?php echo $records['thekey'] ; ?>">Print</a>
                 </td>
                 <td class="del">
                     <a href="<?php echo encrypt($records['id']); ?>" class="gridder_delete"><img src="../images/delete.png" alt="Delete" title="Delete" /></a>
