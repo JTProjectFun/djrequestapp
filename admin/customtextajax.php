@@ -20,7 +20,7 @@ switch($action) {
 		}
                 mysqli_close($conn);
 		?>
-        <table class="settings_table">
+        <table class="table bordered table-striped table-condensed settings_table">
             <?php
             if($count <= 0) {
             ?>

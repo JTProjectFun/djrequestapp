@@ -10,23 +10,23 @@ else {
      $id = $_SESSION['login_user'];
 }
 ?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?php echo $company_name; ?> Request System Administration</title>
-<meta name="keywords" content=""/>
-<meta name="description" content="" />
-<link rel="stylesheet" type="text/css" href="style.css" />
-<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-<script type="text/javascript">
-$(function(){
+<?php include('adminheadertop.php'); ?>
+<div class="row">
+    <div class="col-md-12">
+	<h1 class="h1"><a href="">Administer Request System Text</a></h1>
+    </div>
+</div>
+<div class="row">
+    <div id="admintext">
+        <!-- ajax content -->
+    </div>
+</div>
 
+<?php include 'javaincludes.php'; ?>
+<script type="text/javascript">
 	// Function for loading the grid
 	function LoadGrid() {
-		var gridder = $('#as_gridder');
+		var gridder = $('#admintext');
 		var UrlToPass = 'action=load';
 		gridder.html('loading..');
 		$.ajax({
@@ -124,18 +124,9 @@ $(function(){
 		});
 		return false;
 	});
-});
 </script>
-</head>
 
-<body>
-<div class="as_wrapper">
-<div id="logo">&nbsp;</div>
-	<h1 class="h1"><a href="">Administer Request System Text</a></h1>
-<?php include 'menu.php'; ?>
-	<div class="as_grid_container">
-            <div class="as_gridder" id="as_gridder"></div> <!-- GRID LOADER -->
-        </div>
 </div>
+
 </body>
 </html>

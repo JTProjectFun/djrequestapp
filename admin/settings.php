@@ -21,9 +21,7 @@ else {
             <!-- ajax content -->
         </div>
 </div>
-
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<?php include 'javaincludes.php'; ?>
 <script type="text/javascript">
 
 $(function(){
