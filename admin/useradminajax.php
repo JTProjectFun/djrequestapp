@@ -49,8 +49,8 @@ switch($action) {
                             </td>
                             <td><input type="checkbox" class="toggle" name="enabled" id="enabled" checked="1"); ?></td>
                             <td class="tbadd">&nbsp;
-                                <input type="submit" id="gridder_addrecord" value="Submit" class="gridder_addrecord_button" title="Add" />
-                                <a href="cancel" id="gridder_cancel" class="gridder_cancel">CANCEL</a></td>
+                                <input type="submit" id="gridder_addrecord" value="Submit" class="btn btn-lg gridder_addrecord_button" title="Add" />
+                                <a href="cancel" id="gridder_cancel" class="btn btn-lg btn-danger gridder_cancel">CANCEL</a></td>
                         </tr>
                      </table>
                  </form>

@@ -28,9 +28,9 @@ switch($action) {
                             <tr><td>Confirm New Password</td><td><input type="password" name="newPass2" /></td></tr>
                         </table>
 
-                        <div class="keyadd" id="submitbutton"><input type="submit" id="changepassword" value="submit" class="gridder_addrecord_button"></input></div>
+                        <div class="keyadd" id="submitbutton"><input type="submit" id="changepassword" value="submit" class="btn btn-lg gridder_addrecord_button"></input></div>
                         <div class="keyadd" id="cancelbutton">
-                            <a href="cancel" id="gridder_cancel" class="gridder_cancel">Cancel</a>
+                            <a href="cancel" id="gridder_cancel" class="btn btn-lg btn-danger gridder_cancel">Cancel</a>
                         </div>
                  </div>
              </form>

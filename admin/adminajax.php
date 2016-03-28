@@ -51,9 +51,9 @@ switch($action) {
                 <td><input type="text" class="gridderadd" name="maxUserRequests" value="<?php echo $maxUserRequestDefault; ?>" /></td>
                 <td><input type="text" class="gridderadd" name="maxRequests" value="<?php echo $maxRequestDefault; ?>" /></td>
                         </table>
-                        <div class="keyadd" id="submitbutton"><input type="submit" id="gridder_addrecord" value="submit" class="gridder_addrecord_button" $
+                        <div class="keyadd" id="submitbutton"><input type="submit" id="gridder_addrecord" value="submit" class="btn btn-lg gridder_addrecord_button" $
                         <div class="keyadd" id="cancelbutton">
-                            <a href="cancel" id="gridder_cancel" class="btn btn-danger gridder_cancel" role="button">Cancel</a>
+                            <a href="cancel" id="gridder_cancel" class="btn btn-lg btn-danger gridder_cancel" role="button">Cancel</a>
                         </div>
                  </div>
              </form>

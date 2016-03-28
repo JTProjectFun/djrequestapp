@@ -81,8 +81,8 @@ $query_string = "SELECT * FROM requests WHERE requests.uniqueid='".$requestuser.
                         </tr>
                         <tr class="newadd">
                             <td colspan="2" class="tbadd">&nbsp;
-                                <input type="submit" id="gridder_addrecord" value="Submit" class="gridder_addrecord_button" title="Add" />
-                                <a href="cancel" id="gridder_cancel" class="gridder_cancel">CANCEL</a></td>
+                                <input type="submit" id="gridder_addrecord" value="Submit" class="btn btn-lg gridder_addrecord_button" title="Add" />
+                                <a href="cancel" id="gridder_cancel" class="btn btn-lg btn-danger gridder_cancel">CANCEL</a></td>
                         </tr>
                      </table>
                  </form>
