@@ -48,11 +48,11 @@ else {
 	$('body').delegate('.editable', 'click', function(){
 		var ThisElement = $(this);
 		ThisElement.find('span').hide();
-		ThisElement.find('.gridder_input').show().focus();
+		ThisElement.find('.customtextinput').show().focus();
 	});
 
 	// Pass and save the textbox values on blur function
-	$('body').delegate('.gridder_input', 'blur', function(){
+	$('body').delegate('.customtextinput', 'blur', function(){
 		var ThisElement = $(this);
 		ThisElement.hide();
 		ThisElement.prev('span').show().html($(this).val()).prop('title', $(this).val());
@@ -65,7 +65,7 @@ else {
 	});
 
 	// Same as the above blur() when user hits the 'Enter' key
-	$('body').delegate('.gridder_input', 'keypress', function(e){
+	$('body').delegate('.customtextinput', 'keypress', function(e){
 		if(e.keyCode == '13') {
 			var ThisElement = $(this);
 			ThisElement.hide();
