@@ -22,7 +22,7 @@ if ($rows == 1) {
 // Check if reset is still pending on user's account
     $query = mysqli_query($conn, "SELECT id FROM systemUserKey WHERE id='$id' AND time > $tm and status='pending'");
     $rows = mysqli_num_rows($query);
-    if ($rows == 1){
+    if ($rows > 0){
                        echo "Your password reset link is already posted to your email address (".$email."), please check your email inbox & Junk mail folder. ";
                        exit;
                    }
@@ -51,7 +51,7 @@ if ($rows == 1) {
     $key=md5($key);
     $tm=time();
 
-//    $query = mysqli_query($conn, "INSERT INTO systemUserKey(id,pkey,time,status) VALUES ('$id', '$key', '$tm', 'pending')");
+    $query = mysqli_query($conn, "INSERT INTO systemUserKey(id,pkey,time,status) VALUES ('$id', '$key', '$tm', 'pending')");
     if (mysqli_error($conn)) {
                                   $error=mysqli_error($conn);
                                   $response['status'] = 'sqlerror'. $error;
@@ -80,17 +80,15 @@ $forgotpassemail = $result[0];
 $forgotpassemail = str_replace('_resetlinkurl',$resetLink, $forgotpassemail);
 $forgotpassemail = str_replace('_companyname',$company_name, $forgotpassemail);
 $forgotpassemail = str_replace('_adminrealname',$adminrealname, $forgotpassemail);
-echo "forgotpassemail:". $forgotpassemail;
 
     $body= $forgotpassemail;
 
-    $success = ""; mail($email,$subject,$body,$headers);
+    $success = mail($email,$subject,$body,$headers);
 
     if ($success) {
                    echo "THANK YOU. <br>A link to reset your password has been posted to your email address . Please check your mail shortly.";
                   }
     else {
-//          error_log("Emailing failed for some reason");
               echo "<center><font face='Verdana' size='2' color=red >$msg <br><br><input type='button' value='Retry' onClick='history.go(-1)'></center></font>";
          }
 
