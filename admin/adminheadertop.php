@@ -30,7 +30,7 @@
 <?php include 'menuadmin.php'; ?>
 <div class="row">
     <div class="container-fluid">
-        <img class="img-responsive" src="<?php echo $logoURL; ?>" alt="<?php echo $company_name; ?>"/> <?php echo "Welcome, " . $adminrealname; ?>
+        <img class="img-responsive" src="<?php echo $logoURL; ?>" alt="<?php echo $company_name; ?>"/>
     </div>
 </div>
 
