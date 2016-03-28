@@ -11,12 +11,13 @@ $email = stripslashes($email);
 $email = mysqli_real_escape_string($conn, $email);
 
 // Find admin user from email address in systemUser table
-$query = mysqli_query($conn, "SELECT email, id from systemUser WHERE email='$email'");
+$query = mysqli_query($conn, "SELECT email, id, realname from systemUser WHERE email='$email'");
 $result = mysqli_fetch_row($query);
 $rows = mysqli_num_rows($query);
 
 if ($rows == 1) {
     $id = $result[1];  // fetch userid
+    $realname = $result[2];  // fetch realname
     $tm=time() - 86400; // Time in last 24 hours
 // Check if reset is still pending on user's account
     $query = mysqli_query($conn, "SELECT id FROM systemUserKey WHERE id='$id' AND time > $tm and status='pending'");
@@ -50,7 +51,7 @@ if ($rows == 1) {
     $key=md5($key);
     $tm=time();
 
-    $query = mysqli_query($conn, "INSERT INTO systemUserKey(id,pkey,time,status) VALUES ('$id', '$key', '$tm', 'pending')");
+//    $query = mysqli_query($conn, "INSERT INTO systemUserKey(id,pkey,time,status) VALUES ('$id', '$key', '$tm', 'pending')");
     if (mysqli_error($conn)) {
                                   $error=mysqli_error($conn);
                                   $response['status'] = 'sqlerror'. $error;
@@ -60,16 +61,30 @@ if ($rows == 1) {
                                   break;
                              }
 
-
+$query = mysqli_query($conn, "SELECT realname FROM systemUser WHERE userlevel='3' ORDER BY id;");
+$result = mysqli_fetch_row($query);
+$adminrealname = $result[0];
+$domainname = "";
 // Create email to send user a link
-    $headersfrom="admin@sitename.com"; // Make this configurable later
+    $headersfrom = $adminrealname . "@".$domainname; // Make this configurable later
     $headers.= "From: ".$headersfrom."\n"; 
+    $subject="Your request for a new password at " . $companyname . " Request System";
 //$headers = "Content-Type: text/html; charset=iso-8859-1\n".$headers;// for html mail
-    $site_url = $baseURL."/admin/resetpassword.php?ak=$key&userid=".$id;
-    $body="This is in response to your request for login detailst at site_name \n \nLogin ID:". $id ."\n To reset your password, please visit this link( or copy and paste this link in your browser window )\n\n
-    \n\n $site_url \n\n <a href='".$site_url."'>".$site_url."</a>  \n\n Thank You \n \n siteadmin";
+    $reset_url = $baseURL."admin/resetpassword.php?ak=$key&userid=".$id;
+    $resetLink = "<a href='" .$reset_url . "'>" . $reset_url. "</a>";
 
-    $success = mail($email,"Your Request for login details",$body);
+
+$query = mysqli_query($conn, "SELECT forgotpassemail FROM customtext;");
+$result = mysqli_fetch_row($query);
+$forgotpassemail = $result[0];
+$forgotpassemail = str_replace('_resetlinkurl',$resetLink, $forgotpassemail);
+$forgotpassemail = str_replace('_companyname',$company_name, $forgotpassemail);
+$forgotpassemail = str_replace('_adminrealname',$adminrealname, $forgotpassemail);
+echo "forgotpassemail:". $forgotpassemail;
+
+    $body= $forgotpassemail;
+
+    $success = ""; mail($email,$subject,$body);
 
     if ($success) {
                    echo "THANK YOU. <br>A link to reset your password has been posted to your email address . Please check your mail shortly.";

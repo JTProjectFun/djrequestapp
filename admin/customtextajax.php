@@ -93,10 +93,10 @@ switch($action) {
 
                 </tr>
                 <tr>
-                    <td>numrequests</td>
-                    <td><div class="grid_content2 editable"><span><?php echo $records['numrequests']; ?></span>
-                    <input type="text" class="gridder_input" name="<?php echo encrypt("numrequests|".$records['id']); ?>" value="<?php echo $records['numrequests']; ?>" /></div></td>
-                    <td>This text informs the user how many requests have been made.  %HAS% will be replaced with 'have' or 'has', %NUM% by the actual number and %S% pluralises, e.g. 10 request%S% will be '10 requests'.</td>
+                    <td>forgotpassemail</td>
+                    <td><div class="grid_content2 editable"><span><?php echo $records['forgotpassemail']; ?></span>
+                    <input type="text" class="gridder_input" name="<?php echo encrypt("forgotpassemail|".$records['id']); ?>" value="<?php echo $records['forgotpassemail']; ?>" /></div></td>
+                    <td>This field contains the text of the email sent to a system user who has forgotten their password. _sitename will be replaced with the name of the site (as set in configuration.php.  _resetlinkurl will be replaced with a link to the actual password reset URL.  _siteadmin will be replaced with the real name of the system superuser</td>
                 </tr>
                 <?php
                 }
