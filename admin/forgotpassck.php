@@ -68,10 +68,10 @@ $domainname = "";
 // Create email to send user a link
     $headersfrom = $adminrealname . "@".$domainname; // Make this configurable later
     $headers.= "From: ".$headersfrom."\n"; 
-    $subject="Your request for a new password at " . $companyname . " Request System";
+    $subject="Your request for a new password at " . $company_name . " Request System";
 //$headers = "Content-Type: text/html; charset=iso-8859-1\n".$headers;// for html mail
     $reset_url = $baseURL."admin/resetpassword.php?ak=$key&userid=".$id;
-    $resetLink = "<a href='" .$reset_url . "'>" . $reset_url. "</a>";
+    $resetLink = $reset_url;
 
 
 $query = mysqli_query($conn, "SELECT forgotpassemail FROM customtext;");
@@ -84,7 +84,7 @@ echo "forgotpassemail:". $forgotpassemail;
 
     $body= $forgotpassemail;
 
-    $success = ""; mail($email,$subject,$body);
+    $success = ""; mail($email,$subject,$body,$headers);
 
     if ($success) {
                    echo "THANK YOU. <br>A link to reset your password has been posted to your email address . Please check your mail shortly.";

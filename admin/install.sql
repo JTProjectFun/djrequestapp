@@ -24,8 +24,9 @@ numrequests, warningmsg, errormsg,forgotpassemail) VALUES (0,
 "The %FIELD% cannot be left blank",
 "The %FIELD% you entered is too long. Please use less than 64 characters.",
 "There have been no requests made yet",
-"There %HAS% been %NUM% request%S% made so far"
-"WARNING", "ERROR"
+"There %HAS% been %NUM% request%S% made so far",
+"WARNING", "ERROR",
+"This is an email in response to your request for login details at _companyname \n. To reset your password, please visit this link (or copy & paste this link into your browser): \n _resetlinkurl \n \n Thankyou. \n Best regards, _adminrealname"
 );
 CREATE TABLE IF NOT EXISTS systemUserKey(id int NOT NULL, pkey varchar(32) NOT NULL, time varchar(32) NOT NULL, status varchar(7) NOT NULL, PRIMARY KEY (id));
 
