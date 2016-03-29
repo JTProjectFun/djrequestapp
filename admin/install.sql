@@ -12,22 +12,6 @@ CREATE TABLE IF NOT EXISTS requestusers(id int NOT NULL AUTO_INCREMENT, uniqueid
 CREATE TABLE IF NOT EXISTS customtext(userid int, success text,banned text,toomany text,sqlerror text,tooshort text,toomanyuser text,floodalert text,
     fieldblank text,fieldtoolong text,norequests text,numrequests text, warningmsg text, errormsg text, forgotpassemail);
 INSERT INTO systemUser(timedate, username, password, name, userlevel) VALUES ("1970-01-01 01:00:00", "admin", "6f404ea32dc5bb6e9b5ba3d82f36476dc5b10e9c", "Administrator", "3");
-INSERT INTO customtext(userid,success,banned,toomany,sqlerror,tooshort,toomanyuser,floodalert,fieldblank,fieldtoolong,norequests,
-numrequests, warningmsg, errormsg,forgotpassemail) VALUES (0,
-"Your request submission was successful.",
-"I'm sorry. You cannot make any more requests",
-"You have already submitted the maximum number of requests set by the administrator",
-"There seems to be a problem with the database.",
-"There was a problem with the %FIELD%. Please try again.",
-"You have already made the maximum amount of requests allowed, sorry.",
-"You may only make one request every %AMOUNT% %UNITS%. Try again later.",
-"The %FIELD% cannot be left blank",
-"The %FIELD% you entered is too long. Please use less than 64 characters.",
-"There have been no requests made yet",
-"There %HAS% been %NUM% request%S% made so far",
-"WARNING", "ERROR",
-"This is an email in response to your request for login details at _companyname \n. To reset your password, please visit this link (or copy & paste this link into your browser): \n _resetlinkurl \n \n Thankyou. \n Best regards, _adminrealname"
-);
 CREATE TABLE IF NOT EXISTS systemUserKey(id int NOT NULL, pkey varchar(32) NOT NULL, time varchar(32) NOT NULL, status varchar(7) NOT NULL, PRIMARY KEY (id));
 
 

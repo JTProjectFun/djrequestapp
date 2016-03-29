@@ -1,6 +1,7 @@
 <?php
 include_once 'configuration.php';
 include_once 'functions/functions.php';
+include_once 'customtexts.php';
 start_session();
 
 $result=""; // Initialise variables which may have been previously used & would contain data already
@@ -41,9 +42,6 @@ switch($action) {
                 $row = mysqli_fetch_row($namequery);
                 $djName = $row[0];
 
-                $conn = mysqli_connect($host, $username, $password, $db);
-                $customquery = mysqli_query($conn, "SELECT customtext.* FROM customtext LEFT JOIN systemUser ON systemUser.id=customtext.userid WHERE systemUser.name='$djName'");
-                $customtext = mysqli_fetch_array($customquery, MYSQLI_ASSOC);
                 mysqli_close($conn);
 
 				if (!empty($djName)) {
@@ -71,35 +69,35 @@ switch($action) {
 				<div class="row">
 					<div class="col-md-12">
 						<div class="alert alert-success collapse" role="alert" id="goodpopup">
-								<p>THANK-YOU! <?php echo $customtext['success']; ?></p>
+								<p><?php echo $successString; ?></p>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="alert alert-danger collapse" role="alert" id="databaseerror">
-								<p>ERROR: <?php echo $customtext['sqlerror']; ?></p>
+								<p>ERROR: <?php echo $sqlerrorString; ?></p>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="alert alert-danger collapse" role="alert" id="toomanyuser">
-								<p>ERROR: <?php echo $customtext['toomanyuser']; ?></p>
+								<p>ERROR: <?php echo $toomanyuserString; ?></p>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="alert alert-danger collapse" role="alert" id="toomany">
-								<p>ERROR: <?php echo $customtext['toomany']; ?></p>
+								<p>ERROR: <?php echo $toomanyString; ?></p>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="alert alert-danger collapse" role="alert" id="banned">
-								<p>ERROR: <?php echo $customtext['banned']; ?></p>
+								<p>ERROR: <?php echo $bannedString; ?></p>
 						</div>
 					</div>
 				</div>
@@ -120,7 +118,7 @@ switch($action) {
 									<label class="control-label" for="name">Your name:</label>
 									<input id="name" name="name" type="text" placeholder="" class="form-control gridder_addreq" maxlength="64">
 									<div class="error collapse" id="nameerror">This field is required.</div>
-									<div class="error collapse" id="nameerror_tl"><?php echo str_replace("%FIELD%", "name", $customtext['fieldtoolong']); ?></div>
+									<div class="error collapse" id="nameerror_tl"><?php echo str_replace("%FIELD%", "name", $fieldtoolongString); ?></div>
 								</div>
 							</div>
 						</div>
@@ -130,7 +128,7 @@ switch($action) {
 									<label class="control-label" for="artist">Song Artist:</label>
 									<input id="artist" name="artist" type="text" placeholder="" class="form-control gridder_addreq" maxlength="64">
 									<div class="error collapse" id="artisterror">This field is required.</div>
-									<div class="error collapse" id="artisterror_tl"><?php echo str_replace("%FIELD%", "artist", $customtext['fieldtoolong']); ?></div>
+									<div class="error collapse" id="artisterror_tl"><?php echo str_replace("%FIELD%", "artist", $fieldtoolongString); ?></div>
 								</div>
 							</div>
 						</div>
@@ -140,7 +138,7 @@ switch($action) {
 									<label class="control-label" for="title">Song Title:</label>
 									<input id="title" name="title" type="text" placeholder="" class="form-control gridder_addreq" maxlength="64">
 									<div class="error collapse" id="titleerror">This field is required.</div>
-									<div class="error collapse" id="titleerror_tl"><?php echo str_replace("%FIELD%", "title", $customtext['fieldtoolong']); ?></div>
+									<div class="error collapse" id="titleerror_tl"><?php echo str_replace("%FIELD%", "title", $fieldtoolongString); ?></div>
 								</div>
 							</div>
 						</div>
@@ -149,7 +147,7 @@ switch($action) {
 								<div class="form-group">
 									<label class="control-label" for="message">Your Message (up to 140 characters):</label>
 									<textarea id="message" name="message" class="form-control" placeholder="" rows="4" maxlength="140"></textarea>
-									<div class="error collapse" id="messageerror_tl"><?php echo str_replace("%FIELD%", "message", $customtext['fieldtoolong']); ?></div>
+									<div class="error collapse" id="messageerror_tl"><?php echo str_replace("%FIELD%", "message", $fieldtoolongString); ?></div>
 								</div>
 							</div>
 						</div>
@@ -195,9 +193,6 @@ switch($action) {
 			$row = mysqli_fetch_row($namequery);
 			$djName = $row[0];
 
-			$conn = mysqli_connect($host, $username, $password, $db);
-			$customquery = mysqli_query($conn, "SELECT customtext.* FROM customtext LEFT JOIN systemUser ON systemUser.id=customtext.userid WHERE systemUser.name='$djName'");
-			$customtext = mysqli_fetch_array($customquery, MYSQLI_ASSOC);
 			mysqli_close($conn);
 
 			$requestContent = '<div id="requests-placeholder">';

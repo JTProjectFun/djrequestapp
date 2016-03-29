@@ -20,7 +20,6 @@ function level2Menu(){
 echo '<li><a href="requests.php">All Requests</a></li>';
 echo '<li><a href="user.php">Request Users</a></li>';
 echo '<li><a href="admin.php">Events</a></li>';
-echo '<li><a href="customtext.php">Customise Text</a></li>';
 echo '<li><a href="password.php">Change Password</a></li>';
 }
 
@@ -30,7 +29,6 @@ echo '<li><a href="requests.php">All Requests</a></li>';
 echo '<li><a href="user.php">Request Users</a></li>';
 echo '<li><a href="useradmin.php">System Users</a></li>';
 echo '<li><a href="admin.php">Events</a></li>';
-echo '<li><a href="customtext.php">Customise Text</a></li>';
 echo '<li><a  href="password.php">Change Password</a></li>';
 }
 
