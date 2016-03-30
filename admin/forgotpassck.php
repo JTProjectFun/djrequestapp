@@ -1,5 +1,6 @@
 <?php
 include_once '../configuration.php';
+include_once '../customtexts.php';
 include_once 'adminconfig.php';
 include_once '../functions/functions.php';
 $email=$_POST['email'];
@@ -9,6 +10,10 @@ $conn = mysqli_connect($host, $username, $password, $db);
 // Cleanup & escape email address POSTed
 $email = stripslashes($email);
 $email = mysqli_real_escape_string($conn, $email);
+
+// Delete forgotten password requests older than 36 hours
+$tm=time() - 129600; // Time in last 36 hours
+$query = mysqli_query($conn, "DELETE from systemUserKey WHERE time < $tm;");
 
 // Find admin user from email address in systemUser table
 $query = mysqli_query($conn, "SELECT email, id, realname from systemUser WHERE email='$email'");
@@ -74,12 +79,10 @@ $domainname = "";
     $resetLink = $reset_url;
 
 
-$query = mysqli_query($conn, "SELECT forgotpassemail FROM customtext;");
-$result = mysqli_fetch_row($query);
-$forgotpassemail = $result[0];
-$forgotpassemail = str_replace('_resetlinkurl',$resetLink, $forgotpassemail);
-$forgotpassemail = str_replace('_companyname',$company_name, $forgotpassemail);
-$forgotpassemail = str_replace('_adminrealname',$adminrealname, $forgotpassemail);
+$forgotpassemail = $forgotpassemailString;
+$forgotpassemail = str_replace('%LINK%',$resetLink, $forgotpassemail);
+$forgotpassemail = str_replace('%COMPANYNAME%',$company_name, $forgotpassemail);
+$forgotpassemail = str_replace('%ADMINREALNAME%',$adminrealname, $forgotpassemail);
 
     $body= $forgotpassemail;
 

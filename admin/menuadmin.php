@@ -3,7 +3,8 @@ include_once '../configuration.php';
 include_once 'adminconfig.php';
 include_once '../functions/functions.php';
 
-if (curPageName()=="forgotpass.php") {
+// Don't want the menu to appear on these pages:
+if ((curPageName()=="forgotpass.php") || (curPageName()=="resetpassword.php")) {
     return;
 }
 

@@ -20,22 +20,27 @@ $ak=mysqli_real_escape_string($conn, $ak);
 //password resetting form will go here
 
 ?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?php echo $company_name; ?> Request System Administration</title>
-<meta name="keywords" content=""/>
-<meta name="description" content="" />
-<link rel="stylesheet" type="text/css" href="style.css" />
-<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<?php include 'adminheadertop.php'; ?>
+<div class="container theme-showcase" role="main">
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-sm-offset-3 col-md-offset-3">
+            <div class="account-wall">
+                 <h1 class="text-center"><a href="">Reset Your Password</a></h1>
+
+                 <div id="resetpass">
+                     <!-- ajax content -->
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<?php include 'javaincludes.php'; ?>
 <script type="text/javascript">
-$(function(){
         // Function for loading the grid
         function LoadGrid() {
-                var gridder = $('#as_gridder');
+                var gridder = $('#resetpass');
                 var UrlToPass = 'action=load';
                 gridder.html('loading..');
                 $.ajax({
@@ -84,19 +89,7 @@ $(function(){
                 });
                 return false;
         });
-});
 </script>
-</head>
-
-<body>
-<div class="as_wrapper">
-<div id="logo">&nbsp;</div>
-<?php echo "Welcome, " . $adminrealname; ?>
-        <h1 class="h1"><a href="">Change Your Password</a></h1>
-        <div class="as_grid_container">
-            <div class="as_gridder" id="as_gridder"></div> <!-- GRID LOADER -->
-        </div>
-</div>
 </body>
 </html>
 

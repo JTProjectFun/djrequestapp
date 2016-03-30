@@ -17,18 +17,15 @@ switch($action) {
 
                 ?>
 
-                <form id="changepassform" method="post">
+                <form id="changepassform" class="form-signin" method="post">
                     <input type="hidden" name="action" value="update" />
 
                     <div class="password" id="changepass">
                         <table>
-                            <tr><td>New Password</td><td><input type="password" name="newPass1" id="date" class="gridder_add" /></td></tr>
-                            <tr><td>Confirm New Password</td><td><input type="password" name="newPass2" id="showrequests" class="gridder_add" /></td></tr>
+                            <tr><td>New Password</td><td><input type="password" name="newPass1" id="date" class="form-control"/></td></tr>
+                            <tr><td>Confirm New Password</td><td><input type="password" name="newPass2" id="showrequests" class="form-control" /></td></tr>
                         </table>
-
-                        <div class="keyadd" id="submitbutton"><input type="submit" id="changepassword" value="submit" class="btn btn-lg gridder_addrecord_button"></input></div>
-                        <div class="keyadd" id="cancelbutton">
-                            <a href="cancel" id="gridder_cancel" class="btn btn-lg btn-danger gridder_cancel">Cancel</a>
+<button class="btn btn-lg btn-primary btn-block" name="submit" type="submit">Submit</button>
                         </div>
                  </div>
              </form>
