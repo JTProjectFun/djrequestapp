@@ -14,6 +14,8 @@ switch($action) {
                 while (checkkey($tempkey)) {
                     $tempkey = random_string();
                 }
+                $tempkey = strtolower($tempkey);
+
                 $conn = mysqli_connect($host, $username, $password, $db);
 
                 if ($userlevel == "3") {
@@ -152,6 +154,7 @@ switch($action) {
                 $conn = mysqli_connect($host,$username,$password,$db);
                 $timedate = date("Y-m-d.H:i:s");
 		$thekey 		= isset($_POST['thekey']) ? mysqli_real_escape_string($conn, $_POST['thekey']) : '';
+		$thekey 		= strtolower($thekey);
 		$date 		= isset($_POST['date']) ? mysqli_real_escape_string($conn, $_POST['date']) : '';
 		$showrequests = isset($_POST['showrequests']) ? mysqli_real_escape_string($conn, $_POST['showrequests']) : '';
 		$willexpire		= isset($_POST['willexpire']) ? mysqli_real_escape_string($conn, $_POST['willexpire']) : '';
@@ -184,6 +187,8 @@ switch($action) {
 		$columnName = $explode[0];
 		$rowId = $explode[1];
                 if($columnName == 'thekey') { // if updating the 'thekey' field also update the requests table
+                     $value = strtolower($value);
+
                      $query = mysqli_query($conn, "SELECT thekey FROM `requestkeys` where id = '$rowId' ");
                      $data = mysqli_fetch_row($query);
                      $thekey = $data[0];

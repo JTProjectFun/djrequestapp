@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
 		$date = stripslashes($date);
 		$key = mysqli_real_escape_string($conn, $key);
 		$date = mysqli_real_escape_string($conn, $date);
-
+                $key = strtolower($key);
 		$result = mysqli_query($conn, "SELECT date, willexpire, id FROM requestkeys WHERE thekey='$key'");
 		$rows = mysqli_num_rows($result);
 		if ($rows == 1) {
