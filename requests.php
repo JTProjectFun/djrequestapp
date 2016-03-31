@@ -129,7 +129,7 @@ QRcode::png($baseURL . 'login.php?eventkey=' . $key, 'images/' . $key . '.png', 
 					<div class="row">
 						<div class="col-md-12 text-center">
 							<p>Scan the QR code with your smartphone or tablet to automatically log in:</p>
-							<img class="img-responsive shareqrcode" src="images/<?php echo $key; ?>.png" />
+							<img class="img-responsive center-block shareqrcode" src="images/<?php echo $key; ?>.png" />
 						</div>
 					</div>
 					<div class="row">
@@ -155,7 +155,7 @@ QRcode::png($baseURL . 'login.php?eventkey=' . $key, 'images/' . $key . '.png', 
 
 			<div class="row top-buffer">
 				<div class="col-md-12">
-					<img class="img-responsive" src="<?php echo $logoURL; ?>" alt="<?php echo $company_name; ?>"/>
+					<img class="img-responsive center-block" src="<?php echo $logoURL; ?>" alt="<?php echo $company_name; ?>"/>
 				</div>
 			</div>
 
