@@ -84,6 +84,22 @@ $ak=mysqli_real_escape_string($conn, $ak);
                                 alert ("SQL error.");
                                 return false;
                             }
+
+                            if (data.status == "PasswordMismatch") {
+                                 setTimeout(function(){ $('#passwordmismatch').show(); }, 100);
+                                 setTimeout(function(){ $('#passwordmismatch').fadeOut('fast'); }, 8000);
+                                 return false;
+                            }
+
+                            if (data.status == "success") {
+                                 setTimeout(function(){ $('#passwordchanged').show(); }, 100);
+                                 setTimeout(function(){ $('#passwordchanged').fadeOut('fast'); }, 8000);
+                                 window.setTimeout(function () {
+                                     location.href = "index.php";
+                                 }, 5000);
+                                 return false;
+                            }
+
                                 LoadGrid();
                         }
                 });

@@ -1,5 +1,6 @@
 <?php
 include_once '../configuration.php';
+include_once '../customtexts.php';
 include_once '../functions/functions.php';
 include_once ('generatekey.php');
 include_once 'adminconfig.php';
@@ -16,6 +17,21 @@ switch($action) {
                 $conn = mysqli_connect($host, $username, $password, $db);
 
                 ?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="alert alert-success collapse" role="alert" id="passwordchanged">
+            <p><?php echo $passwordsuccessString; ?></p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="alert alert-danger collapse" role="alert" id="passwordmismatch">
+            <p>ERROR: <?php echo $passwordmismatchString; ?></p>
+        </div>
+    </div>
+</div>
 
                 <form id="changepassform" class="form-signin" method="post">
                     <input type="hidden" name="action" value="update" />
@@ -25,8 +41,8 @@ switch($action) {
                             <tr><td>New Password</td><td><input type="password" name="newPass1" id="date" class="form-control"/></td></tr>
                             <tr><td>Confirm New Password</td><td><input type="password" name="newPass2" id="showrequests" class="form-control" /></td></tr>
                         </table>
-<button class="btn btn-lg btn-primary btn-block" name="submit" type="submit">Submit</button>
-                        </div>
+                        <button class="btn btn-lg btn-primary btn-block" name="submit" type="submit" id="changepassword">Submit</button>
+                    </div>
                  </div>
              </form>
         </div>
@@ -57,20 +73,13 @@ error_log("Password: " .$pass);
                 $hashedPass = sha1($salt.$curPass);
 error_log("Hashed Password: " .$hashedPass);
 
-  //              if ($hashedPass != $pass) {
-  //                  error_log ("Current password incorrect");
-  //                  $response['status'] = 'PasswordIncorrect';
-  //                  header('Content-type: application/json');
-  //                  echo json_encode($response);
-  //                  mysqli_close($conn);
-  //              }
-
                 if ($newPass1 != $newPass2) {
                     error_log("New passwords do not match");
-                    $response['status'] = 'NewPasswordsDontMatch';
+                    $response['status'] = 'PasswordMismatch';
                     header('Content-type: application/json');
                     echo json_encode($response);
                     mysqli_close($conn);
+                    break;
                 }
 
 $hashedNewPass = sha1($salt.$newPass1);
