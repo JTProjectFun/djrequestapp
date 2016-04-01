@@ -40,9 +40,7 @@ else
                          $timedate = $result[3];
                          $gotpass = $result[4];
                          $salt = strrev(date('U', strtotime($timedate)));
-                         error_log("Salt: " . $salt . " timedate =" . $timedate);
                          $hashedPass = sha1($salt.$pass);
-                         error_log("Password:". $pass . " hashedpass = " . $hashedPass . " Got pass=".$gotpass );
                          if ($hashedPass == $gotpass) { 
                                                         setcookie("adminuser", $user);
                                                         setcookie("adminuserid", $userid);
