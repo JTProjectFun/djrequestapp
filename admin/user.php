@@ -1,5 +1,6 @@
 <?php
 include_once '../configuration.php';
+include_once 'adminconfig.php';
 include_once '../functions/functions.php';
 start_session();
 $user = 0;

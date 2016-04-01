@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS requests(id int NOT NULL AUTO_INCREMENT, timedate var
     title varchar(64), message varchar(140), willplay int, played int, ipaddr varchar(20), uniqueid varchar(64), PRIMARY KEY(id));
 CREATE TABLE IF NOT EXISTS requestusers(id int NOT NULL AUTO_INCREMENT, uniqueid varchar(16), ipaddr varchar(20), thekey varchar(16), banned int DEFAULT 0,
     createdTime varchar(32), numRequests int default 0, logintimes int DEFAULT 0, PRIMARY KEY(id));
-INSERT INTO systemUser(timedate, username, password, name, userlevel) VALUES ("1970-01-01 01:00:00", "admin", "6f404ea32dc5bb6e9b5ba3d82f36476dc5b10e9c", "Administrator", "3");
+INSERT INTO systemUser(timedate, username, password, realname, userlevel) VALUES ("1970-01-01 01:00:00", "admin", "6f404ea32dc5bb6e9b5ba3d82f36476dc5b10e9c", "Administrator", "3");
 CREATE TABLE IF NOT EXISTS systemUserKey(id int NOT NULL, pkey varchar(32) NOT NULL, time varchar(32) NOT NULL, status varchar(7) NOT NULL, PRIMARY KEY (id));
 
 

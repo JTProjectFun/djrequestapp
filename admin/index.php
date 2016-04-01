@@ -1,4 +1,5 @@
 <?php
+include_once '../configuration.php';
 include_once 'login.php'; // Includes Login Script
 include_once '../functions/functions.php';
 start_session();

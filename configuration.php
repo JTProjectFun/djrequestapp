@@ -19,30 +19,40 @@ $username	= "requests"; // Your host username
 $password	= "r3qu35t"; // Your host password
 $db		= "djrequests"; // Your database name
 
+// Session timeout - default 120 minutes. How long a user can be logged in for before they have to login again
+$session_timeout=120;
+
+// Flood Period - how many seconds must elapse before a user can make consecutive requests. Default 30.
+$flood_period=30;
+
+// Over hours - how long an event 'day' can overrun by (to allow requests to be made after midnight). Default 2 hours
+$over_hours=2;
+
+// If set to 1, events will expire by default
+$willexpire=1;
+
+// If set to 1, requests will be shown by default.
+
+$show_requests=1;
+
+// MaxUserAge - users older than this (in days) will be purged from the database
+$maxUserAge=30;
+
+// MaxUserRequestDefault - how many requests a user can make by default.  0 == unlimited
+$maxUserRequestDefault=0;
+
+
+// MaxRequestDefault - how many requests an event can have by default.  0 == unlimited
+$maxRequestDefault=0;
+
 // don't edit anything below here
 $record = "";
-$settingdb = mysqli_connect($host, $username, $password, $db) or die("Some error occurred during connection " . mysqli_error($settingdb));
 
-//$query = mysqli_query($settingdb, "SELECT * FROM settings;");
-// while($fetch = mysqli_fetch_array($query)) {
-//                                $record[] = $fetch;
-//}
-//$record = mysqli_fetch_assoc($query);
-//mysqli_close($query);
-
-$conn = mysqli_connect($host, $username, $password, $db);
-                $query  = mysqli_query($conn, "SELECT * FROM `settings`");
-                $count  = mysqli_num_rows($query);
-                if($count > 0) {
-                        $record = mysqli_fetch_array($query);
-                }
-
-mysqli_close($conn);
-$session_timeout = $record['session_timeout'];
-$flood_period = $record['flood_period'];
-$over_hours = $record['over_hours'];
-$willexpire = $record['willexpire'];
-$show_requests = $record['show_requests'];
-$maxRequestDefault = $record['maxRequestDefault'];
-$maxUserRequestDefault = $record['maxUserRequestDefault'];
+//$session_timeout = $record['session_timeout'];
+//$flood_period = $record['flood_period'];
+//$over_hours = $record['over_hours'];
+//$willexpire = $record['willexpire'];
+//$show_requests = $record['show_requests'];
+//$maxRequestDefault = $record['maxRequestDefault'];
+//$maxUserRequestDefault = $record['maxUserRequestDefault'];
 ?>

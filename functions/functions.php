@@ -1,5 +1,5 @@
 <?php
-//include_once (dirname(__DIR__).'/config.php');
+
 // Function for encryption
 function encrypt($data) {
 	return base64_encode(base64_encode(base64_encode(strrev($data))));

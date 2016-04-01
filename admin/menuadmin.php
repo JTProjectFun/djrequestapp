@@ -25,7 +25,6 @@ echo '<li><a href="password.php">Change Password</a></li>';
 }
 
 function level3Menu(){
-echo '<li><a href="settings.php">Settings</a></li>';
 echo '<li><a href="requests.php">All Requests</a></li>';
 echo '<li><a href="user.php">Request Users</a></li>';
 echo '<li><a href="useradmin.php">System Users</a></li>';

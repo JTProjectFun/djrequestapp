@@ -1,7 +1,7 @@
 <?php
 include_once '../configuration.php';
 include_once '../functions/functions.php';
-include_once '../generatekey.php';
+include_once 'generatekey.php';
 include_once 'adminconfig.php';
 start_session();
 $record="";
