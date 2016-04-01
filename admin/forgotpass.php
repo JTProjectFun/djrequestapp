@@ -1,8 +1,10 @@
 <?php
+include_once '../configuration.php';
 include_once 'forgotpassck.php';
 include_once '../functions/functions.php';
 start_session();
-
+$email="";
+$error="";
 //if(isset($_SESSION['login_user'])){
 //header("location: admin.php");
 //}

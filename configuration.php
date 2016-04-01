@@ -48,11 +48,4 @@ $maxRequestDefault=0;
 // don't edit anything below here
 $record = "";
 
-//$session_timeout = $record['session_timeout'];
-//$flood_period = $record['flood_period'];
-//$over_hours = $record['over_hours'];
-//$willexpire = $record['willexpire'];
-//$show_requests = $record['show_requests'];
-//$maxRequestDefault = $record['maxRequestDefault'];
-//$maxUserRequestDefault = $record['maxUserRequestDefault'];
 ?>
